@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Oct 09, 2015 at 03:35 PM
+-- Generation Time: Oct 14, 2015 at 09:18 PM
 -- Server version: 5.5.42
 -- PHP Version: 5.6.10
 
@@ -11,48 +11,8 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `UCinterest`
+-- Database: `UCInterest`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `comments`
---
-
-CREATE TABLE `comments` (
-  `UID` int(11) NOT NULL,
-  `PID` int(11) NOT NULL,
-  `content` longtext NOT NULL,
-  `post_time` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pins`
---
-
-CREATE TABLE `pins` (
-  `UID` int(11) NOT NULL,
-  `PID` int(11) NOT NULL,
-  `board` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `posts`
---
-
-CREATE TABLE `posts` (
-  `PID` int(11) NOT NULL,
-  `UID` int(11) NOT NULL,
-  'title' varchar(50) NOT NULL,
-  `picture` longtext NOT NULL,
-  `content` longtext NOT NULL,
-  `post_date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -61,44 +21,38 @@ CREATE TABLE `posts` (
 --
 
 CREATE TABLE `users` (
-  `UID` int(11) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `first_name` varchar(30) NOT NULL,
-  `last_name` varchar(30) NOT NULL,
-  `DOB` date NOT NULL,
-  `password` varchar(30) NOT NULL,
-  `picture` longtext NOT NULL,
-  `creation_date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `uid` int(11) NOT NULL,
+  `email` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `first_name` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `last_name` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `about_you` text COLLATE utf8_unicode_ci,
+  `location` text COLLATE utf8_unicode_ci,
+  `website` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `profile_pic` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `DOB` date DEFAULT NULL,
+  `gender` varchar(1) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `nick_name` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `posts`
---
-ALTER TABLE `posts`
-  ADD PRIMARY KEY (`PID`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`UID`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD PRIMARY KEY (`uid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `posts`
---
-ALTER TABLE `posts`
-  MODIFY `PID` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `UID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT;
