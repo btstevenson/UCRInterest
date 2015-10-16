@@ -17,6 +17,11 @@
 	</p>
 
 	<p>
+		<?php echo form_label('Username:', 'username'); ?>
+		<?php echo form_input('username', set_value('username'), 'id = username'); ?>
+	</p>
+
+	<p>
 		<?php echo form_label('Password:', 'password'); ?>
 		<?php echo form_password('password', set_value('password'), 'id = password'); ?>
 	</p>

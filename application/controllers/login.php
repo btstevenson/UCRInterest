@@ -23,7 +23,14 @@ class Login extends CI_Controller
 			$this->load->model('login_model');
 			$result = $this->login_model->login_user();
 			if ($result)
-				redirect('Welcome');
+			{
+				$data = array(
+						'username' => $this->input->post('username'),
+						'is_logged_in' => true
+					);
+				$this->session->set_userdata($data);
+				redirect('Profile');
+			}
 			else
 			{
 				echo "Wrong uername/password";
