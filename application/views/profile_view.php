@@ -9,7 +9,7 @@
 
 <body>
 	<p>
-		Profile page
+		<center>Profile page</center>
 	</p>
 </body>
 </html>
