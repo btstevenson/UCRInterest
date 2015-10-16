@@ -33,7 +33,7 @@ class Login extends CI_Controller
 			}
 			else
 			{
-				echo "Wrong uername/password";
+				echo "Wrong username or password";
 				$this->load->view('login_view');
 			}
 

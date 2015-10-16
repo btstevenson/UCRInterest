@@ -25,7 +25,7 @@ class login_model extends CI_Model
 		//If more then there is an error
 		else if ( $q->num_rows() > 1)
 		{
-			echo 'SOMETHING WRONG';
+			echo ' SOMETHING WRONG ';
 		}
 	}
 }
