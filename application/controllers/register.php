@@ -16,7 +16,7 @@ class Register extends CI_Controller
 	{
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
-		$this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique');
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[users.username]');
 		$this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
 		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
@@ -26,6 +26,11 @@ class Register extends CI_Controller
 		{
 			$this->load->model('registration_model');
 			$this->registration_model->register_user();
+			$data = array(
+						'username' => $this->input->post('username'),
+						'is_logged_in' => true
+					);
+			$this->session->set_userdata($data);
 			redirect('Profile');
 		}
 		else
