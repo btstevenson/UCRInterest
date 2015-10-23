@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<title>Welcome to UCRinterest!</title>
 
 	<style type="text/css">
 
@@ -12,7 +12,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	::-moz-selection { background-color: #E13300; color: white; }
 
 	body {
-		background-color: #fff;
+		<!--background-image: url("http://dealbreaker.com/uploads/2015/02/pinterest.jpg");-->
+		background-color: #FFFFFF;
 		margin: 40px;
 		font: 13px/20px normal Helvetica, Arial, sans-serif;
 		color: #4F5155;
@@ -20,7 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	a {
 		color: #003399;
-		background-color: transparent;
+		background-color: tranparent;
 		font-weight: normal;
 	}
 
@@ -47,6 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	#body {
 		margin: 0 15px 0 15px;
+		
 	}
 
 	p.footer {
@@ -58,10 +60,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		margin: 20px 0 0 0;
 	}
 
-	#container {
+	#container { <!-- Text color -->
 		margin: 10px;
 		border: 1px solid #D0D0D0;
 		box-shadow: 0 0 8px #D0D0D0;
+		color: #003300
 	}
 	</style>
 </head>
@@ -74,20 +77,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<p>To login to UCRinterest, go <a href="/index.php/login"> here.</a></p>
 		<p>Not Registered? Click <a href="/index.php/register"> here.</a></p>
 
-		<p>This is a test page that I created so that you guys can see whats going on.</p>
-
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
-
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
-
-		<p>To go into the registration page go to localhost:8888/index.php/register</p>
-
-		<p>Once you fill out the form, check the database and you should see the information you just put in.</p>
-
 		<?php
 			$atts = array(
               'width'      => '800',
@@ -99,7 +88,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               'screeny'    => '0'
             );
 
-			echo anchor('login', 'Login');
+			
 		?>
 	</div>
 
