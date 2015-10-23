@@ -85,7 +85,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<p>Once you fill out the form, check the database and you should see the information you just put in.</p>
 
+		<?php
+			$atts = array(
+              'width'      => '800',
+              'height'     => '600',
+              'scrollbars' => 'yes',
+              'status'     => 'yes',
+              'resizable'  => 'yes',
+              'screenx'    => '0',
+              'screeny'    => '0'
+            );
 
+			echo anchor('login', 'Login');
+		?>
 	</div>
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
