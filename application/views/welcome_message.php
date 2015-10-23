@@ -68,9 +68,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
-	<h1>What's up guys!</h1>
+	<h1>UCRinterest</h1>
 
 	<div id="body">
+		<p>To login to UCRinterest, go <a href="/index.php/login"> here.</a></p>
+		<p>Not Registered? Click <a href="/index.php/register"> here.</a></p>
+
 		<p>This is a test page that I created so that you guys can see whats going on.</p>
 
 		<p>If you would like to edit this page you'll find it located at:</p>
