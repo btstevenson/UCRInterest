@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	::-moz-selection { background-color: #E13300; color: white; }
 
 	body {
-		<!--background-image: url("http://dealbreaker.com/uploads/2015/02/pinterest.jpg");-->
+		 background-image: url("http://dealbreaker.com/uploads/2015/02/pinterest.jpg"); 
 		background-color: #FFFFFF;
 		margin: 40px;
 		font: 13px/20px normal Helvetica, Arial, sans-serif;
@@ -64,7 +64,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		margin: 10px;
 		border: 1px solid #D0D0D0;
 		box-shadow: 0 0 8px #D0D0D0;
-		color: #003300
+		color: red;
+		background-color: white;
 	}
 	</style>
 </head>
@@ -74,8 +75,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<h1>UCRinterest</h1>
 
 	<div id="body">
-		<p>To login to UCRinterest, go <a href="/index.php/login"> here.</a></p>
-		<p>Not Registered? Click <a href="/index.php/register"> here.</a></p>
+		<p>To login to UCRinterest, Click <?php echo anchor('login', 'here'); ?> </p>
+		<p>Not Registered? Click <?php echo anchor('register', 'here'); ?> </p>
 
 		<?php
 			$atts = array(
