@@ -6,13 +6,12 @@ class Profile extends CI_Controller
 	{
 		parent::__construct();
 		$this->data['meta_title'] = "Profile";
-		// $this->data['page'] = "user/profile_view";
 		$this->is_logged_in();
 	}
 
 	public function index()
 	{
-		$this->load->view('template/header');
+		$this->load->view('template/header', $this->data);
 		$this->load->view('template/main_layout', $this->data);
 		$this->load->view('user/profile_view');
 		$this->load->view('template/footer');
