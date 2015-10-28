@@ -5,12 +5,13 @@ class Profile extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+		$this->data['meta_title'] = "Profile";
 		$this->is_logged_in();
 	}
 
 	public function index()
 	{
-
+		$this->load->view('template/main_layout', $this->data);
 		$this->load->view('profile_view');
 	}
 

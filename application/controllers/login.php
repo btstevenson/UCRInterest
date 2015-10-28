@@ -5,10 +5,12 @@ class Login extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+		$this->data['meta_title'] = "Login";
 	}
 
 	public function index()
 	{
+		$this->load->view("template/main_layout", $this->data);
 		$this->load->view('login_view');
 	}
 
