@@ -32,6 +32,7 @@ class Register extends CI_Controller
 					);
 			$this->session->set_userdata($data);
 			redirect('Profile');
+			$this->load->view('template/main_layout', $this->data);
 		}
 		else
 		{

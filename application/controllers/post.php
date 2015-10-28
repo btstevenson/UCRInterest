@@ -11,9 +11,6 @@ class Post extends CI_Controller
 	public function index()
 	{
 		$this->load->view('template/main_layout', $this->data);
-	}
-	public function modal()
-	{
-		$this->load->view('template/modal_layout', $this->data);
+
 	}
 }
