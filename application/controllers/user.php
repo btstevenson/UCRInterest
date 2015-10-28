@@ -19,6 +19,11 @@ class User extends CI_Controller
 
 		if($this->form_validation->run())
 		{
+			$data = array(
+						'username' => $this->input->post('username'),
+						'is_logged_in' => true
+					);
+			$this->session->set_userdata($data);
 			redirect('post');
 		}
 

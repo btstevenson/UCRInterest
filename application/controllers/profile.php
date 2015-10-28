@@ -6,19 +6,23 @@ class Profile extends CI_Controller
 	{
 		parent::__construct();
 		$this->data['meta_title'] = "Profile";
+		// $this->data['page'] = "user/profile_view";
 		$this->is_logged_in();
 	}
 
 	public function index()
 	{
+		$this->load->view('template/header');
 		$this->load->view('template/main_layout', $this->data);
+		$this->load->view('user/profile_view');
+		$this->load->view('template/footer');
 		$hold = array();
 		$sql = "SELECT * FROM users WHERE username = ?";
 		if($query = $this->db->query($sql, array($this->session->userdata('username'))))
 		{
 			$hold['user_record'] = $query->result_array();	
 		}
-		$this->load->view('user/profile_view', $hold);
+		
 	}
 
 	public function display()

@@ -1,4 +1,4 @@
-<?php $this->load->view('template/header'); ?>
+
 
 <style>
   #post_btn
@@ -40,4 +40,4 @@
   <a href="#post_modal" role="button" class="btn btn-danger" data-toggle="modal" id="post_btn">Make a post!</a>
   <?php $this->load->view('template/post_modal'); ?>
 
-<?php $this->load->view('template/footer'); ?>
+
