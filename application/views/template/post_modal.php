@@ -6,20 +6,21 @@
 <style> .errors {color: red;} </style>
 
 <div class="modal-body">
-  <div class="errors form-feedback"> <?php echo validation_errors(); ?> </div>
-    <?php echo form_open('','','id=post_form'); ?>
+  <div class="errors"> <?php echo validation_errors(); ?> </div>
+    <?php echo form_open_multipart("post/save"); ?>
     <table class="table">
       <tr>
         <td>Title</td>
         <td>
-          <?php echo form_input('title', set_value('title'), 'id = title'); ?>
+          <?php echo form_input('title'); ?>
         </td>
       </tr>
 
       <tr>
         <td>Picture <i class="icon-upload"></i></td>
         <td>
-          <?php echo form_upload('pic', set_value('pic'), 'id = pic'); ?>
+          <?php echo form_upload('pic_dir'); ?>
+          <?php echo $this->input->post('pic_dir'); ?>
         </td>
       </tr>
 
@@ -35,20 +36,16 @@
                   'cols'          => '50',
                   'placeholder' => 'Content'
                 );
+            
             echo form_textarea($data);
           ?>
         </td>
       </tr>
     </table>
-  </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <?php echo form_submit('submit', 'Post', 'class="btn btn-primary" id="post_submit data-dismiss="modal" aria-hidden="true"'); ?>
-    <?php echo form_close(); ?>
-  </div>
 </div>
-<script type="text/javascript">
-    $('#post_submit').on('click', function(){
-      return false;
-    });
-</script>
+<div class="modal-footer">
+  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  <?php echo form_submit('submit', 'Post', 'class="btn btn-primary" id="post_submit"'); ?>
+  <?php echo form_close(); ?>
+</div>
+</div>
