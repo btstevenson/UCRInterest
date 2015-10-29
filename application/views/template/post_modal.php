@@ -6,8 +6,8 @@
 <style> .errors {color: red;} </style>
 
 <div class="modal-body">
-  <div class="errors"> <?php echo validation_errors(); ?> </div>
-    <?php echo form_open(); ?>
+  <div class="errors form-feedback"> <?php echo validation_errors(); ?> </div>
+    <?php echo form_open('','','id=post_form'); ?>
     <table class="table">
       <tr>
         <td>Title</td>
@@ -44,6 +44,11 @@
 </div>
 <div class="modal-footer">
   <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-  <?php echo form_submit('submit', 'Post', 'class="btn btn-primary" id="post_submit"'); ?>
+  <?php echo form_submit('submit', 'Post', 'class="btn btn-primary" id="post_submit data-dismiss="modal" aria-hidden="true"'); ?>
 </div>
+<script type="text/javascript">
+    $('#post_submit').on('click', function(){
+      return false;
+    });
+</script>
 </div>
