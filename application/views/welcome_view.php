@@ -7,10 +7,11 @@ body.welcome {
 		color: #4F5155;
 		}
 #container.well {
+		margin: auto;
+ 		position: absolute;
+ 		left: 0; right: 0;
+ 		top:100px;
 		width: 40%;
-		margin-top: 100px;
-    	margin-right: 0 auto;
-    	margin-left: 0 auto;
 		text-align: center;
 		font-size: 2vw;
 }
