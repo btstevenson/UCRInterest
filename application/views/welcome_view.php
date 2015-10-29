@@ -1,6 +1,25 @@
-<body>
-
-<div id="container" class="well well-large">
+<style type="text/css">
+body.welcome {
+		background-image: url("http://dealbreaker.com/uploads/2015/02/pinterest.jpg"); 
+		background-color: #FFFFFF;
+		margin: 0 auto;
+		font: 13px/20px normal Helvetica, Arial, sans-serif;
+		color: #4F5155;
+		}
+#container.well {
+		width: 40%;
+		margin-top: 100px;
+    	margin-right: 0 auto;
+    	margin-left: 0 auto;
+		text-align: center;
+		font-size: 2vw;
+}
+h1{
+	font-size: 3vw;
+}
+</style>
+<body class="welcome">
+<div id="container" class="well">
 	<h1>UCRinterest</h1>
 
 	<div id="body">
