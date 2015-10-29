@@ -30,7 +30,7 @@
       <div class="span3">
         <section>
           <?php echo anchor('profile', '<i class="icon-user"></i> Profile'); ?> <br>
-          <?php echo anchor('profile/logout', '<i class="icon-off"></i> Logout'); ?>
+          <?php echo anchor('user/logout', '<i class="icon-off"></i> Logout'); ?>
         </section>
       </div>
     </div>

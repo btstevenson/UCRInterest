@@ -62,7 +62,8 @@ class User extends CI_Controller
 
 	function logout()
 	{
-		
+		$this->session->sess_destroy();
+		redirect('Welcome');
 	}
 
 	//This is used for the log in form validation
