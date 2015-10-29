@@ -60,7 +60,7 @@ class User_model extends CI_Model
 	function edit_profile()
 	{
 		$data = array(
-			'uid'			=>	$this->input->post('uid'),,
+			'uid'			=>	$this->input->post('uid'),
 			'email'			=>	$this->input->post('email'),
 			'password' 		=> 	$this->input->post('password'),
 			'username' 		=> 	$this->input->post('username'),
