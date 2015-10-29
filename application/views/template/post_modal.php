@@ -3,10 +3,9 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Post</h3>
   </div>
-  <div class="modal-body">
-  <style> .errors {color: red;} </style>
 
 <div class="modal-body">
+<<<<<<< HEAD
     <form action="<?php echo site_url('Post/upload_file'); ?>" method="post" enctype="multipart/form-data" id="postform">
       <table class="table">
         <tr>
@@ -14,6 +13,17 @@
           <td>:</td>
           <td> <input type="text" name="title"> </td>
         </tr>
+=======
+  <div class="errors"> <?php echo validation_errors(); ?> </div>
+    <?php echo form_open('', '', 'id="post_form'); ?>
+    <table class="table">
+      <tr>
+        <td>Title</td>
+        <td>
+          <?php echo form_input('title', set_value('title'), 'id = title'); ?>
+        </td>
+      </tr>
+>>>>>>> origin/master
 
         <tr>
           <td>Picture <i class="icon-upload"></i></td>
@@ -29,6 +39,15 @@
 </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+<<<<<<< HEAD
      <input type="submit"  class= "btn btn-primary" value="Upload Image...">
+=======
+    <?php echo form_submit('submit', 'Post', 'class="btn btn-primary" id="post_submit" data-dismiss="modal" aria-hidden="true"'); ?>
+>>>>>>> origin/master
   </div>
 </div> 
+<script type="text/javascript">
+    $('#post_submit').on('click', function(){
+      return false;
+    });
+</script>

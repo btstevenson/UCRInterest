@@ -1,138 +1,106 @@
-<!DOCTYPE html>
 
-<html lang = "en">
-<head>
+    <style>
+    #header {
+    	background-color: blue;
+    	color: white;
+    	text-align: center;
+    	padding: 50px;
+    }
+    #opener {
+    	float: right;
+    }
+    #tabs{
+    	background-color: grey;
+    	text-align: center;
+    }
+    ul#list li{
+    	display:inline;
+    }
+    * {
+    box-sizing: border-box;
+}
+.row:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+[class*="col-"] {
+    float: center;
+    padding: 15px;
+}
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+html {
+    font-family: "Lucida Sans", sans-serif;
+}
 
-	<meta charset="utf-8">
-	<style>
-	
-	</style>
-	<title>Login</title>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	<script src="//code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
-
-
-	<script type="text/javascript">
-	$(function()
-	{
-	    var dialog, form,
-	      title, picture,
-	      allFields = $( [] ).add(title).add(picture),
-	      tips = $( ".validateTips" );
-
-
-	    function updateTips( t ) {
-	      tips
-	        .text( t )
-	        .addClass( "ui-state-highlight" );
-	      setTimeout(function() {
-	        tips.removeClass( "ui-state-highlight", 1500 );
-	      }, 500 );
-	    }
-	 
-	    function checkLength( o, n, min, max ) {
-	      if ( o.length > max || o.length < min ) {
-	      	// alert("Length of " + n + " must be between " +
-	       //    min + " and " + max + " characters.");
-	        o.addClass( "ui-state-error" );
-	        updateTips( "Length of " + n + " must be between " +
-	          min + " and " + max + "." );
-	        return false;
-	      } else {
-	        return true;
-	      }
-	    }
-	 
-	    function makePost() {
-	      var valid = true;
-	      title = $('#title').val();
-	      picture = $('#content').val();
-	      allFields.removeClass( "ui-state-error" );
-
-	      valid = valid && checkLength( title, "title", 1, 25 );
-	      valid = valid && checkLength( picture, "content", 0, 200 );
-	      if(valid)
-	      {
-			dialog.dialog('close'); 
-    	  }
-
-	      return valid;
-	    }
-
-    	dialog = $("#message").dialog({
-    		autoOpen: false,
-    		height: 500,
-    		width: 650,
-    		modal: true,
-    		show: {
-    			effect: "fade",
-    			duration: 700
-    		},
-    		hide: {
-    			effect: "fade",
-    			duration: 700
-    		},
-    		buttons: {
-    			Cancel: function()
-    			{
-    				dialog.dialog('close');
-    			},
-    			'Post': makePost
-    		}
-    	});
-
-    	form = dialog.find( "form" ).on( "submit", function( event ) {
-	    	event.preventDefault();
-	    	makePost();
-		});
-
-        $("#postButton").button().on('click', function(){
-    		dialog.dialog("open");
-    	});
-    });
-	</script>
-</head>
-
-<body>
-	<p>
-		<center>Profile page</center>
-	</p>
-
-	<div id="message" title="Post">
-		<?php echo form_open(); ?>
-		<p>
-			<?php echo form_label('Title:', 'title'); ?>
-			<?php echo form_input('title', set_value('title'), 'id = title', 'class=text ui-widget-content ui-corner-all'); ?>
-		</p>
-
-		<p>
-			<?php echo form_label('Picture:', 'pic'); ?>
-			<?php echo form_upload('pic', set_value('pic'), 'id = pic'); ?>
-		</p>
-
-		<?php
-			$data = array(
-		        'name'          => 'content',
-		        'id'            => 'content',
-		        'class'			=> 'text ui-widget-content ui-corner-all',
-		        'rows'		    => '7',
-		        'cols'          => '65',
-		        'placeholder'	=> 'Content'
-	        );
-			echo form_label('Content:', 'content');
-			echo form_textarea($data);
-
-        ?>
-        <?php echo form_submit('submit', 'Post!', 'id=submit'); ?>
-        <?php echo form_close(); ?>
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.menu li {
+    padding: 8px;
+    margin-bottom: 7px;
+    background-color :#33b5e5;
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.menu li:hover {
+    background-color: #0099cc;
+}
+    </style>
+    <div id="header">
+	<?php if(isset($user_record)) : foreach($user_record as $row) : ?>
+		<?php echo $row['first_name']; ?>
+		<?php echo $row['last_name']; ?>
+	<?php endforeach; ?>
+	<?php else : ?>
+		<h2> Not found </h2>
+	<?php endif; ?>
 	</div>
-	<script type="text/javascript">
-		$('#submit').on('click', function(){
-			return false;
-		});
-	</script>
-	<button id="postButton">Post!</button>
-</body>
-</html>
+
+	<div id = "tabs">
+		<ul id = "list">
+			<li>
+				Boards
+			</li>
+			<li>
+				Pins
+			</li>
+			<li>
+				Likes
+			</li>
+			<li>
+				Followers
+			</li>
+			<li>
+				Followers
+			</li>
+			<li>
+				Follo
+			</li>
+		</ul>
+	</div>
+
+    <div class = "row">
+    </div>
+	<div class = "col-3 menu">
+		<ul>
+			<li> Test </li>
+			<li> Testing </li>
+			<li> Tested </li>
+		</ul>
+	</div>
+
 

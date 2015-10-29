@@ -1,6 +1,6 @@
 <body>
 
-<div id="container">
+<div id="container" class="well well-large">
 	<h1>UCRinterest</h1>
 
 	<div id="body">
