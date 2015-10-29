@@ -36,6 +36,7 @@
                   'cols'          => '50',
                   'placeholder' => 'Content'
                 );
+            
             echo form_textarea($data);
           ?>
         </td>
