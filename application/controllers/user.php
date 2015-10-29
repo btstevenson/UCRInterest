@@ -13,6 +13,11 @@ class User extends CI_Controller
 		/**TODO:
 		 *Have to check if session is still good. If it is then proceed to next page.
 		 */
+
+		if($this->is_logged_in())
+		{
+			redirect('profile');
+		}
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('email', 'Email', 'required|trim|callback_username_check');
 		$this->form_validation->set_rules('password', 'Password', 'trim');
@@ -36,6 +41,11 @@ class User extends CI_Controller
 		/**TODO:
 		 *Have to check if session is still good. If it is then proceed to next page.
 		 */
+		if($this->is_logged_in())
+		{
+			redirect('profile');
+		}
+
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
 		$this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[users.username]');
@@ -79,6 +89,18 @@ class User extends CI_Controller
 		{
 			$this->form_validation->set_message('username_check', 'You have entered an incorrect username or password');
 			return false;
+		}
+	}
+	function is_logged_in()
+	{
+		$is_logged_in = $this->session->userdata('is_logged_in');
+		if(!isset($is_logged_in) || $is_logged_in !== true)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
 		}
 	}
 }
