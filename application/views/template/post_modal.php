@@ -7,44 +7,28 @@
   <style> .errors {color: red;} </style>
 
 <div class="modal-body">
-  <div class="errors"> <?php echo validation_errors(); ?> </div>
-    <?php echo form_open(); ?>
-    <table class="table">
-      <tr>
-        <td>Title</td>
-        <td>
-          <?php echo form_input('title', set_value('title'), 'id = title'); ?>
-        </td>
-      </tr>
+    <form action="<?php echo site_url('Post/upload_file'); ?>" method="post" enctype="multipart/form-data" id="postform">
+      <table class="table">
+        <tr>
+          <td>Title</td>
+          <td>:</td>
+          <td> <input type="text" name="title"> </td>
+        </tr>
 
-      <tr>
-        <td>Picture <i class="icon-upload"></i></td>
-        <td>
-          <?php echo form_upload('pic', set_value('pic'), 'id = pic'); ?>
-        </td>
-      </tr>
-
-      <tr>
-        <td>Content</td>
-        <td>
-          <?php
-            $data = array(
-                  'name'          => 'content',
-                  'id'            => 'content',
-                  'class'     => 'text ui-widget-content ui-corner-all',
-                  'rows'        => '7',
-                  'cols'          => '50',
-                  'placeholder' => 'Content'
-                );
-            echo form_textarea($data);
-          ?>
-        </td>
-      </tr>
-    </table>
-    <?php echo form_close(); ?>
+        <tr>
+          <td>Picture <i class="icon-upload"></i></td>
+          <td>:</td>
+          <td> <input type="file" name="pic_dir"> </td>
+        </tr>
+        <tr>
+          <td>Content</td>
+          <td>:</td>
+          <td> <textarea name="content" form="postform"> </textarea> </td>
+        </tr>
+      </table>
 </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <?php echo form_submit('submit', 'Post', 'class="btn btn-primary" id="post_submit"'); ?>
+     <input type="submit"  class= "btn btn-primary" value="Upload Image...">
   </div>
 </div> 

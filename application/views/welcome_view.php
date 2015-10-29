@@ -6,7 +6,6 @@
 	<div id="body">
 		<p>To login to UCRinterest, Click <?php echo anchor('user/login', 'here'); ?> </p>
 		<p>Not Registered? Click <?php echo anchor('user/register', 'here'); ?> </p>
-
 		<?php
 			$atts = array(
               'width'      => '800',
