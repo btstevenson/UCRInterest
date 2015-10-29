@@ -3,17 +3,11 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Post</h3>
   </div>
+<style> .errors {color: red;} </style>
 
 <div class="modal-body">
-    <form action="<?php echo site_url('Post/upload_file'); ?>" method="post" enctype="multipart/form-data" id="postform">
-      <table class="table">
-     <!--    <tr>
-          <td>Title</td>
-          <td>:</td>
-          <td> <input type="text" name="title"> </td>
-        </tr> -->
-  
-    <?php echo form_open('', '', 'id="post_form'); ?>
+  <div class="errors"> <?php echo validation_errors(); ?> </div>
+    <?php echo form_open(); ?>
     <table class="table">
       <tr>
         <td>Title</td>
@@ -21,26 +15,35 @@
           <?php echo form_input('title', set_value('title'), 'id = title'); ?>
         </td>
       </tr>
-        <tr>
-          <td>Picture <i class="icon-upload"></i>:</td>
-          <!-- <td>:</td> -->
-          <td> <input type="file" name="pic_dir"> </td>
-        </tr>
-        <tr>
-          <td>Content</td>
-          <td>:</td>
-          <td> <textarea name="content" form="postform"> </textarea> </td>
-        </tr>
-      </table>
+
+      <tr>
+        <td>Picture <i class="icon-upload"></i></td>
+        <td>
+          <?php echo form_upload('pic', set_value('pic'), 'id = pic'); ?>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Content</td>
+        <td>
+          <?php
+            $data = array(
+                  'name'          => 'content',
+                  'id'            => 'content',
+                  'class'     => 'text ui-widget-content ui-corner-all',
+                  'rows'        => '7',
+                  'cols'          => '50',
+                  'placeholder' => 'Content'
+                );
+            echo form_textarea($data);
+          ?>
+        </td>
+      </tr>
+    </table>
+    <?php echo form_close(); ?>
 </div>
-  <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-     <input type="submit"  class= "btn btn-primary" value="Upload Image...">
-    <?php echo form_submit('submit', 'Post', 'class="btn btn-primary" id="post_submit" data-dismiss="modal" aria-hidden="true"'); ?>
-  </div>
-</div> 
-<script type="text/javascript">
-    $('#post_submit').on('click', function(){
-      return false;
-    });
-</script>
+<div class="modal-footer">
+  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  <?php echo form_submit('submit', 'Post', 'class="btn btn-primary" id="post_submit"'); ?>
+</div>
+</div>
