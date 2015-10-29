@@ -7,20 +7,19 @@
 
 <div class="modal-body">
   <div class="errors"> <?php echo validation_errors(); ?> </div>
-    <?php echo form_open_multipart("post/save"); ?>
+    <?php echo form_open(); ?>
     <table class="table">
       <tr>
         <td>Title</td>
         <td>
-          <?php echo form_input('title'); ?>
+          <?php echo form_input('title', set_value('title'), 'id = title'); ?>
         </td>
       </tr>
 
       <tr>
         <td>Picture <i class="icon-upload"></i></td>
         <td>
-          <?php echo form_upload('pic_dir'); ?>
-          <?php echo $this->input->post('pic_dir'); ?>
+          <?php echo form_upload('pic', set_value('pic'), 'id = pic'); ?>
         </td>
       </tr>
 
@@ -42,10 +41,10 @@
         </td>
       </tr>
     </table>
+    <?php echo form_close(); ?>
 </div>
 <div class="modal-footer">
   <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
   <?php echo form_submit('submit', 'Post', 'class="btn btn-primary" id="post_submit"'); ?>
-  <?php echo form_close(); ?>
 </div>
 </div>

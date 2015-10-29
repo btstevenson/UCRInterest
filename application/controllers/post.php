@@ -12,52 +12,11 @@ class Post extends CI_Controller
 	{
 
 	}
-	public function save()
+
+	public function upload_file()
 	{
-		$this->upload_file();
-
-	}
-	private function upload_file()
-	{
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('title', 'Title', 'trim|required');
-		//$this->form_validation->set_rules('pic_dir', 'Pic_Dir', 'regex_match[/\.(jpe?g|png|gif|bmp)$/])');
-		$this->form_validation->set_rules('content', 'Content', 'trim');
-
-		if($this->form_validation->run())
-		{
-			$type = explode('.', $_FILES["pic_dir"]["name"]);
-			$type = $type[count($type)-1];
-			$url = "./assets/img/".uniqid(rand()).'.'.$type;
-			if (in_array($type, array("jpg","jpeg", "gif", "png")))
-			{
-				if(is_uploaded_file($_FILES["pic_dir"]["tmp_name"]))
-				{
-					if (move_uploaded_file($_FILES["pic_dir"]["tmp_name"], $url))
-					{
-						$this->load->model('file_model');
-						$this->file_model->insert_file($url);
-					}
-				}
-			}
-			else
-			{
-				//PRINT ERROR SINCE IT WAS NOT A VALID IMG FILE	
-			}
-			redirect('profile/');
-		}
-
-		else
-		{
-			echo "ERROR";
-		}
-
-	}
-
-
-
-
-/* ========================= WORKING WITHOUT CODEIGNITERS FORM VALIDATION =======================================
+		$status = "" ;
+		$msg = "";
 		$filename = "pic_dir";
 
 		if (empty($_POST['title']))
@@ -100,5 +59,5 @@ class Post extends CI_Controller
 			@unlink($_FILES[$filename]);
 		}
 		echo json_encode(array('status'=> $status,'msg'=>$msg));
-		*/
+	}
 }

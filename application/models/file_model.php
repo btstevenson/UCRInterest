@@ -6,14 +6,13 @@ class file_model extends CI_Model
 		parent :: __construct();
 	}
 
-	// public function insert_file ($filename, $title, $content) 
-	public function insert_file ($url)
+	public function insert_file ($filename, $title, $content)
 	{
 		$data = array(
 						'uid' => 3,
-						'pic_dir' => $url	,
-						'title' => $this->input->post('title'),
-						'content' => $this->input->post('content')
+						'pic_dir' => $filename,
+						'title' => $title,
+						'content' => $content
 					);
 
 		$this->db->insert('post', $data);
