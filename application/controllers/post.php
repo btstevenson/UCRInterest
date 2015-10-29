@@ -21,7 +21,6 @@ class Post extends CI_Controller
 	{
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('title', 'Title', 'trim|required');
-		//$this->form_validation->set_rules('pic_dir', 'Pic_Dir', 'regex_match[/\.(jpe?g|png|gif|bmp)$/])');
 		$this->form_validation->set_rules('content', 'Content', 'trim');
 
 		if($this->form_validation->run())
@@ -35,8 +34,8 @@ class Post extends CI_Controller
 				{
 					if (move_uploaded_file($_FILES["pic_dir"]["tmp_name"], $url))
 					{
-						$this->load->model('file_model');
-						$this->file_model->insert_file($url);
+						$this->load->model('post_model');
+						$this->post_model->insert_file($url);
 					}
 				}
 			}
