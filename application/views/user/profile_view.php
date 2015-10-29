@@ -59,7 +59,14 @@ html {
 .menu li:hover {
     background-color: #0099cc;
 }
-    </style>
+#post_btn.edit_profile
+{
+    position: absolute;
+    left: 1000px;
+    top: 50px;
+}  
+</style>
+
     <div id="header">
 	<?php if(isset($user_record)) : foreach($user_record as $row) : ?>
 		<?php echo $row['first_name']; ?>
@@ -101,6 +108,10 @@ html {
 			<li> Testing </li>
 			<li> Tested </li>
 		</ul>
+
+
 	</div>
-
-
+<div id=post_btn class="edit_profile">
+   <a href="#post_modal" role="button" class="btn btn-danger" data-toggle="modal" id="post_btn">Edit Profile</a>
+  <?php $this->load->view('template/post_modal'); ?>
+</div>
