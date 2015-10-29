@@ -10,7 +10,6 @@ class Post extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('template/main_layout', $this->data);
 
 	}
 

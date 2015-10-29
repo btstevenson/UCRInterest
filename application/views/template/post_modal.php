@@ -5,16 +5,14 @@
   </div>
 
 <div class="modal-body">
-<<<<<<< HEAD
     <form action="<?php echo site_url('Post/upload_file'); ?>" method="post" enctype="multipart/form-data" id="postform">
       <table class="table">
-        <tr>
+     <!--    <tr>
           <td>Title</td>
           <td>:</td>
           <td> <input type="text" name="title"> </td>
-        </tr>
-=======
-  <div class="errors"> <?php echo validation_errors(); ?> </div>
+        </tr> -->
+  
     <?php echo form_open('', '', 'id="post_form'); ?>
     <table class="table">
       <tr>
@@ -23,11 +21,9 @@
           <?php echo form_input('title', set_value('title'), 'id = title'); ?>
         </td>
       </tr>
->>>>>>> origin/master
-
         <tr>
-          <td>Picture <i class="icon-upload"></i></td>
-          <td>:</td>
+          <td>Picture <i class="icon-upload"></i>:</td>
+          <!-- <td>:</td> -->
           <td> <input type="file" name="pic_dir"> </td>
         </tr>
         <tr>
@@ -39,11 +35,8 @@
 </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-<<<<<<< HEAD
      <input type="submit"  class= "btn btn-primary" value="Upload Image...">
-=======
     <?php echo form_submit('submit', 'Post', 'class="btn btn-primary" id="post_submit" data-dismiss="modal" aria-hidden="true"'); ?>
->>>>>>> origin/master
   </div>
 </div> 
 <script type="text/javascript">
