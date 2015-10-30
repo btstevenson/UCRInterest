@@ -27,7 +27,7 @@ class Post extends CI_Controller
 		{
 			$type = explode('.', $_FILES["pic_dir"]["name"]);
 			$type = $type[count($type)-1];
-			$url = "./assets/img/".uniqid(rand()).'.'.$type;
+			$url = "../assets/img/".uniqid(rand()).'.'.$type;
 			if (in_array($type, array("jpg","jpeg", "gif", "png")))
 			{
 				if(is_uploaded_file($_FILES["pic_dir"]["tmp_name"]))
