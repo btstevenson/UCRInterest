@@ -59,7 +59,7 @@ html {
 .menu li:hover {
     background-color: #0099cc;
 }
-#post_btn1
+#edit_profile
 {
     position: absolute;
     left: 1000px;
@@ -111,6 +111,3 @@ html {
 
 
 	</div>
-
-   <a href="#post_modal" role="button" class="btn btn-danger" data-toggle="modal" id="post_btn1">Edit Profile</a>
-  <?php $this->load->view('template/post_modal'); ?>
