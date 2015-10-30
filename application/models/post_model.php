@@ -21,9 +21,14 @@ class post_model extends CI_Model
 		{
 			foreach($q->result() as $row)
 			{
+                echo $row->email;
 				return $row->uid;
 			}
 		}
+        echo '<script language="javascript">';
+echo 'alert("message successfully sent")';
+echo '</script>';
+
 	}
 	public function insert_file ($url)
 	{

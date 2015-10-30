@@ -1,6 +1,6 @@
 
     <style>
-    #header {
+    #name {
     	background-color: blue;
     	color: white;
     	text-align: center;
@@ -67,15 +67,20 @@ html {
 }  
 </style>
 
-    <div id="header">
+    <div id="name">
 	<?php if(isset($user_record)) : foreach($user_record as $row) : ?>
 		<?php echo $row['first_name']; ?>
 		<?php echo $row['last_name']; ?>
 	<?php endforeach; ?>
 	<?php else : ?>
-		<h2> Not found </h2>
+		Not found
 	<?php endif; ?>
+
 	</div>
+    <div>
+        <a href="#post_modal" role="button" class="btn btn-danger" data-toggle="modal" id="post_btn1">Edit Profile</a>
+  <?php $this->load->view('template/post_modal'); ?>
+    </div>
 
 	<div id = "tabs">
 		<ul id = "list">
@@ -95,7 +100,7 @@ html {
 				Followers
 			</li>
 			<li>
-				Follo
+				Followingeres
 			</li>
 		</ul>
 	</div>
@@ -110,4 +115,8 @@ html {
 		</ul>
 
 
+<<<<<<< HEAD
 	</div>
+=======
+	</div>
+>>>>>>> refs/remotes/origin/master

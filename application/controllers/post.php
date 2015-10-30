@@ -15,6 +15,10 @@ class Post extends CI_Controller
 	public function save()
 	{
 		$this->upload_file();
+        echo '<script language="javascript">';
+echo 'alert("message successfully sent")';
+echo '</script>';
+
 	}
 	private function upload_file()
 	{
@@ -26,8 +30,8 @@ class Post extends CI_Controller
 		{
 			$type = explode('.', $_FILES["pic_dir"]["name"]);
 			$type = $type[count($type)-1];
-			$url = "../assets/img/".uniqid(rand()).'.'.$type;
-			if (in_array($type, array("jpg","jpeg", "gif", "png")))
+			$url = "./assets/img/".uniqid(rand()).'.'.$type;
+			if (in_array($type, array("jpg","jpeg", "gif", "png", "bmp")))
 			{
 				if(is_uploaded_file($_FILES["pic_dir"]["tmp_name"]))
 				{

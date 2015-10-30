@@ -14,11 +14,11 @@ class Profile extends CI_Controller
 		$this->load->view('template/header', $this->data);
 		$this->load->view('template/main_layout', $this->data);
 		$hold = array();
-		// $sql = "SELECT * FROM users WHERE username = ?";
-		// if($query = $this->db->query($sql, array($this->session->userdata('username'))))
-		// {
-		// 	$hold['user_record'] = $query->result_array();	
-		// }
+		 $sql = "SELECT * FROM users WHERE email = ?";
+		 if($query = $this->db->query($sql, array($this->session->userdata('email'))))
+		 {
+		 	$hold['user_record'] = $query->result_array();	
+		 }
 		$this->load->view('user/profile_view', $hold);
 		$this->load->view('template/footer');
 
