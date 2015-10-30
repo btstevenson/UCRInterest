@@ -113,4 +113,4 @@ html {
 	</div>
 
    <a href="#post_modal" role="button" class="btn btn-danger" data-toggle="modal" id="post_btn1">Edit Profile</a>
-  <?php $this->load->view('template/post_modal'); ?>
+  <!--?php $this->load->view('template/post_modal'); ? -->
