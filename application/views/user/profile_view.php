@@ -80,10 +80,6 @@ html {
 	<?php endif; ?>
 
 	</div>
-    <div>
-        <a href="#post_modal" role="button" class="btn btn-danger" data-toggle="modal" id="post_btn1">Edit Profile</a>
-  <?php $this->load->view('template/post_modal'); ?>
-    </div>
 
 	<div id = "tabs">
 		<ul id = "list">
@@ -116,6 +112,7 @@ html {
 			<li> Testing </li>
 			<li> Tested </li>
 		</ul>
+<<<<<<< HEAD
 
 
 <<<<<<< HEAD
@@ -131,3 +128,5 @@ html {
 	</div>
 >>>>>>> refs/remotes/origin/master
 >>>>>>> Williams-branch
+=======
+>>>>>>> master
