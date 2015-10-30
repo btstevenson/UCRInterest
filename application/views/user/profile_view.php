@@ -59,12 +59,6 @@ html {
 .menu li:hover {
     background-color: #0099cc;
 }
-#edit_profile
-{
-    position: absolute;
-    left: 1000px;
-    top: 200px;
-}  
 </style>
 
     <div id="name">
