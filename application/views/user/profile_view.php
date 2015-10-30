@@ -59,12 +59,6 @@ html {
 .menu li:hover {
     background-color: #0099cc;
 }
-#post_btn1
-{
-    position: absolute;
-    left: 1000px;
-    top: 200px;
-}  
 </style>
 
     <div id="name">
@@ -77,10 +71,6 @@ html {
 	<?php endif; ?>
 
 	</div>
-    <div>
-        <a href="#post_modal" role="button" class="btn btn-danger" data-toggle="modal" id="post_btn1">Edit Profile</a>
-  <?php $this->load->view('template/post_modal'); ?>
-    </div>
 
 	<div id = "tabs">
 		<ul id = "list">
@@ -115,4 +105,8 @@ html {
 		</ul>
 
 
+<<<<<<< HEAD
 	</div>
+=======
+	</div>
+>>>>>>> refs/remotes/origin/master
