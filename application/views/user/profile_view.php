@@ -103,10 +103,3 @@ html {
 			<li> Testing </li>
 			<li> Tested </li>
 		</ul>
-
-
-<<<<<<< HEAD
-	</div>
-=======
-	</div>
->>>>>>> refs/remotes/origin/master
