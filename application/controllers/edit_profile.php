@@ -2,6 +2,7 @@
 
 class edit_profile extends CI_Controller {
 
+<<<<<<< HEAD
 	/**
 	 * Index Page for this controller.
 	 *
@@ -18,6 +19,8 @@ class edit_profile extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 
+=======
+>>>>>>> Williams-branch
 	public function index()
 	{
 		$data = array();

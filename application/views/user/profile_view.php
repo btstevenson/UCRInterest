@@ -59,12 +59,15 @@ html {
 .menu li:hover {
     background-color: #0099cc;
 }
+<<<<<<< HEAD
 #edit_profile
 {
     position: absolute;
     left: 1000px;
     top: 200px;
 }  
+=======
+>>>>>>> Williams-branch
 </style>
 
     <div id="name">
@@ -116,7 +119,15 @@ html {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	</div>
 =======
 	</div>
 >>>>>>> origin/Williams-branch
+=======
+<<<<<<< HEAD
+	</div>
+=======
+	</div>
+>>>>>>> refs/remotes/origin/master
+>>>>>>> Williams-branch
