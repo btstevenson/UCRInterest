@@ -21,7 +21,7 @@
     <div class="row">
       <div class="span9">
         <section>
-          <h2>Page Name</h2>
+          <h2><?php echo $meta_title; ?></h2>
         </section>
       </div>
 
