@@ -42,7 +42,7 @@ echo '</script>';
 					}
 				}
 			}
-//			redirect('profile/');
+			redirect('profile/');
 		}
 		else
         {
