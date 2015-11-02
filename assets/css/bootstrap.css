@@ -8,6 +8,21 @@
  * Designed and built with all the love in the world by @mdo and @fat.
  */
 
+
+
+.profile_view #name{
+      background-color: blue;
+      color: white;
+      text-align: center;
+      font-size: 40px;
+      padding: 50px;
+}
+
+.profile_view #tabs{
+      background-color: grey;
+      text-align: center;
+    }
+
 .clearfix {
   *zoom: 1;
 }

@@ -1,19 +1,5 @@
 
-    <style>
-    #name {
-    	background-color: blue;
-    	color: white;
-    	text-align: center;
-    	padding: 50px;
-    }
-
-    #tabs{
-    	background-color: grey;
-    	text-align: center;
-    }
-
-</style>
-
+<div class="profile_view">
     <div id="name">
 	<?php if(isset($user_record)) : foreach($user_record as $row) : ?>
 		<?php echo $row['first_name']; ?>
@@ -59,5 +45,5 @@
     },
 });
         </script>
-
+</div>
 
