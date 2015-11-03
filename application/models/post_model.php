@@ -25,9 +25,6 @@ class post_model extends CI_Model
 				return $row->uid;
 			}
 		}
-        echo '<script language="javascript">';
-echo 'alert("message successfully sent")';
-echo '</script>';
 
 	}
 	public function insert_file ($url)
@@ -42,7 +39,10 @@ echo '</script>';
 
 		$this->db->insert('post', $data_1);
 	}
-
+    public function delete_post ()
+    {
+        
+    }
 }
 
 ?>

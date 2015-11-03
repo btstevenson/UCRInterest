@@ -12,13 +12,10 @@ class Post extends CI_Controller
 	{
 
 	}
+    //=============== INSERTING A POST ===========================
 	public function save()
 	{
 		$this->upload_file();
-        echo '<script language="javascript">';
-echo 'alert("message successfully sent")';
-echo '</script>';
-
 	}
 	private function upload_file()
 	{
@@ -49,4 +46,14 @@ echo '</script>';
            
         }
 	}
+    //=============== DELETING A POST ===========================
+    public function delete()
+    {
+        $this->delete_file();
+    }
+    private function delete_file()
+    {
+        
+    }
+
 }
