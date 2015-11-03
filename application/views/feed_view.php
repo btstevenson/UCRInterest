@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<style> label{display: block;} .errors {color: red;} </style>
-	<title>Feed</title>
+	<!-- <title>Feed</title> -->
     
     <style>
 		#wrapper {
@@ -68,13 +68,7 @@
 	</style>
 </head>
 
-<body>
-    <?php
-	$data = array( $meta_title );
-	$this->load->view('template/header', $data);
-	$this->load->view('template/main_layout', $data);
-    ?>
-    
+<body>    
     <!-- <ul class="thumbnails">
     	
         <?php
@@ -100,20 +94,18 @@
          <?php
         //foreach ($imgs as $img){
 		for( $p = 0; $p<3; $p++){
-		for( $i = 0; $i<count($imgs); $i++){
-		?>
-        	<div class="pin">
-            	<img src= "<?php echo $imgs[$i]; ?>"  alt="" >
-                    <h3><?php echo $titles[$i]; ?></h3>
-                    <p><?php echo $contents[$i]; ?></p>	
-        	</div>
-        <?php
-        }
+			for( $i = 0; $i<count($imgs); $i++){
+			?>
+	        	<div class="pin">
+	            	<img src= "<?php echo $imgs[$i]; ?>"  alt="" >
+	                    <h3><?php echo $titles[$i]; ?></h3>
+	                    <p><?php echo $contents[$i]; ?></p>	
+	        	</div>
+	        <?php
+	        }
 		}
 		?>
 		</div>
 	</div>
-    
-	
 </body>
 </html>

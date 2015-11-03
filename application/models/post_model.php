@@ -21,7 +21,6 @@ class post_model extends CI_Model
 		{
 			foreach($q->result() as $row)
 			{
-                echo $row->email;
 				return $row->uid;
 			}
 		}
