@@ -10,19 +10,25 @@ class feed_model extends CI_Model{
 
 	public function load_feed(){
 		$images = array();
+		$titles = array();
+		$contents = array();
 		
-		$res = $this->db->query("SELECT pic_dir FROM post LIMIT 4");
+		$res = $this->db->query("SELECT pic_dir, title, content FROM post ");
 		$tableCount = 0;
 		$numImagesLoaded = 0;
 		$shuffled = $res->result();
-		shuffle($shuffled);
+		//shuffle($shuffled);
 		
 		foreach ($shuffled as $row){
 			array_push($images, $row->pic_dir);
+			array_push($titles, $row->title);
+			array_push($contents, $row->content);						
 			$numImagesLoaded++;
 		}
 		
-		return $images;
+		$data = array( $images, $titles, $contents );
+		
+		return $data;
 		
 	}
 }
