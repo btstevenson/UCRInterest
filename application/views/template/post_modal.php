@@ -16,14 +16,19 @@ function Validate()
 {
     var errtitle = document.getElementById("errtitle");
     var title = document.getElementById("title");
+    var errpic = document.getElementById("errpic");
+    var pic = document.getElementById("pic");
+    errtitle.setAttribute("style", "visibility:hidden");
+    errpic.setAttribute("style", "visibility:hidden");
+
+    //============ IF TITLE IS EMPTY ERROR
     var is_error = false;
     if(title.value === "")
     {
         errtitle.setAttribute("style", "visibility:visible");
         is_error = true;
     }
-    var errpic = document.getElementById("errpic");
-    var pic = document.getElementById("pic");
+    //========= FINDING IF FILE UPLOADED IS AN ACCEPTABLE FORMAT
     var regex =/\.(jpe?g|png|gif|bmp)$/i;
     //alert(pic.value);
     if (!(pic.value.match(regex)))
@@ -31,17 +36,17 @@ function Validate()
         errpic.setAttribute("style", "visibility:visible");
         is_error = true;
     }
-    
-    
-    
+    //============ IF THERE IS AN ERROR DONT SUBMIT FILE
     if (is_error)
     {
         if(event.preventDefault)
         {
             event.preventDefault();
+//================ DEBUGGING PURPOSES ===================================
 //             $( "<div>" )
 //                .append( "default " + event.type + " prevented" )
 //                .appendTo( "#log" );
+//====================================================================
         }
         else
         {

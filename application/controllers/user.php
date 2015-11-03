@@ -16,7 +16,7 @@ class User extends CI_Controller
 
 		if($this->is_logged_in())
 		{
-			redirect('profile');
+			redirect('feed');
 		}
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('email', 'Email', 'required|trim|callback_username_check');
