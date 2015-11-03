@@ -2,8 +2,8 @@
 -- version 4.4.10
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:8889
--- Generation Time: Oct 16, 2015 at 04:54 PM
+-- Host: localhost:3306
+-- Generation Time: Nov 03, 2015 at 03:19 AM
 -- Server version: 5.5.42
 -- PHP Version: 5.6.10
 
@@ -11,8 +11,21 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Database: `UCInterest`
+-- Database: `ucrinterest`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `boards`
+--
+
+CREATE TABLE `boards` (
+  `uid` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `position` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -74,11 +87,18 @@ CREATE TABLE `users` (
   `DOB` date DEFAULT NULL,
   `gender` varchar(1) COLLATE utf8_unicode_ci DEFAULT NULL,
   `nick_name` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `boards`
+--
+ALTER TABLE `boards`
+  ADD PRIMARY KEY (`name`,`uid`) USING BTREE,
+  ADD KEY `uid` (`uid`);
 
 --
 -- Indexes for table `pins`
@@ -116,4 +136,13 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `boards`
+--
+ALTER TABLE `boards`
+  ADD CONSTRAINT `Foreign Key` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE CASCADE;

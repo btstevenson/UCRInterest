@@ -30,6 +30,22 @@ class Profile extends CI_Controller
 
 	}
 
+
+	function create_board()
+	{
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('name', 'Name', 'trim|required|is_unique[boards.name]');
+		$this->form_validation->set_rules('description', 'Description', 'trim');
+
+		if($this->form_validation->run())
+		{
+			$this->load->model('profile_model');
+			$this->profile_model->insert_board();
+			redirect('profile/');
+		}
+		redirect('profile/');
+	}
+
 	function is_logged_in()
 	{
 		$is_logged_in = $this->session->userdata('is_logged_in');
