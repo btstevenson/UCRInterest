@@ -15,7 +15,7 @@
 function Validate()
 {
     var errtitle = document.getElementById("errtitle");
-    var title = document.getElementById("title");
+    var title = document.getElementById("p_title");
     var errpic = document.getElementById("errpic");
     var pic = document.getElementById("pic");
     errtitle.setAttribute("style", "visibility:hidden");
@@ -65,7 +65,7 @@ function Validate()
       <tr>
         <td>Title</td>
         <td>
-          <?php echo form_input('title','', 'id=title'); ?>
+          <?php echo form_input('title','', 'id=p_title'); ?>
         </td>
         <td id="errtitle" class="errors">
             Please enter title
