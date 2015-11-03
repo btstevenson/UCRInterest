@@ -1,19 +1,4 @@
-
-    <style>
-    #name {
-    	background-color: blue;
-    	color: white;
-    	text-align: center;
-    	padding: 50px;
-    }
-
-    #tabs{
-    	background-color: grey;
-    	text-align: center;
-    }
-
-</style>
-
+<div class ="profile_view">
     <div id="name">
 	<?php if(isset($user_record)) : foreach($user_record as $row) : ?>
 		<?php echo $row['first_name']; ?>
@@ -28,8 +13,12 @@
 	<div id = "tabs">
         place holder for likes and such menu
 	</div>
-
-    
+    <div>
+        <div>
+            <a href="#board_modal" role="button" class="btn btn-danger" data-toggle="modal" id="post_btn">Create Board</a>
+            <?php $this->load->view('template/board_modal'); ?>    
+        </div>
+    </div>
 
    <div class="row-fluid">
         <div class="span4 element"><h2>Board 1</h2><p>A board of a board of a board</p></div>
@@ -59,5 +48,6 @@
     },
 });
         </script>
+</div>
 
 

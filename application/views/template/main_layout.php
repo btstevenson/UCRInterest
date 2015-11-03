@@ -17,8 +17,8 @@
   <div class="navbar-inner">
     <a class="brand" href="<?php echo base_url('index.php/Welcome'); ?>">UCRInterest</a>
     <ul class="nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Profile</a></li>
+      <li class="active"><a href="<?php echo base_url('index.php/feed'); ?>">Feed</a></li>
+      <li><a href="<?php echo base_url('index.php/profile'); ?>">Profile</a></li>
       <li><a href="#">Link</a></li>
     </ul>
       
