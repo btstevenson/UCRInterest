@@ -63,7 +63,7 @@ class User extends CI_Controller
 			$this->session->set_userdata($data);
 			redirect('feed');
 		}
-
+		
 		$this->data['subview'] = 'user/registration_view';
 		$this->load->view('template/modal_layout', $this->data);
 	}
