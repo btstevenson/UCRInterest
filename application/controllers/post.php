@@ -39,7 +39,7 @@ class Post extends CI_Controller
 					}
 				}
 			}
-			redirect('profile/');
+			redirect('feed');
 		}
 		else
         {
