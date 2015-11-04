@@ -29,15 +29,29 @@ class Feed extends CI_Controller{
 
 		$pins = $this->feed_model->get_pins();
 
-		$data = array("this_pid" => $pid, "imgs" => $imgs, "titles" => $titles, "contents" => $contents, "first_name" => $first_name, "last_name" => $last_name, "pins" => $pins);
+		$this->data = array("this_pid" => $pid, "imgs" => $imgs, "titles" => $titles, "contents" => $contents, "first_name" => $first_name, "last_name" => $last_name, "pins" => $pins);
 
-		$this->load->view('feed_view', $data);
+		$this->load->view('feed_view', $this->data);
 		
 		$this->load->view('template/footer');
 	}
 
 	public function make_pin()
 	{
-		echo "this is a test";
+		$pid = $this->uri->segment(3);
+		$this->load->model('feed_model');
+		$this->feed_model->make_pin($pid);
+
+		redirect('feed');
+	}
+
+	public function un_pin()
+	{
+		$pid = $this->uri->segment(3);
+		$this->load->model('feed_model');
+		$this->feed_model->un_pin($pid);
+
+		redirect('feed');
+
 	}
 }
