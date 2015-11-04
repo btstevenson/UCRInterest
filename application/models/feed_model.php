@@ -1,9 +1,7 @@
 <?php
 
-class feed_model extends CI_Model{
-
-	var $test = 1234;
-//	public $images = array();
+class feed_model extends CI_Model
+{
 	
 	function __construct(){
 	}
