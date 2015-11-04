@@ -10,14 +10,12 @@ class User extends CI_Controller
 
 	function login()
 	{
-		/**TODO:
-		 *Have to check if session is still good. If it is then proceed to next page.
-		 */
 
 		if($this->is_logged_in())
 		{
 			redirect('feed');
 		}
+
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('email', 'Email', 'required|trim|callback_username_check');
 		$this->form_validation->set_rules('password', 'Password', 'trim|md5');
@@ -59,7 +57,7 @@ class User extends CI_Controller
 			$this->load->model('user_model');
 			$this->user_model->register_user();
 			$data = array(
-						'username' => $this->input->post('username'),
+						'username' => $this->input->post('email'),
 						'is_logged_in' => true
 					);
 			$this->session->set_userdata($data);

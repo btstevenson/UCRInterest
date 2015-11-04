@@ -1,3 +1,17 @@
+<style>
+  #post_btn
+  {
+    float: right;
+    margin-left: 10px;
+    margin-right: -5px;
+
+  } 
+#delete_btn
+  {
+  float: right;
+  margin-left: 10px;
+  }  
+</style>
 <body>
 <div class="navbar navbar-static-top navbar-inverse">
   <div class="navbar-inner">

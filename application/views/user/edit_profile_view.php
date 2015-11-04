@@ -1,11 +1,9 @@
 <style> .errors {color: red;} </style>
 
 <div class="modal-header">
-	<h1>Edit Profile</h1>
 	<p>Please enter your information</p>
 </div>
 
-<div class="modal-body">
 <div class="errors"> <?php echo validation_errors(); ?> </div>
 	
 	<?php echo form_open(); ?>
@@ -76,8 +74,7 @@
 				<?php echo form_submit('submit', 'Update Profile', 'class="btn btn-primary"'); ?>
 			</td>
 		</tr>
+	<?php echo form_close(); ?>
+
 	</table>
 
-	<?php echo form_close(); ?>
-</div>
-</html>
