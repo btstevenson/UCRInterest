@@ -12,7 +12,7 @@ class User_model extends CI_Model
 		$q = $this 
 					->db
 					->where ('email', $email)
-					->where ('password', $passwd)
+					->where ('password', md5($passwd))
 					->get('users');
 		//Check if it returns only one row
 		if ($q->num_rows()  == 1 )
@@ -36,7 +36,7 @@ class User_model extends CI_Model
 		$data = array(
 			'uid'			=>	'',
 			'email'			=>	$this->input->post('email'),
-			'password' 		=> 	$this->input->post('password'),
+			'password' 		=> 	md5($this->input->post('password')),
 			'username' 		=> 	$this->input->post('username'),
 			'first_name' 	=> 	$this->input->post('first_name'),
 			'last_name' 	=> 	$this->input->post('last_name'),

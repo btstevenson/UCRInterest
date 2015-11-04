@@ -1,0 +1,3 @@
+<div>
+	Pin View
+</div>

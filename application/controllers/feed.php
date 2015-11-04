@@ -17,7 +17,10 @@ class Feed extends CI_Controller{
 		$imgs = $fulldata[0];
 		$titles = $fulldata[1];
 		$contents = $fulldata[2];
-		$data = array("imgs" => $imgs, "titles" => $titles, "contents" => $contents, "meta_title" => "Feed");
+		$first_name = $fulldata[3];
+		$last_name = $fulldata[4];
+
+		$data = array("imgs" => $imgs, "titles" => $titles, "contents" => $contents, "first_name" => $first_name, "last_name" => $last_name);
 		$this->load->view('feed_view', $data);
 		
 		$this->load->view('template/footer');
