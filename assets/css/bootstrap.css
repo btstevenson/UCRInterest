@@ -8,20 +8,73 @@
  * Designed and built with all the love in the world by @mdo and @fat.
  */
 
+.real-first-child{
+  margin-left: 0 !important;
+}
 
+.errors 
+{
+    color: red;
+}
+
+.errors_board
+{
+    color: red;
+    visibility: hidden;
+}
+
+#post_btn
+  {
+    float: right;
+    margin-left: 10px;
+    margin-right: -5px;
+
+  } 
+#delete_btn
+  {
+  float: right;
+  margin-left: 10px;
+  }
 
 .profile_view #name{
-      background-color: blue;
-      color: white;
+      background-color: #2D6CC0;
+      opacity: 1;
+      font-weight: bold;
       text-align: center;
-      font-size: 40px;
       padding: 50px;
+      border-style: inset;
+}
+
+.profile_view #name{
+  color: #F1AB00;
+  font-size: 50px;
+  font-style: bold;
+  opacity: 1;
 }
 
 .profile_view #tabs{
-      background-color: grey;
+      font-size: 25px;
+      background-color: white;
       text-align: center;
-    }
+      border-style: solid;
+      border-width: medium;
+      padding: 20px;
+}
+
+.profile_view #tabs #menu{
+  list-style-type: none;
+  margin-left: 30%;
+  margin-right: 30%;
+  width: 40%;
+}
+
+.vPad{
+  padding-top: 40px;
+}
+
+.hPad{
+  width: 20px;
+}
 
 .clearfix {
   *zoom: 1;
@@ -344,7 +397,9 @@ a:focus {
 }
 
 .span3 {
+  text-align: center;
   width: 220px;
+  height: 200px;
 }
 
 .span2 {
@@ -5262,7 +5317,7 @@ input[type="submit"].btn.btn-mini {
 
 .modal-body {
   position: relative;
-  max-height: 400px;
+  max-height: 800px;
   padding: 15px;
   overflow-y: auto;
 }
