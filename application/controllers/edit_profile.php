@@ -2,6 +2,11 @@
 
 class edit_profile extends CI_Controller
  {
+ 	function __construct()
+	{
+		parent::__construct();
+		$this->data['meta_title'] = "Edit Profile";
+	}
 
 	public function index()
 	{
@@ -15,7 +20,7 @@ class edit_profile extends CI_Controller
 
 		$email = $this->session->userdata('email');
 		$this->load->model('edit_profile_model');
-		$data = $this->edit_profile_model->get_user_info($email);
+		$data1 = $this->edit_profile_model->get_user_info($email);
 
 		if($this->form_validation->run())
 		{
@@ -24,7 +29,8 @@ class edit_profile extends CI_Controller
 		}
 
 		$this->load->view('template/header');
-		$this->load->view('user/edit_profile_view', $data);
+		$this->load->view('template/main_layout', $this->data);
+		$this->load->view('user/edit_profile_view', $data1);
 		$this->load->view('template/footer');
 
 	}
