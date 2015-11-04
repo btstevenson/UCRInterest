@@ -18,8 +18,6 @@ class feed_model extends CI_Model
 		$res = $res->row();
 		$uid = $res->uid;
 
-		echo $uid;
-
 		$res = $this->db->query("SELECT post_id FROM pins WHERE uid=".$uid);
 		$res = $res->result();
 

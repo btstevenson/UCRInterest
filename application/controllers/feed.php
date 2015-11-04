@@ -8,6 +8,12 @@ class Feed extends CI_Controller{
 
 	public function index()
 	{
+		$is_logged_in = $this->session->userdata('is_logged_in');
+		if(!isset($is_logged_in) || $is_logged_in !== true)
+		{
+			redirect('user/login');
+		}
+
 		$this->load->view('template/header', $this->data);
 		$this->load->view('template/main_layout', $this->data);
 
