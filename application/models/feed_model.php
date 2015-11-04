@@ -17,13 +17,16 @@ class feed_model extends CI_Model
 		$res = $this->db->query("SELECT uid FROM users WHERE email='".$this->session->userdata('email')."'");
 		$res = $res->row();
 		$uid = $res->uid;
-
-		echo $uid;
-
 		$res = $this->db->query("SELECT post_id FROM pins WHERE uid=".$uid);
 		$res = $res->result();
 
-		return $res;
+		$pid_list = array();
+		foreach ($res as $row) {
+			echo $row->post_id;
+			array_push($pid_list, $row->post_id);
+		}
+
+		return $pid_list;
 	}
 	
 	public function load_feed()
@@ -61,6 +64,23 @@ class feed_model extends CI_Model
 		return $data;
 	}
 
+	public function make_pin($pid)
+	{
+		//gets post_idto a pin based on that post id
+		$res = $this->db->query("SELECT uid FROM users WHERE email='".$this->session->userdata('email')."'");
+		$res = $res->row();
+
+		$data = array('post_id' => $pid, 'uid' => $res->uid);
+		$this->db->insert('pins', $data);
+	}
+
+	public function un_pin($pid)
+	{
+		$res = $this->db->query("SELECT uid FROM users WHERE email='".$this->session->userdata('email')."'");
+		$res = $res->row();
+		$uid =  $res->uid;
+		$this->db->delete('pins', array('post_id' => $pid, 'uid' => $uid)); 
+	}
 }
 
 ?>
