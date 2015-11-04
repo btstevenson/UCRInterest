@@ -147,6 +147,7 @@ ALTER TABLE `users`
 ALTER TABLE `boards`
   ADD CONSTRAINT `Foreign Key` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE CASCADE;
 
+
 INSERT INTO `users` (`uid`, `email`, `password`, `username`, `first_name`, `last_name`, `about_you`, `location`, `website`, `profile_pic`, `creation_date`, `DOB`, `gender`, `nick_name`) VALUES
 (1, 'jalma003@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'jalma003', 'John', 'Almaraz', '', '', '', '', '2015-11-04 02:57:00', '1993-10-20', '', 'jalma003'),
 (2, 'mtobo001@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'mtobo001', 'Marco', 'Tobon', '', '', '', '', '2015-11-04 02:57:47', '1993-10-20', '', 'mtobo001'),
