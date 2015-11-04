@@ -14,15 +14,24 @@ class Feed extends CI_Controller{
 		$this->load->model('feed_model');
 		 
 		$fulldata = $this->feed_model->load_feed();
-		$imgs = $fulldata[0];
-		$titles = $fulldata[1];
-		$contents = $fulldata[2];
-		$first_name = $fulldata[3];
-		$last_name = $fulldata[4];
+		$pid = $fulldata[0];
+		$imgs = $fulldata[1];
+		$titles = $fulldata[2];
+		$contents = $fulldata[3];
+		$first_name = $fulldata[4];
+		$last_name = $fulldata[5];
 
-		$data = array("imgs" => $imgs, "titles" => $titles, "contents" => $contents, "first_name" => $first_name, "last_name" => $last_name);
+		$pins = $this->feed_model->get_pins();
+
+		$data = array("this_pid" => $pid, "imgs" => $imgs, "titles" => $titles, "contents" => $contents, "first_name" => $first_name, "last_name" => $last_name, "pins" => $pins);
+
 		$this->load->view('feed_view', $data);
 		
 		$this->load->view('template/footer');
+	}
+
+	public function make_pin()
+	{
+		echo "this is a test";
 	}
 }
