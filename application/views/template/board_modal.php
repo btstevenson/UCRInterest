@@ -3,16 +3,9 @@
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Create Board</h3>
   </div>
-<style> 
-    .errors 
-    {
-        color: red;
-        visibility: hidden;
-    } 
-</style>
 
 <div class="modal-body">
-  <div class="errors"> <?php echo validation_errors(); ?> </div>
+  <div class="errors_board"> <?php echo validation_errors(); ?> </div>
     <?php echo form_open_multipart("profile/create_board", 'id=board_form'); ?>
     <table class="table">
       <tr>
@@ -47,4 +40,4 @@
   <?php echo form_submit('submit', 'Create Board', 'class="btn btn-primary"'); ?>
   <?php echo form_close(); ?>
 </div>
-</div
+</div>
