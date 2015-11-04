@@ -27,19 +27,19 @@ class Post extends CI_Controller
 		{
 			$type = explode('.', $_FILES["pic_dir"]["name"]);
 			$type = $type[count($type)-1];
-			$url = "./assets/img/".uniqid(rand()).'.'.$type;
+			$url = "/assets/img/".uniqid(rand()).'.'.$type;
 			if (in_array($type, array("jpg","jpeg", "gif", "png", "bmp")))
 			{
 				if(is_uploaded_file($_FILES["pic_dir"]["tmp_name"]))
 				{
-					if (move_uploaded_file($_FILES["pic_dir"]["tmp_name"], $url))
+					if (move_uploaded_file($_FILES["pic_dir"]["tmp_name"], ".".$url))
 					{
 						$this->load->model('post_model');
 						$this->post_model->insert_file($url);
 					}
 				}
 			}
-			redirect('profile/');
+			redirect('feed');
 		}
 		else
         {
