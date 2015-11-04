@@ -155,7 +155,6 @@ INSERT INTO `users` (`uid`, `email`, `password`, `username`, `first_name`, `last
 (4, 'afull004@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'afull004', 'Alex', 'Fuller', '', '', '', '', '2015-11-04 03:18:12', '1993-10-20', '', 'afull004'),
 (5, 'bstev002@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'bstev002', 'Brandon', 'Stevenson', '', '', '', '', '2015-11-04 05:35:05', '1993-10-20', '', 'bstev002');
 
-
 INSERT INTO `post` (`pid`, `uid`, `title`, `pic_dir`, `content`, `date_created`) VALUES
 (2, 11, 'Proin aliquet libero non scelerisque blandit.', '/assets/img/1736285468563975a5b6238.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus et lobortis mi. Pellentesque efficitur lacinia libero, ac fermentum augue feugiat vitae. In dapibus aliquam tortor, accumsan tincidunt nisl porttitor vitae. Nam at aliquet ante. Donec a purus vitae neque dapibus cursus. Praesent a dapibus eros. Vivamus viverra nibh nec justo placerat, ac lacinia mi rutrum. Aliquam euismod justo in erat rhoncus, ac tempus magna luctus.', '2015-11-04 03:04:05'),
 (3, 11, 'Curabitur vulputate nulla id fringilla efficitur.', '/assets/img/303177129563975cb75917.png', 'Maecenas consequat dolor et nulla rhoncus posuere. Phasellus vitae lorem non urna sollicitudin mattis. Duis cursus viverra justo in placerat. Mauris facilisis massa sed tellus ullamcorper, ac mollis tellus gravida. Curabitur nec ullamcorper sapien, eget ultricies eros. Ut facilisis erat ac lorem venenatis convallis. Donec dapibus est ac quam ornare eleifend.', '2015-11-04 03:04:43'),
