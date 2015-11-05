@@ -35,7 +35,7 @@
 		<tr>
 			<td></td>
 			<td>
-				<?php echo form_submit('submit', 'Login', 'class="btn btn-primary"'); ?>
+				<?php echo form_submit('submit', 'Change Password', 'class="btn btn-primary"'); ?>
 			</td>
 		</tr>
 	</table>
