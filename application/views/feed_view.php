@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-	<?php
-	$new_pid = 0;
-	function make_pin()
-	{
-		redirect('profile');
+<script>
+	a.thumbnail:hover {
+	    text-decoration: none;
 	}
 ?>
 
@@ -16,10 +14,19 @@
 
 
          <?php
-			for( $i = count($imgs) - 1; $i >= 0; $i--){
+			for( $i = 0; $i<count($imgs); $i++){
 		?>
 				<div class="row-fliud">
-				 	<li class="span4" display:block>
+					<?php
+					if($i % 6 == 5 && $i != 0)
+					{
+					?>
+					 	<div class="container-fluid">
+					<?php
+					}
+					?>
+				<div class="row-fliud">
+				 	<li class="span35" display:block>
 				        <div class="thumbnail">
 							<div class="caption">
                                 <?php $this->load->view('template/pin_modal'); ?>
@@ -70,6 +77,7 @@
 	            		</div>
 					</li>
 				</div>
+			</div>
         <?php
         }
 		?>
