@@ -22,9 +22,10 @@
 				 	<li class="span4" display:block>
 						<div class="thumbnail">
 							<div class="caption">
-			            		<img src= "<?php echo base_url($imgs[$i]); ?>"  alt="" >
+			            		<a href="#" class="thumbnail"> <img src= "<?php echo base_url($imgs[$i]); ?>"  alt="" > </a>
 			                    <h3><?php echo $titles[$i]; ?></h3>
-			                    <p><?php echo $contents[$i]; ?></p>
+			                    <p><?php
+			                     		echo substr($contents[$i], 0, 100)."..."; ?></p>
 			                    <h6>By: <?php echo $first_name[$i]." ".$last_name[$i] ?></h6>
 
 		                    <?php
