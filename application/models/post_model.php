@@ -31,7 +31,7 @@ class post_model extends CI_Model
 		$this->load->model('post_model');
 		$data_1 = array(
 						'uid' => $this->post_model->get_user_id(),
-						'pic_dir' => $url	,
+						'pic_dir' => $url,
 						'title' => $this->input->post('title'),
 						'content' => $this->input->post('content')
 					);

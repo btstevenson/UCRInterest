@@ -16,7 +16,7 @@
 
 
          <?php
-			for( $i = 0; $i<count($imgs); $i++){
+			for( $i = count($imgs) - 1; $i >= 0; $i--){
 		?>
 				<div class="row-fliud">
 				 	<li class="span4" display:block>
@@ -71,6 +71,6 @@
 					</li>
 				</div>
         <?php
-	        }
+        }
 		?>
   	</ul>
