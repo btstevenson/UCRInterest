@@ -12,11 +12,11 @@
 
 
          <?php
-			for( $i = 0; $i<count($imgs); $i++){
+			for( $i = count($imgs) - 1; $i >= 0; $i--){
 		?>
 				<div class="row-fliud">
 					<?php
-					if($i % 6 == 5 && $i != 0)
+					if($i % 4 == 3 && $i != 0)
 					{
 					?>
 					 	<div class="container-fluid">
@@ -24,7 +24,7 @@
 					}
 					?>
 				<div class="row-fliud">
-				 	<li class="span35" display:block>
+				 	<li class="span4" display:block>
 				        <div class="thumbnail">
 							<div class="caption">
                                 <?php $this->load->view('template/pin_modal'); ?>
@@ -74,8 +74,6 @@
             				</div>
 	            		</div>
 					</li>
-<<<<<<< HEAD
-=======
 					<?php
 				if($i % 4 == 3 && $i != 0)
 				{
@@ -84,9 +82,7 @@
 				<?php
 				}
 				?>
->>>>>>> John's-Branch
 				</div>
-			</div>
         <?php
         }
 		?>
