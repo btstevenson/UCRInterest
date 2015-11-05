@@ -34,5 +34,28 @@ class profile_model extends CI_Model
         return $this->db->insert('boards', $data_1);
     }
 
+    public function get_pin_ids()
+    {
+        $uid = $this->get_user_id();
+        return $this->db->query("SELECT post_id FROM pins WHERE uid =" .$uid);
+    }
+
+    public function get_posts()
+    {
+        $pins = array();
+        $pinid = $this->get_pin_ids();
+        foreach($pinid->result() as $row)
+        {
+                $res = $this->db->query("SELECT title, pic_dir, content FROM post WHERE pid =" .$row->post_id);
+                array_push($pins, $res->result_array());
+        }   
+        return $pins; 
+    }
+
+    public function get_boards()
+    {
+
+    }
+
 }
 ?>
