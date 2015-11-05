@@ -1,7 +1,7 @@
-<div id="post_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="post_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myPostLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Post</h3>
+    <h3 id="myPostLabel">Post</h3>
   </div>
 <style> 
     .errors 
