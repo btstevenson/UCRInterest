@@ -1,6 +1,6 @@
 <style type="text/css">
 body.welcome {
-		background-image: url("http://dealbreaker.com/uploads/2015/02/pinterest.jpg"); 
+		background-image: url("http://www.pipeband.ucr.edu/graphics/UCR_tartan2.jpg"); 
 		background-color: #FFFFFF;
 		margin: 0 auto;
 		font: 13px/20px normal Helvetica, Arial, sans-serif;
