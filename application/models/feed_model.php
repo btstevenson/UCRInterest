@@ -22,7 +22,7 @@ class feed_model extends CI_Model
 
 		$pid_list = array();
 		foreach ($res as $row) {
-			echo $row->post_id;
+			
 			array_push($pid_list, $row->post_id);
 		}
 

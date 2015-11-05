@@ -8,7 +8,7 @@
         </div>
 
         <?php if(isset($board_record)) : foreach($board_record as $row) : ?>
-            <a href='profile/pins' role = "button"</a>
+            <a href = "pins" role = "button"</a>
             <div class="span3 element"><h2><?php echo $row['name']; ?></h2><p><?php echo $row['description']; ?></p></div>
         <?php endforeach; ?>
         <?php else: ?>
