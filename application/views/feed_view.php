@@ -7,22 +7,23 @@
 	}
 ?>
 
-<script>
-	a.thumbnail:hover {
-	    text-decoration: none;
-	}
-</script>
-
     <ul class="thumbnails">
-    
          <?php
 			for( $i = 0; $i<count($imgs); $i++){
 		?>
+				<?php
+				if($i % 4 == 3 && $i != 0)
+				{
+				?>
+				 	<div class="container-fluid">
+				<?php
+				}
+				?>
 				<div class="row-fliud">
-				 	<li class="span4" display:block>
+					<li class="span4" display:block>
 						<div class="thumbnail">
 							<div class="caption">
-			            		<a href="#" class="thumbnail"> <img src= "<?php echo base_url($imgs[$i]); ?>"  alt="" > </a>
+			            		<a href="#" class="thumbnail"> <img src= "<?php echo base_url($imgs[$i]); ?>" alt="" > </a>
 			                    <h3><?php echo $titles[$i]; ?></h3>
 			                    <p><?php
 			                     		echo substr($contents[$i], 0, 100)."..."; ?></p>
@@ -59,6 +60,7 @@
 	            		</div>
 					</li>
 				</div>
+			</div>
         <?php
 	        }
 		?>
