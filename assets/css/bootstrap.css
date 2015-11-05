@@ -1,3 +1,4 @@
+
 /*!
  * Bootstrap v2.3.2
  *
@@ -394,6 +395,14 @@ a:focus {
 
 .span4 {
   width: 300px;
+}
+
+.span35{
+  width: 250px;
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 10px;
 }
 
 .span3 {
@@ -5598,7 +5607,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .thumbnails {
-  margin-left: -20px;
+  margin-left: 0px;
   list-style: none;
   *zoom: 1;
 }
@@ -5651,6 +5660,7 @@ a.thumbnail:focus {
 
 .thumbnail > img {
   display: block;
+  width: 230px;
   max-width: 100%;
   margin-right: auto;
   margin-left: auto;
@@ -6235,3 +6245,5 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
+
+

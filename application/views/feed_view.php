@@ -14,11 +14,11 @@
 
 
          <?php
-			for( $i = count($imgs) - 1; $i >= 0; $i--){
+			for( $i = 0; $i<count($imgs); $i++){
 		?>
 				<div class="row-fliud">
 					<?php
-					if($i % 4 == 3 && $i != 0)
+					if($i % 6 == 5 && $i != 0)
 					{
 					?>
 					 	<div class="container-fluid">
@@ -26,7 +26,7 @@
 					}
 					?>
 				<div class="row-fliud">
-				 	<li class="span4" display:block>
+				 	<li class="span35" display:block>
 				        <div class="thumbnail">
 							<div class="caption">
                                 <?php $this->load->view('template/pin_modal'); ?>
@@ -76,15 +76,8 @@
             				</div>
 	            		</div>
 					</li>
-					<?php
-				if($i % 4 == 3 && $i != 0)
-				{
-				?>
-				 	</div>>
-				<?php
-				}
-				?>
 				</div>
+			</div>
         <?php
         }
 		?>

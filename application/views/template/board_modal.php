@@ -40,4 +40,4 @@
   <?php echo form_submit('submit', 'Create Board', 'class="btn btn-primary"'); ?>
   <?php echo form_close(); ?>
 </div>
-</div
+</div>

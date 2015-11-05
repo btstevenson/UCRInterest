@@ -27,7 +27,7 @@ class User extends CI_Controller
 						'is_logged_in' => true
 					);
 			$this->session->set_userdata($data);
-			redirect('profile');
+			redirect('feed');
 		}
 
 		$this->data['subview'] = 'user/login_view';
@@ -41,7 +41,7 @@ class User extends CI_Controller
 		 */
 		if($this->is_logged_in())
 		{
-			redirect('profile');
+			redirect('feed');
 		}
 
 		$this->load->library('form_validation');
@@ -100,5 +100,7 @@ class User extends CI_Controller
 		{
 			return true;
 		}
+	}
+}}
 	}
 }

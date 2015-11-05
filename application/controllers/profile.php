@@ -86,9 +86,9 @@ class Profile extends CI_Controller
 		{
 			$this->load->model('profile_model');
 			$this->profile_model->insert_board();
-			redirect('profile/');
+			redirect('profile/board');
 		}
-		redirect('profile/');
+		redirect('profile/board');
 	}
 
 	function is_logged_in()
