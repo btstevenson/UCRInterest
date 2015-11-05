@@ -76,5 +76,27 @@ class edit_profile_model extends CI_Model
 		$this->db->where('email', $this->session->userdata('email'));
 		$this->db->update('users');
 	}
+
+	function check_password()
+	{
+		$res = $this->db->where('email', $this->session->userdata('email'))->get('users');
+		$res = $res->row();
+		if($res->password == md5($this->input->post('old_password')))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+	}
+
+	function change_password()
+	{
+		$this->db->set('password', md5($this->input->post('new_password')));
+		$this->db->where('email', $this->session->userdata('email'));
+		$this->db->update('users');
+	}
 }
 ?>
