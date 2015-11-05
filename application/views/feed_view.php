@@ -3,8 +3,6 @@
 	a.thumbnail:hover {
 	    text-decoration: none;
 	}
-?>
-
 <script>
 	a.thumbnail:hover {
 	    text-decoration: none;
@@ -80,7 +78,7 @@
 				if($i % 4 == 3 && $i != 0)
 				{
 				?>
-				 	</div>>
+				 	</div>
 				<?php
 				}
 				?>
