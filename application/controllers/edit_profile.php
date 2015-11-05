@@ -64,7 +64,7 @@ class edit_profile extends CI_Controller
 
 	function upload_pic()
 	{
-		if (isset($_FILES['upload_field_name']) && is_uploaded_file($_FILES['upload_field_name']['tmp_name']))
+		if (isset($_FILES['pic_dir']) && is_uploaded_file($_FILES['pic_dir']['tmp_name']))
 		{
 			$config['upload_path'] = 'assets/img/';
 			$config['allowed_types'] = 'gif|jpg|png';
