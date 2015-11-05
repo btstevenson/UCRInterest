@@ -3,8 +3,6 @@
 	a.thumbnail:hover {
 	    text-decoration: none;
 	}
-?>
-
 <script>
 	a.thumbnail:hover {
 	    text-decoration: none;
@@ -76,6 +74,17 @@
             				</div>
 	            		</div>
 					</li>
+<<<<<<< HEAD
+=======
+					<?php
+				if($i % 4 == 3 && $i != 0)
+				{
+				?>
+				 	</div>
+				<?php
+				}
+				?>
+>>>>>>> John's-Branch
 				</div>
 			</div>
         <?php
