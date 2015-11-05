@@ -57,7 +57,7 @@ class User extends CI_Controller
 			$this->load->model('user_model');
 			$this->user_model->register_user();
 			$data = array(
-						'email' => $this->input->post('email'),
+						'username' => $this->input->post('email'),
 						'is_logged_in' => true
 					);
 			$this->session->set_userdata($data);
