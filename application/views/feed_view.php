@@ -3,6 +3,12 @@
 	a.thumbnail:hover {
 	    text-decoration: none;
 	}
+?>
+
+<script>
+	a.thumbnail:hover {
+	    text-decoration: none;
+	}
 </script>
     <ul class="thumbnails">
 
@@ -10,7 +16,6 @@
          <?php
 			for( $i = count($imgs) - 1; $i >= 0; $i--){
 		?>
-
 				<div class="row-fliud">
 					<?php
 					if($i % 4 == 3 && $i != 0)
@@ -20,6 +25,7 @@
 					<?php
 					}
 					?>
+				<div class="row-fliud">
 				 	<li class="span4" display:block>
 				        <div class="thumbnail">
 							<div class="caption">
