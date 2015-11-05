@@ -1,12 +1,4 @@
 <!DOCTYPE html>
-	<?php
-	$new_pid = 0;
-	function make_pin()
-	{
-		redirect('profile');
-	}
-?>
-
     <ul class="thumbnails">
          <?php
 			for( $i = count($imgs) - 1; $i >= 0; $i--){
