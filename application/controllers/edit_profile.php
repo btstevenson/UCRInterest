@@ -25,7 +25,7 @@ class edit_profile extends CI_Controller
 		if($this->form_validation->run())
 		{
 			$this->edit_profile_model->edit_info();
-			redirect('feed');
+			redirect('edit_profile');
 		}
 
 		$this->load->view('template/header');
