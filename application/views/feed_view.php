@@ -31,15 +31,15 @@
 							<div class="caption">
                                 <?php $this->load->view('template/pin_modal'); ?>
 			            		<a href="#pin_modal" onclick="Big(<?php echo $this_pid[$i] ?>);" class="thumbnail" id="pop"> 
-                                    <img src= "<?php echo base_url($imgs[$i]); ?>"  alt="" id="imgsource<?php echo $i ?>" > 
+                                    <img src= "<?php echo base_url($imgs[$i]); ?>"  alt="" id="imgsource<?php echo $this_pid[$i]?>" > 
                                 </a>
-			                    <h3 id="imgtitle<?php echo $i ?>"><?php echo $titles[$i]; ?></h3>
+			                    <h3 id="imgtitle<?php echo $this_pid[$i]?>"><?php echo $titles[$i]; ?></h3>
 			                    <p id="part<?php echo $i ?>" >
                                     <?php
 			                     		echo substr($contents[$i], 0, 100)."..."; 
                                     ?>
                                 </p>
-                                <p  hidden id="imgcont<?php echo $i ?>">
+                                <p  hidden id="imgcont<?php echo $this_pid[$i] ?>">
                                     <?php
 			                     		echo $contents[$i]; 
                                     ?>
