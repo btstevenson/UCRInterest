@@ -43,7 +43,7 @@
 		<tr>
 			<td>Password</td>
 			<td>
-				<?php echo form_password('password', $password, 'id = password'); ?>
+        		<a href="edit_profile/change_password" class="btn" role="button">Change Password</a>
 			</td>
 		</tr>
 
