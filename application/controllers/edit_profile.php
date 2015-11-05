@@ -10,17 +10,28 @@ class edit_profile extends CI_Controller
 
 	public function index()
 	{
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|callback_check_unique');
-		$this->form_validation->set_rules('username', 'Username', 'trim|required|callback_check_unique');
-		$this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
-		$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
-		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
-		$this->form_validation->set_rules('DOB', 'DOB', 'required');
-
 		$email = $this->session->userdata('email');
 		$this->load->model('edit_profile_model');
-		$data1 = $this->edit_profile_model->get_user_info($email);
+		$user_data = $this->edit_profile_model->get_user_info($email);
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('pic_dir', 'Picture', 'callback_upload_pic');
+
+		if($user_data->email != $this->input->post('email'))
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|callback_check_unique');
+
+		if($user_data->username != $this->input->post('username'))
+			$this->form_validation->set_rules('username', 'Username', 'trim|required|callback_check_unique');
+
+		if($user_data->first_name != $this->input->post('first_name'))
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
+
+		if($user_data->last_name != $this->input->post('last_name'))
+			$this->form_validation->set_rules('last_name', 'Last Name', 'trim|required');
+
+		if($user_data->DOB != $this->input->post('DOB'))
+			$this->form_validation->set_rules('DOB', 'DOB', 'required');
+
 
 		if($this->form_validation->run())
 		{
@@ -30,7 +41,7 @@ class edit_profile extends CI_Controller
 
 		$this->load->view('template/header');
 		$this->load->view('template/main_layout', $this->data);
-		$this->load->view('user/edit_profile_view', $data1);
+		$this->load->view('user/edit_profile_view', $user_data);
 		$this->load->view('template/footer');
 
 	}
@@ -50,4 +61,29 @@ class edit_profile extends CI_Controller
 		}
 		return true;
 	}
+
+	function upload_pic()
+	{
+		if (isset($_FILES['upload_field_name']) && is_uploaded_file($_FILES['upload_field_name']['tmp_name']))
+		{
+			$config['upload_path'] = 'assets/img/';
+			$config['allowed_types'] = 'gif|jpg|png';
+			$config['file_name'] = uniqid(rand());
+			// echo $this->input->post('pic_dir');
+			$this->load->library('upload', $config);
+
+			if ( ! $this->upload->do_upload('pic_dir'))
+			{
+				// echo $this->upload->display_errors();
+				$this->form_validation->set_message('upload_pic', $this->upload->display_errors());
+				return false;
+			}
+			else
+			{
+				$this->load->model('edit_profile_model');
+				$this->edit_profile_model->upload_pic($this->upload->data('file_name'));
+			}
+		}
+		return true;
+	}	
 }
