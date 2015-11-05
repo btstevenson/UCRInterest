@@ -21,8 +21,10 @@ class Profile extends CI_Controller
 		 	$hold['user_record'] = $query->result_array();
 		 	$row = $query->row();
 		 	$sql = "SELECT name, description FROM boards WHERE uid = ?";
-		 	$query = $this->db->query($sql, $row->uid);
-		 	$boards['board_record'] = $query->result_array();	
+		 	if($query = $this->db->query($sql, $row->uid))
+		 	{
+		 		$boards['board_record'] = $query->result_array();	
+		 	}
 		 }
 		$this->load->view('user/profile_view', $hold, $this->data);
 		$this->load->view('user/board_view', $boards);
@@ -39,17 +41,19 @@ class Profile extends CI_Controller
 		$this->load->view('template/header', $this->data);
 		$this->load->view('template/main_layout', $this->data);
 		$hold = array();
-		 $boards = array();
+		$boards = array();
 		 $sql = "SELECT uid, first_name, last_name FROM users WHERE email = ?";
 		 if($query = $this->db->query($sql, array($this->session->userdata('email'))))
 		 {
 		 	$hold['user_record'] = $query->result_array();
-		 	$row = mysql_fetch_row($query);
+		 	$row = $query->row();
 		 	$sql = "SELECT name, description FROM boards WHERE uid = ?";
-		 	$query = $this->db->query($sql, $row[0]);
-		 	$boards['board_record'] = $query->result_arry();	
+		 	if($query = $this->db->query($sql, $row->uid))
+		 	{
+		 		$boards['board_record'] = $query->result_array();	
+		 	}
 		 }
-		$this->load->view('user/profile_view', $hold, $this->$data);
+		$this->load->view('user/profile_view', $hold, $this->data);
 		$this->load->view('user/board_view', $boards);
 		$this->load->view('template/footer');
 	}
@@ -59,13 +63,16 @@ class Profile extends CI_Controller
 		$this->load->view('template/header', $this->data);
 		$this->load->view('template/main_layout', $this->data);
 		$hold = array();
+		$pins = array();
 		 $sql = "SELECT uid, first_name, last_name FROM users WHERE email = ?";
 		 if($query = $this->db->query($sql, array($this->session->userdata('email'))))
 		 {
-		 	$hold['user_record'] = $query->result_array();	
+		 	$hold['user_record'] = $query->result_array();
+		 	$this->load->model('profile_model');
+		 	$pins['pin_record'] = $this->profile_model->get_posts();
 		 }
 		$this->load->view('user/profile_view', $hold, $this->data);
-		$this->load->view('user/pins_view');
+		$this->load->view('user/pins_view', $pins);
 		$this->load->view('template/footer');
 	}
 
