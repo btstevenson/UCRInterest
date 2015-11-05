@@ -10,7 +10,16 @@
          <?php
 			for( $i = count($imgs) - 1; $i >= 0; $i--){
 		?>
+
 				<div class="row-fliud">
+					<?php
+					if($i % 4 == 3 && $i != 0)
+					{
+					?>
+					 	<div class="container-fluid">
+					<?php
+					}
+					?>
 				 	<li class="span4" display:block>
 				        <div class="thumbnail">
 							<div class="caption">
@@ -61,6 +70,14 @@
             				</div>
 	            		</div>
 					</li>
+					<?php
+				if($i % 4 == 3 && $i != 0)
+				{
+				?>
+				 	</div>>
+				<?php
+				}
+				?>
 				</div>
         <?php
         }
