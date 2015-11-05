@@ -12,7 +12,8 @@
 
 
          <?php
-			for( $i = count($imgs) - 1; $i >= 0; $i--){
+		 	$imgs = array_reverse($imgs);
+			for( $i = 0; $i<count($imgs); $i++){//$i = count($imgs) - 1; $i >= 0; $i--){
 		?>
 				<div class="row-fliud">
 					<?php
