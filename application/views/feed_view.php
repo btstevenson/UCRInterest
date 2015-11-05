@@ -12,9 +12,10 @@
 
 
          <?php
-			for( $i = count($imgs) - 1; $i >= 0; $i--){
+		 	$imgs = array_reverse($imgs);
+			for( $i = 0; $i<count($imgs); $i++){//$i = count($imgs) - 1; $i >= 0; $i--){
 		?>
-				<div class="row-fliud">
+				<div>
 					<?php
 					if($i % 4 == 3 && $i != 0)
 					{
@@ -23,7 +24,7 @@
 					<?php
 					}
 					?>
-				<div class="row-fliud">
+				<div>
 				 	<li class="span4" display:block>
 				        <div class="thumbnail">
 							<div class="caption">
