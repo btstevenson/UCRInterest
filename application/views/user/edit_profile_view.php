@@ -18,7 +18,7 @@
 				else
 				{
 				?>
-					<img src= "<?php echo base_url('assets/img/standard.jpg'); ?>" class="img-circle" height="100" width="100">
+					<img src= "<?php echo base_url('assets/img/default.jpg'); ?>" class="img-circle" height="100" width="100">
 				<?php
 				}
 				?>
