@@ -1,13 +1,31 @@
-<style> .errors {color: red;} </style>
-
 <div class="modal-header">
 	<p>Please enter your information</p>
 </div>
 
-<div class="errors"> <?php echo validation_errors(); ?> </div>
-	
-	<?php echo form_open(); ?>
+<div> <?php echo validation_errors(); ?> </div>
+	<?php echo form_open_multipart("edit_profile"); ?>
 	<table class="table">
+		<tr>
+			<td>Profile Picture</td>
+			<td>
+				<?php  
+				if($profile_pic != "")
+				{
+				?>
+					<img src= "<?php echo base_url($profile_pic); ?>" class="img-circle" height="100" width="100">
+				<?php
+				}
+				else
+				{
+				?>
+					<img src= "<?php echo base_url('assets/img/standard.jpg'); ?>" class="img-circle" height="100" width="100">
+				<?php
+				}
+				?>
+				<p><?php echo form_upload('pic_dir', '', 'id=pic'); ?></p>
+			</td>
+		</tr>
+
 		<tr>
 			<td>Email</td>
 			<td>
@@ -64,7 +82,15 @@
 		<tr>
 			<td>Website</td>
 			<td>
-				<?php echo form_input('about_you', $website, 'id = website'); ?>
+				<?php echo form_input('website', $website, 'id = website'); ?>
+			</td>
+		</tr>
+
+		<tr>
+		<tr>
+			<td>Nick Name</td>
+			<td>
+				<?php echo form_input('nick_name', $nick_name, 'id = nick_name'); ?>
 			</td>
 		</tr>
 
@@ -77,4 +103,3 @@
 	<?php echo form_close(); ?>
 
 	</table>
-

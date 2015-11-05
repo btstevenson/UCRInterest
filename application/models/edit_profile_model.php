@@ -20,23 +20,25 @@ class edit_profile_model extends CI_Model
 
 	public function edit_info()
 	{
-		$data = array(
-			'uid'			=>	'',
-			'email'			=>	$this->input->post('email'),
-			'password' 		=> 	$this->input->post('password'),
-			'username' 		=> 	$this->input->post('username'),
-			'first_name' 	=> 	$this->input->post('first_name'),
-			'last_name' 	=> 	$this->input->post('last_name'),
-			'about_you' 	=> 	"",
-			'location'		=>	"",
-			'website' 		=> 	"",
-			'profile_pic' 	=> 	"",
-			// 'creation_date'	=>	"CURRENT_TIMESTAMP()",
-			'DOB'			=>	$this->input->post('DOB'),
-			'gender' 		=> 	"",
-			'nick_name' 	=> 	$this->input->post('username'));
 
-		$this->db->update('users', $data);
+		$this->db->set('email', $this->input->post('email'));
+		$this->db->set('password', $this->input->post('password'));
+		$this->db->set('username', $this->input->post('username'));
+		$this->db->set('first_name', $this->input->post('first_name'));
+		$this->db->set('last_name', $this->input->post('last_name'));
+		$this->db->set('about_you', $this->input->post('about_you'));
+		$this->db->set('location', $this->input->post('location'));
+		$this->db->set('website', $this->input->post('website'));
+		$this->db->set('DOB', $this->input->post('DOB'));
+		$this->db->set('gender', $this->input->post('gender'));
+		$this->db->set('nick_name', $this->input->post('nick_name'));
+
+		$this->db->where('email', $this->session->userdata('email'));
+		$this->db->update('users');
+		$this->session->set_userdata(array(
+						'email' => $this->input->post('email'),
+						'is_logged_in' => true
+					));
 		
 	}
 
@@ -67,6 +69,12 @@ class edit_profile_model extends CI_Model
 		}
 		return 'none';
 	}
-}
 
+	function upload_pic($pic_name)
+	{
+		$this->db->set('profile_pic', "assets/img/".$pic_name);
+		$this->db->where('email', $this->session->userdata('email'));
+		$this->db->update('users');
+	}
+}
 ?>

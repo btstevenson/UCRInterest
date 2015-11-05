@@ -9,7 +9,7 @@
 
     <ul class="thumbnails">
          <?php
-			for( $i = 0; $i<count($imgs); $i++){
+			for( $i = count($imgs) - 1; $i >= 0; $i--){
 		?>
 				<?php
 				if($i % 4 == 3 && $i != 0)
@@ -62,6 +62,6 @@
 				</div>
 			</div>
         <?php
-	        }
+        }
 		?>
   	</ul>
