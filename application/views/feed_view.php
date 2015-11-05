@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<script>
-	a.thumbnail:hover {
-	    text-decoration: none;
-	}
-<script>
-	a.thumbnail:hover {
-	    text-decoration: none;
-	}
-</script>
+<!--
+<style>
+    .crop
+    {
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+    }
+    .crop img
+    {
+        width: 200px;
+        height: 200px;
+    }
+</style>
+-->
     <ul class="thumbnails">
 
 
@@ -30,15 +36,17 @@
 							<div class="caption">
                                 <?php $this->load->view('template/pin_modal'); ?>
 			            		<a href="#pin_modal" onclick="Big(<?php echo $this_pid[$i] ?>);" class="thumbnail" id="pop"> 
-                                    <img src= "<?php echo base_url($imgs[$i]); ?>"  alt="" id="imgsource<?php echo $i ?>" > 
+                                    <div class="crop">
+                                    <img src= "<?php echo base_url($imgs[$i]); ?>"  alt="" id="imgsource<?php echo $this_pid[$i]?>" > 
+                                    </div>
                                 </a>
-			                    <h3 id="imgtitle<?php echo $i ?>"><?php echo $titles[$i]; ?></h3>
+			                    <h3 id="imgtitle<?php echo $this_pid[$i]?>"><?php echo $titles[$i]; ?></h3>
 			                    <p id="part<?php echo $i ?>" >
                                     <?php
 			                     		echo substr($contents[$i], 0, 100)."..."; 
                                     ?>
                                 </p>
-                                <p  hidden id="imgcont<?php echo $i ?>">
+                                <p  hidden id="imgcont<?php echo $this_pid[$i] ?>">
                                     <?php
 			                     		echo $contents[$i]; 
                                     ?>
