@@ -85,5 +85,41 @@ class edit_profile extends CI_Controller
 			}
 		}
 		return true;
-	}	
+	}
+
+	function change_password()
+	{
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('old_password', 'Old Password', 'trim|required|callback_check_password');
+		$this->form_validation->set_rules('new_password', 'New Password', 'trim|required');
+		$this->form_validation->set_rules('c_password', 'Confirm Password', 'trim|required|matches[new_password]');
+
+		if($this->form_validation->run())
+		{
+			$this->load->model('edit_profile_model');
+			$this->edit_profile_model->change_password();
+
+			redirect('feed');
+		}
+
+		$this->data['meta_title'] = 'Change Password';
+		$this->data['subview'] = 'user/change_password_view';
+		$this->load->view('template/modal_layout', $this->data);
+	}
+
+	function check_password()
+	{
+		$this->load->model('edit_profile_model');
+		$valid = $this->edit_profile_model->check_password();
+
+		if($valid)
+		{
+			return true;
+		}
+		else
+		{
+			$this->form_validation->set_message('check_password', 'Your old password is incorrect.');
+			return false;
+		}
+	}
 }
