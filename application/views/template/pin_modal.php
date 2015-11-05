@@ -29,6 +29,11 @@ function Big(i) {
     cont.innerHTML = img_c;
 //    alert(img_t);
 
+    
+    var pin_b = document.getElementById("insideB");
+    var text = "feed/makepin/";
+    text = text.concat(i);
+//    alert(text);
    $('#pin_modal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
 }
 </script>
@@ -52,6 +57,8 @@ function Big(i) {
         </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<!--        <a href="" class="btn btn-danger btn-default" role="button" id="insideB">Pin!</a>-->
+
       </div>
     </div>
   </div>
