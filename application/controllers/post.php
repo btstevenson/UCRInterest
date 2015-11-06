@@ -47,8 +47,6 @@ class Post extends CI_Controller
         }
 	}
 
-
-
 	function edit_post()
 	{
 		$data['meta_title'] = "Edit Post";
