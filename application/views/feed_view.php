@@ -19,6 +19,13 @@
 
          <?php
 		 	$imgs = array_reverse($imgs);
+		 	$this_pid = array_reverse($this_pid);
+			$titles = array_reverse($titles);
+			$contents = array_reverse($contents);
+			$first_name = array_reverse($first_name);
+			$last_name = array_reverse($last_name);
+			$uid = array_reverse($uid);
+
 			for( $i = 0; $i<count($imgs); $i++){//$i = count($imgs) - 1; $i >= 0; $i--){
 		?>
 				<div>
@@ -78,6 +85,14 @@
 			                    	</p>
 
 	                		<?php
+	                			}
+	                			if($uid[$i] == $my_uid)
+	                			{
+	                		?>
+	                				<p>
+			                    		<a href="post/edit_post/<?php echo $this_pid[$i] ?>" class="btn btn-block" role="button">Edit Post</a>
+			                    	</p>
+			                <?php
 	                			}
 	            			?>
             				</div>

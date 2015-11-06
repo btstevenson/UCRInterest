@@ -46,14 +46,48 @@ class Post extends CI_Controller
            
         }
 	}
-    //=============== DELETING A POST ===========================
-    public function delete()
-    {
-        $this->delete_file();
-    }
-    private function delete_file()
-    {
-        
-    }
 
+
+
+	function edit_post()
+	{
+		$data['meta_title'] = "Edit Post";
+
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('title', 'Title', 'trim|required');
+		$this->form_validation->set_rules('content', 'Content', 'trim');
+		$pid = $this->uri->segment(3);
+
+		$this->load->model('post_model');
+
+		$post_data = $this->post_model->get_post_info($pid);
+		// array_push($post_data, $pid);
+		if($this->input->post("edit_post") == "Delete Post")
+		{
+			$this->delete_post($pid);
+			redirect('profile');
+		}
+		else
+		{
+			if($this->form_validation->run() == TRUE)
+			{
+				$this->load->model('post_model');
+				$this->post_model->change_post($pid);
+				redirect('feed');
+			}
+
+		}
+		
+		$this->load->view('template/header');
+		$this->load->view('template/main_layout', $data);
+		$this->load->view('edit_post_view', $post_data);
+		$this->load->view('template/footer');
+	}
+	
+	public function delete_post($pid)
+	{
+		$this->load->model("post_model");
+		$this->post_model->delete_post($pid);
+	}
+	
 }
