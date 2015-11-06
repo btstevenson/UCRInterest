@@ -89,6 +89,10 @@ class edit_profile extends CI_Controller
 
 	function change_password()
 	{
+        if($this->input->post("pass_edit") == "Cancel")
+		{
+			redirect('edit_profile');
+		}
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('old_password', 'Old Password', 'trim|required|callback_check_password');
 		$this->form_validation->set_rules('new_password', 'New Password', 'trim|required');

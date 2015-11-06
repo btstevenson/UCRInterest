@@ -5,7 +5,7 @@
     <ul class="nav">
       <li class="active"><a href="<?php echo base_url('index.php/feed'); ?>">Feed</a></li>
       <li><a href="<?php echo base_url('index.php/profile/board'); ?>">Profile</a></li>
-      <li><a href="#">Link</a></li>
+<!--      <li><a href="#">Link</a></li>-->
     </ul>
       
         <!-- Button to trigger modal -->
