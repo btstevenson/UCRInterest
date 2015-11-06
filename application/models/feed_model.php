@@ -37,6 +37,7 @@ class feed_model extends CI_Model
 		$contents = array();
 		$first_name = array();
 		$last_name = array();
+		$uid = array();
 		$who = "";
 		
 		$res = $this->db->query("SELECT pid, uid, pic_dir, title, content FROM post ");
@@ -55,11 +56,12 @@ class feed_model extends CI_Model
 
 			array_push($first_name, $name->first_name);
 			array_push($last_name, $name->last_name);
+			array_push($uid, $row->uid);
 
 			$numImagesLoaded++;
 		}
 		
-		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name);
+		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name, $uid);
 		
 		return $data;
 	}
@@ -80,6 +82,13 @@ class feed_model extends CI_Model
 		$res = $res->row();
 		$uid =  $res->uid;
 		$this->db->delete('pins', array('post_id' => $pid, 'uid' => $uid)); 
+	}
+
+	function get_my_uid()
+	{
+		$res = $this->db->query("SELECT uid FROM users WHERE email='".$this->session->userdata('email')."'");
+		$res = $res->row();
+		return $res->uid;
 	}
 }
 

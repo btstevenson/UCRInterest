@@ -1,11 +1,11 @@
 <script >
 function Big(i) {
     var count = i-2;
-    
+//    alert(i);
     //====SETTING UP THE PICTURE===
     var imag = document.getElementById("preview");
     var new_src = 'imgsource';
-    new_src = new_src.concat(i-2);
+    new_src = new_src.concat(i);
     var new_img = document.getElementById(new_src).src;
     imag.setAttribute("src", new_img);
     
@@ -14,7 +14,7 @@ function Big(i) {
     //====SETTING UP THE TITLE =====
     var title = document.getElementById("myPinLabel");
     var new_title = 'imgtitle';
-    new_title = new_title.concat(i-2);
+    new_title = new_title.concat(i);
     var img_t = document.getElementById(new_title).innerHTML;
 //    alert(title.innerHTML);
     title.innerHTML = img_t;
@@ -23,12 +23,17 @@ function Big(i) {
     //====SETTING UP THE CONTENT =====
     var cont = document.getElementById("img_contents");
     var new_cont = 'imgcont';
-    new_cont = new_cont.concat(i-2);
+    new_cont = new_cont.concat(i);
     var img_c = document.getElementById(new_cont).innerHTML;
 //    alert(title.innerHTML);
     cont.innerHTML = img_c;
 //    alert(img_t);
 
+    
+    var pin_b = document.getElementById("insideB");
+    var text = "feed/makepin/";
+    text = text.concat(i);
+//    alert(text);
    $('#pin_modal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
 }
 </script>
@@ -43,7 +48,7 @@ function Big(i) {
       </div>
       <div class="modal-body">
 <!--        <img src="" id="preview" style="width: 400px; height: 264px;" >-->
-        <img src="" id="preview" width="400" height="400">
+        <img src="" id="preview" >
       </div>
         <div>
             <p id="img_contents">
@@ -52,6 +57,8 @@ function Big(i) {
         </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<!--        <a href="" class="btn btn-danger btn-default" role="button" id="insideB">Pin!</a>-->
+
       </div>
     </div>
   </div>

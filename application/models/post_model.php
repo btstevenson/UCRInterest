@@ -38,9 +38,34 @@ class post_model extends CI_Model
 
 		$this->db->insert('post', $data_1);
 	}
-    public function delete_post ()
+
+	function get_post_info($pid)
+	{
+		$q = $this 
+					->db
+					->where ('pid', $pid)
+					->get('post');
+
+		$res = $q->row();
+		
+		$data = array('title' => $res->title, 'pic_dir' => $res->pic_dir, 'content' => $res->content, 'pid' => $pid);
+
+		return $data;
+	}
+
+	function change_post($pid)
+	{
+		$this->db->set('title', $this->input->post('title'));
+		$this->db->set('content', $this->input->post('content'));
+
+		$this->db->where('pid', $pid);
+		$this->db->update('post');
+	}
+
+    public function delete_post($pid)
     {
-        
+        $q = "DELETE FROM post WHERE pid=".$pid;
+		$this->db->query($q);
     }
 }
 
