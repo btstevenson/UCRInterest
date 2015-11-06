@@ -39,7 +39,7 @@ class edit_profile extends CI_Controller
 			redirect('edit_profile');
 		}
 
-		$this->load->view('template/header');
+		$this->load->view('template/header', $this->data);
 		$this->load->view('template/main_layout', $this->data);
 		$this->load->view('user/edit_profile_view', $user_data);
 		$this->load->view('template/footer');
