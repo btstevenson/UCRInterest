@@ -13,19 +13,11 @@ class Profile extends CI_Controller
 	{
 		$this->load->view('template/header', $this->data);
 		$this->load->view('template/main_layout', $this->data);
+		$this->load->model('profile_model');
 		$hold = array();
 		$boards = array();
-		 $sql = "SELECT uid, first_name, last_name FROM users WHERE email = ?";
-		 if($query = $this->db->query($sql, array($this->session->userdata('email'))))
-		 {
-		 	$hold['user_record'] = $query->result_array();
-		 	$row = $query->row();
-		 	$sql = "SELECT name, description FROM boards WHERE uid = ?";
-		 	if($query = $this->db->query($sql, $row->uid))
-		 	{
-		 		$boards['board_record'] = $query->result_array();	
-		 	}
-		 }
+		$hold['user_record'] = $this->profile_model->get_user_info();
+		$boards['board_record'] = $this->profile_model->get_boards();
 		$this->load->view('user/profile_view', $hold, $this->data);
 		$this->load->view('user/board_view', $boards);
 		$this->load->view('template/footer');	
@@ -40,19 +32,11 @@ class Profile extends CI_Controller
 	{
 		$this->load->view('template/header', $this->data);
 		$this->load->view('template/main_layout', $this->data);
+		$this->load->model('profile_model');
 		$hold = array();
 		$boards = array();
-		 $sql = "SELECT uid, first_name, last_name FROM users WHERE email = ?";
-		 if($query = $this->db->query($sql, array($this->session->userdata('email'))))
-		 {
-		 	$hold['user_record'] = $query->result_array();
-		 	$row = $query->row();
-		 	$sql = "SELECT name, description FROM boards WHERE uid = ?";
-		 	if($query = $this->db->query($sql, $row->uid))
-		 	{
-		 		$boards['board_record'] = $query->result_array();	
-		 	}
-		 }
+		$hold['user_record'] = $this->profile_model->get_user_info();
+		$boards['board_record'] = $this->profile_model->get_boards();
 		$this->load->view('user/profile_view', $hold, $this->data);
 		$this->load->view('user/board_view', $boards);
 		$this->load->view('template/footer');
@@ -62,15 +46,11 @@ class Profile extends CI_Controller
 	{
 		$this->load->view('template/header', $this->data);
 		$this->load->view('template/main_layout', $this->data);
+		$this->load->model('profile_model');
 		$hold = array();
 		$pins = array();
-		 $sql = "SELECT uid, first_name, last_name FROM users WHERE email = ?";
-		 if($query = $this->db->query($sql, array($this->session->userdata('email'))))
-		 {
-		 	$hold['user_record'] = $query->result_array();
-		 	$this->load->model('profile_model');
-		 	$pins['pin_record'] = $this->profile_model->get_posts();
-		 }
+		$hold['user_record'] = $this->profile_model->get_user_info();
+		$pins['pin_record'] = $this->profile_model->get_posts();
 		$this->load->view('user/profile_view', $hold, $this->data);
 		$this->load->view('user/pins_view', $pins);
 		$this->load->view('template/footer');
@@ -91,6 +71,13 @@ class Profile extends CI_Controller
 		redirect('profile/board');
 	}
 
+	function edit_board()
+	{
+		$this->load->model('profile_model');
+		$this->profile_model->update_board();
+		redirect('profile/board');
+	}
+
 	function is_logged_in()
 	{
 		$is_logged_in = $this->session->userdata('is_logged_in');
@@ -98,5 +85,12 @@ class Profile extends CI_Controller
 		{
 			redirect('user/login');
 		}
+	}
+
+	function delete_board()
+	{
+		$this->load->model('profile_model');
+		$this->profile_model->remove_board();
+		redirect('profile/board');
 	}
 }
