@@ -5,12 +5,10 @@
     <ul class="nav">
       <li class="active"><a href="<?php echo base_url('index.php/feed'); ?>">Feed</a></li>
       <li><a href="<?php echo base_url('index.php/profile/board'); ?>">Profile</a></li>
-      <li><a href="#">Link</a></li>
+<!--      <li><a href="#">Link</a></li>-->
     </ul>
       
         <!-- Button to trigger modal -->
-        <a href="#delete_post" role="button" class="btn btn-danger" data-toggle="modal" id="delete_btn">Edit Posts</a>
-      <?php $this->load->view('template/delete_post'); ?>
         <a href="#post_modal" role="button" class="btn btn-danger" data-toggle="modal" id="post_btn">Make a post!</a>
       <?php $this->load->view('template/post_modal'); ?>
         

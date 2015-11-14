@@ -35,7 +35,9 @@
 		<tr>
 			<td></td>
 			<td>
-				<?php echo form_submit('submit', 'Change Password', 'class="btn btn-primary"'); ?>
+                <?php echo form_submit('pass_edit', 'Cancel', 'class="btn btn-danger"'); ?>
+
+				<?php echo form_submit('pass_edit', 'Change Password', 'class="btn btn-primary"'); ?>
 			</td>
 		</tr>
 	</table>

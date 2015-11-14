@@ -39,7 +39,7 @@ class edit_profile extends CI_Controller
 			redirect('edit_profile');
 		}
 
-		$this->load->view('template/header');
+		$this->load->view('template/header', $this->data);
 		$this->load->view('template/main_layout', $this->data);
 		$this->load->view('user/edit_profile_view', $user_data);
 		$this->load->view('template/footer');
@@ -89,6 +89,10 @@ class edit_profile extends CI_Controller
 
 	function change_password()
 	{
+        if($this->input->post("pass_edit") == "Cancel")
+		{
+			redirect('edit_profile');
+		}
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('old_password', 'Old Password', 'trim|required|callback_check_password');
 		$this->form_validation->set_rules('new_password', 'New Password', 'trim|required');
