@@ -23,7 +23,7 @@
 		<tr>
 			<td>Password</td>
 			<td>
-				<?php echo form_password('password', set_value('password'), 'id = password'); ?>
+				<?php echo form_password('password', set_value(''), 'id = password'); ?>
 			</td>
 		</tr>
 		<tr>
