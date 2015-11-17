@@ -42,6 +42,17 @@ class friends_model extends CI_Model
 				
 		return $pending;
 	}
+    
+    //======== SEARCHING FUNCTION ==============
+    public function get_search()
+    {
+        $match = $this->input->post(‘search’);
+        $this->db->like(‘first_name’,$match);
+        $this->db->or_like(‘last_name’,$match);
+        $this->db->or_like(‘username’,$match);
+        $query = $this->db->get(‘users’);
+        return $query->result();
+    }
 }
 
 ?>
