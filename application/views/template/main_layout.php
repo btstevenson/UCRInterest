@@ -24,8 +24,10 @@
 
       <div class="span3">
         <section>
-          <?php echo anchor('edit_profile', '<i class="icon-user"></i> Edit Profile'); ?> <br>
-          <?php echo anchor('user/logout', '<i class="icon-off"></i> Logout'); ?>
+          <?php echo anchor('feed', '<i class="icon-globe"></i>'); ?>
+          <?php echo anchor('friends', '<i class="icon-user"></i>'); ?>
+          <?php echo anchor('edit_profile', '<i class="icon-cog"></i>'); ?>
+          <?php echo anchor('user/logout', '<i class="icon-off"></i>'); ?>
         </section>
       </div>
     </div>
