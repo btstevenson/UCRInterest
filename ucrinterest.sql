@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Nov 13, 2015 at 05:02 PM
+-- Generation Time: Nov 16, 2015 at 03:53 PM
 -- Server version: 5.5.42
 -- PHP Version: 5.6.10
 
@@ -59,7 +59,8 @@ CREATE TABLE `comments` (
 
 CREATE TABLE `friends` (
   `user` int(11) NOT NULL COMMENT 'This is the user id of the user',
-  `following` int(11) NOT NULL COMMENT 'This is the user id of the user being followed'
+  `following` int(11) NOT NULL COMMENT 'This is the user id of the user being followed',
+  `status` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -101,6 +102,9 @@ CREATE TABLE `pins` (
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Table structure for table `post`
+--
 
 CREATE TABLE `post` (
   `pid` int(11) NOT NULL,
@@ -135,8 +139,7 @@ INSERT INTO `post` (`pid`, `uid`, `title`, `pic_dir`, `content`, `label`, `date_
 (17, 5, 'Duis ullamcorper augue nec ex sodales, sed bibendum massa sodales.', '/assets/img/199569924556399a517c80b.jpg', 'Nullam lobortis velit accumsan, tincidunt velit eget, luctus magna. Cras id suscipit nulla. Sed in scelerisque leo. Praesent vitae hendrerit velit. Pellentesque eget nunc lacinia, aliquam ipsum ac, vehicula risus. Sed efficitur pellentesque augue, vel sollicitudin dolor facilisis at. Duis in ex semper, vestibulum dui at, ultrices turpis. Mauris accumsan fermentum magna. Fusce ultricies rutrum quam vitae finibus. Suspendisse id viverra lorem. Mauris auctor, lacus eu tristique mollis, lorem justo ', '', '2015-11-04 05:40:33'),
 (18, 4, 'Sed venenatis ipsum vel massa tristique sollicitudin.', '/assets/img/198026405956399a9e1604a.jpg', 'Quisque placerat ultricies ex sit amet fringilla. Vivamus euismod risus non mi auctor gravida. Nulla facilisi. Aliquam quis ligula ac orci facilisis tempor. Proin eleifend mattis metus, ac ultricies tellus faucibus ut. Cras non massa pulvinar erat finibus pulvinar. Suspendisse posuere nibh id luctus hendrerit. Fusce maximus justo quis euismod sodales. Nunc rhoncus enim vehicula pharetra rhoncus. Maecenas interdum nibh non tellus finibus hendrerit. Nunc convallis porta augue, ut auctor neque blan', '', '2015-11-04 05:41:50'),
 (19, 4, 'Curabitur convallis ex vitae rutrum ornare.', '/assets/img/205137598256399abeb5575.jpg', 'Curabitur ornare quam in arcu ultricies auctor. Vestibulum dapibus sem arcu, vehicula iaculis elit varius eget. Aliquam imperdiet odio in metus dignissim, nec iaculis diam maximus. Vivamus tortor lectus, suscipit id dui vitae, porttitor condimentum purus. In cursus diam neque, vel sodales enim iaculis vitae. Duis in lorem neque. Aenean facilisis mi et cursus imperdiet. Duis porttitor posuere nunc et accumsan. Vivamus ac nisl lorem. Nam sed purus vitae lorem sollicitudin pretium. Aenean pretium i', '', '2015-11-04 05:42:22'),
-(20, 4, 'Ut in augue eget mi scelerisque dignissim.', '/assets/img/174445865756399ada2304d.jpg', 'Ut sed neque in mi suscipit blandit. Pellentesque nec ligula et sapien rhoncus laoreet sed sed libero. Integer blandit tellus ac semper aliquam. Phasellus sed neque arcu. Ut sodales ac tortor a rutrum. Ut hendrerit accumsan mauris, vitae porta mauris malesuada id. Sed feugiat luctus arcu, vitae tristique ex. Duis laoreet sapien ut lacinia viverra. Nam porttitor turpis id eros fringilla maximus. Curabitur ac convallis lorem. In consequat dolor vitae nisl maximus viverra. Quisque nec massa ac lect', '', '2015-11-04 05:42:50');
-
+(20, 4, 'Ut in augue eget mi scelerisque dignissim.', '/assets/img/174445865756399ada2304d.jpg', 'Ut sed neque in mi suscipit blandit. Pellentesque nec ligula et sapien rhoncus laoreet sed sed libero. Integer blandit tellus ac semper aliquam. Phasellus sed neque arcu. Ut sodales ac tortor a rutrum. Ut hendrerit accumsan mauris, vitae porta mauris malesuada id. Sed feugiat luctus arcu, vitae tristique ex. Duis laoreet sapien ut lacinia viverra. Nam porttitor turpis id eros fringilla maximus. Curabitur ac convallis lorem. In consequat dolor vitae nisl maximus viverra. Quisque nec massa ac lect', '', '2015-11-04 05:42:50')
 -- --------------------------------------------------------
 
 --
@@ -169,8 +172,7 @@ INSERT INTO `users` (`uid`, `email`, `password`, `username`, `first_name`, `last
 (2, 'mtobo001@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'mtobo001', 'Marco', 'Tobon', '', '', '', '', '2015-11-04 02:57:47', '1993-10-20', '', 'mtobo001'),
 (3, 'wkeid001@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'wkeid001', 'William', 'Keidel', '', '', '', '', '2015-11-04 02:59:26', '1993-10-20', '', 'wkeid001'),
 (4, 'afull004@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'afull004', 'Alex', 'Fuller', '', '', '', '', '2015-11-04 03:18:12', '1993-10-20', '', 'afull004'),
-(5, 'bstev002@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'bstev002', 'Brandon', 'Stevenson', '', '', '', '', '2015-11-04 05:35:05', '1993-10-20', '', 'bstev002');
-
+(5, 'bstev002@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'bstev002', 'Brandon', 'Stevenson', '', '', '', '', '2015-11-04 05:35:05', '1993-10-20', '', 'bstev002'),
 --
 -- Indexes for dumped tables
 --
