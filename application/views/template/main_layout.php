@@ -7,7 +7,19 @@
       <li><a href="<?php echo base_url('index.php/profile/board'); ?>">Profile</a></li>
 <!--      <li><a href="#">Link</a></li>-->
     </ul>
-      
+    <!-- Search Bar -->
+    <ul>
+      <form class="navbar-form navbar-right" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search this site">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default">Go!
+                        </button>
+                    </span>
+                </div>
+            </form>
+    </ul>
+
         <!-- Button to trigger modal -->
         <a href="#post_modal" role="button" class="btn btn-danger" data-toggle="modal" id="post_btn">Make a post!</a>
       <?php $this->load->view('template/post_modal'); ?>
