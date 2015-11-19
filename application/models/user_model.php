@@ -77,6 +77,80 @@ class User_model extends CI_Model
 
 		return  $this->db->update('users', $data);
 	}
+
+	function get_keywords() //for search functionality
+	{
+		$keyword_arr = array();
+		$res = $this->db->query("SELECT pid, title, content, label FROM post");
+		$res = $res->result();
+		foreach ($res as $row) {
+			$keyword_string = "{$row->title} {$row->content} {$row->label} "; //concatenate all keywords with spacing
+			$keyword_string = preg_replace('/[^a-z0-9]+/i', ' ', $keyword_string); //remove punctuation
+			$keyword_arr[$row->pid] = $keyword_string; //maps the pid to the keywords
+		}
+		return $keyword_arr;
+	}
+
+	function find_matches($terms_arr, $keyword_arr){ //for search functionality
+		$pid_arr = array();
+		foreach($keyword_arr as $key => $value){
+			$value_arr = preg_split("/[\s,]+/", $value); //turn keywords into array
+			foreach($value_arr as $word1){
+				foreach($terms_arr as $word2){
+					if($word1 == $word2){ //make these lowercase if you want to get rid of case-matching
+						array_push($pid_arr, $key);
+						break 2; //break twice
+					}
+				}
+			}
+		}
+		return $pid_arr; 
+	}
+
+	public function get_name($uid) //for search functionality
+	{
+		$res = $this->db->query("SELECT first_name, last_name FROM users WHERE uid= ".$uid);
+		return $res->row();
+	}
+
+	function load_feed($pid_arr){ //for search functionality
+		$pid = array();
+		$imgs = array();
+		$titles = array();
+		$contents = array();
+		$first_name = array();
+		$last_name = array();
+		$uid = array();
+		$who = "";
+		///////////////////////////FIXME//////////////////////////
+		//need to check if pid is in $pid_arr in this query
+		$res = $this->db->query("SELECT pid, uid, pic_dir, title, content FROM post");//WHERE in_array(pid, pid_array) 
+
+		$tableCount = 0;
+		$numImagesLoaded = 0;
+		$shuffled = $res->result();
+		
+		foreach ($shuffled as $row){
+			if(in_array($row->pid, $pid_arr)){
+				array_push($pid, $row->pid);
+				array_push($imgs, $row->pic_dir);
+				array_push($titles, $row->title);
+				array_push($contents, $row->content);
+
+				$name = $this->get_name($row->uid);
+
+				array_push($first_name, $name->first_name);
+				array_push($last_name, $name->last_name);
+				array_push($uid, $row->uid);
+
+				$numImagesLoaded++;
+			}
+		}
+		
+		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name, $uid);
+		
+		return $data;
+	}
 }
 
 ?>
