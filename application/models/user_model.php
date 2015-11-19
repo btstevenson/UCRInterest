@@ -90,6 +90,23 @@ class User_model extends CI_Model
 		}
 		return $keyword_arr;
 	}
+
+	function find_matches($terms_arr, $keyword_arr){
+		$pid_arr = array();
+		foreach($keyword_arr as $key => $value){
+			$value_arr = preg_split("/[\s,]+/", $value); //turn keywords into array
+			foreach($value_arr as $word1){
+				foreach($terms_arr as $word2){
+					if($word1 == $word2){
+						echo $key;
+						array_push($pid_arr, $key);
+						break 2; //break twice
+					}
+				}
+			}
+		}
+		return $pid_arr;
+	}
 }
 
 ?>

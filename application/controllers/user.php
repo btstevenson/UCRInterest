@@ -115,18 +115,7 @@ class User extends CI_Controller
 
 		//get the pid of relevant posts
 		$pid_arr = array();
-		foreach($keyword_arr as $key => $value){
-			$value_arr = preg_split("/[\s,]+/", $value); //turn keywords into array
-			foreach($value_arr as $word1){
-				foreach($terms_arr as $word2){
-					if($word1 == $word2){
-						echo $key;
-						array_push($pid_arr, $key);
-						break 2; //break twice
-					}
-				}
-			}
-		}
+		$pid_arr = $this->user_model->find_matches($terms_arr, $keyword_arr);
 
 		$this->load->view('template/header');
 		$this->load->view('template/main_layout', $this->data);
