@@ -9,12 +9,11 @@
     </ul>
     <!-- Search Bar -->
     <ul>
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right" role="search" action="<?=site_url('user/search')?>" method="post">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search this site">
+                    <input type="text" class="form-control" name="search_terms" placeholder="Search this site">
                     <span class="input-group-btn">
-                        <button type="submit" class="btn btn-default">Go!
-                        </button>
+                           <button type="submit" class="btn btn-default">Go!</button>
                     </span>
                 </div>
             </form>
