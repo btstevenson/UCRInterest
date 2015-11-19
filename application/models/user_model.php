@@ -77,6 +77,19 @@ class User_model extends CI_Model
 
 		return  $this->db->update('users', $data);
 	}
+
+	function get_keywords() //for searching
+	{
+		$keyword_arr = array();
+		$res = $this->db->query("SELECT pid, title, content, label FROM post");
+		$res = $res->result();
+		foreach ($res as $row) {
+			$keyword_string = "{$row->title} {$row->content} {$row->label} "; //concatenate all keywords with spacing
+			$keyword_string = preg_replace('/[^a-z0-9]+/i', ' ', $keyword_string); //remove punctuation
+			$keyword_arr[$row->pid] = $keyword_string; //maps the pid to the keywords
+		}
+		return $keyword_arr;
+	}
 }
 
 ?>

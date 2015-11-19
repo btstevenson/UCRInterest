@@ -101,4 +101,36 @@ class User extends CI_Controller
 			return true;
 		}
 	}
+	function search()
+	{
+		$this->data['meta_title'] = 'Search Results'; //Set page title
+
+		$terms = $this->input->post('search_terms'); //get search terms from search box
+		$terms_arr = array();
+		$terms_arr = preg_split("/[\s,]+/", $terms); //split terms by spaces into array
+
+		$keyword_arr = array();
+		$this->load->model('user_model'); 
+		$keyword_arr = $this->user_model->get_keywords(); //returns array of (p(ost)id => key words)
+
+		//get the pid of relevant posts
+		$pid_arr = array();
+		foreach($keyword_arr as $key => $value){
+			$value_arr = preg_split("/[\s,]+/", $value); //turn keywords into array
+			foreach($value_arr as $word1){
+				foreach($terms_arr as $word2){
+					if($word1 == $word2){
+						echo $key;
+						array_push($pid_arr, $key);
+						break 2; //break twice
+					}
+				}
+			}
+		}
+
+		$this->load->view('template/header');
+		$this->load->view('template/main_layout', $this->data);
+		$this->load->view('user/search_view');
+		$this->load->view('template/footer');
+	}
 }
