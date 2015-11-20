@@ -43,7 +43,7 @@ class User_model extends CI_Model
 			'about_you' 	=> 	"",
 			'location'		=>	"",
 			'website' 		=> 	"",
-			'profile_pic' 	=> 	"",
+			'profile_pic' 	=> 	"assets/img/default.jpg",
 			// 'creation_date'	=>	"CURRENT_TIMESTAMP()",
 			'DOB'			=>	$this->input->post('DOB'),
 			'gender' 		=> 	"",
