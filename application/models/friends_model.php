@@ -11,7 +11,7 @@ class friends_model extends CI_Model
 	{
 		$amigos = array();
         
-		$res = $this->db->query("SELECT U2.first_name, U2.last_name FROM friends F, users U, users U2 WHERE F.status ='accepted' AND F.user = U.uid AND F.following = U2.uid AND U.email='".$this->session->userdata("email")."'");
+		$res = $this->db->query("SELECT U2.first_name, U2.last_name, U2.profile_pic FROM friends F, users U, users U2 WHERE F.status ='accepted' AND ((F.user = U.uid AND F.following = U2.uid) OR (U.uid = F.following AND U2.uid = F.user)) AND U.email='".$this->session->userdata("email")."'");
 		$shuffled = $res->result();
 		//shuffle($shuffled);
 		
@@ -19,7 +19,11 @@ class friends_model extends CI_Model
 //            echo $row->first_name;
 //            echo $row->last_name;
 
-			array_push($amigos, $row->first_name." ".$row->last_name);
+			//array_push($amigos, $row->first_name." ".$row->last_name);
+			array_push($amigos, $row);
+
+            
+        //======= PUSH THEIR PICUTRE TOO
 		}
 				
 		return $amigos;
@@ -30,14 +34,17 @@ class friends_model extends CI_Model
 	{
 		$pending = array();
         
-		$res = $this->db->query("SELECT U2.first_name, U2.last_name FROM friends F, users U, users U2 WHERE F.status ='respond' AND F.following = U2.uid AND F.user = U.uid AND U.email='".$this->session->userdata("email")."'");
+		$res = $this->db->query("SELECT U2.first_name, U2.last_name, U2.profile_pic FROM friends F, users U, users U2 WHERE F.status ='pending' AND F.following = U.uid AND F.user = U2.uid AND U.email='".$this->session->userdata("email")."'");
 		$shuffled = $res->result();
 		
 		foreach ($shuffled as $row){
 //            echo $row->first_name;
 //            echo $row->last_name;
 
-			array_push($pending, $row->first_name." ".$row->last_name);
+			//array_push($pending, $row->first_name." ".$row->last_name);
+			array_push($pending, $row);
+            
+            //=================== PUSH THEIR PICTURE TOO    
 		}
 				
 		return $pending;
