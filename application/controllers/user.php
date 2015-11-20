@@ -101,4 +101,45 @@ class User extends CI_Controller
 			return true;
 		}
 	}
+
+	//Search Funtionality: Works with multiple key words entered. Returns any posts that have either key
+	//                     word in them. Is case-sensitive. Duplicates some of the feed code, so changes to
+	//					   the feed will also need to be applied here or the model.
+	function search()
+	{
+		$terms = $this->input->post('search_terms'); //get search terms from search box
+		$terms_arr = array();
+		$terms_arr = preg_split("/[\s,]+/", $terms); //split terms by spaces into array
+
+		$keyword_arr = array();
+		$this->load->model('user_model'); 
+		$keyword_arr = $this->user_model->get_keywords(); //returns array of (p(ost)id => key words)
+
+		//get the pid of relevant posts
+		$pid_arr = array();
+		$pid_arr = $this->user_model->find_matches($terms_arr, $keyword_arr);
+
+		$fulldata = $this->user_model->load_feed($pid_arr); //only load pins that are in the pid_arr
+
+		$pid = $fulldata[0];
+		$imgs = $fulldata[1];
+		$titles = $fulldata[2];
+		$contents = $fulldata[3];
+		$first_name = $fulldata[4];
+		$last_name = $fulldata[5];
+		$uid = $fulldata[6];
+
+		$this->load->model('feed_model');
+		$pins = $this->feed_model->get_pins();
+		$my_uid = $this->feed_model->get_my_uid();
+
+		$this->data = array("this_pid" => $pid, "imgs" => $imgs, "titles" => $titles, "contents" => $contents, "first_name" => $first_name, "last_name" => $last_name, "pins" => $pins, "uid" => $uid, "my_uid" => $my_uid);
+		
+		$this->data['meta_title'] = 'Search Results'; //Set page title
+
+		$this->load->view('template/header', $this->data);
+		$this->load->view('template/main_layout', $this->data);
+		$this->load->view('user/search_view', $this->data);
+		$this->load->view('template/footer', $this->data);
+	}
 }
