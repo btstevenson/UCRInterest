@@ -22,7 +22,6 @@ class edit_profile_model extends CI_Model
 	{
 
 		$this->db->set('email', $this->input->post('email'));
-		$this->db->set('password', $this->input->post('password'));
 		$this->db->set('username', $this->input->post('username'));
 		$this->db->set('first_name', $this->input->post('first_name'));
 		$this->db->set('last_name', $this->input->post('last_name'));
