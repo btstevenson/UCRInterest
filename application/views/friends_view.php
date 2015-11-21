@@ -8,6 +8,12 @@
         <div id="pending" class="span8" >
             <h3>Pending Requests</h3>
             <?php
+                if(count($pending_list) == 0)
+                {
+            ?>
+                    <p class="muted">You dont have any friend requests.</p>
+            <?php
+                }
                 for ($i = 0; $i < count($pending_list); $i ++)
                 {
                     ?>
@@ -18,12 +24,13 @@
                                 </a>
                                 <div class="media-body">
                                     <h4 class="media-heading">
-                                        <?php echo $pending_list[$i] -> first_name. " ". $pending_list[$i]->last_name;?>
+                                        <?php echo $pending_list[$i]->first_name. " ". $pending_list[$i]->last_name;?>
                                     </h4>
+                                    <a href="friends/accept_friend/<?php echo $pending_list[$i]->fid ?>"> <button class="btn btn-primary">Accept</button> </a>
+                                    <a href="friends/decline_friend/<?php echo $pending_list[$i]->fid ?>"> <button class="btn btn-danger">Decline</button> </a>  
                                 </div>
                             </li>
                         </ul>   
-                        
                     <?php
                 }
             ?>

@@ -22,6 +22,7 @@ class Friends extends CI_Controller
 		
         $this->load->view('template/footer');
 	}
+
     public function search()
     {
         $q = $this->input->post('Search');
@@ -45,6 +46,22 @@ class Friends extends CI_Controller
         $this->load->view('friends_search_view', $user_res);
         $this->load->view('template/footer');
 
+    }
+
+    public function accept_friend()
+    {
+        $fid = $this->uri->segment(3);
+        $this->load->model("friends_model");
+        $this->friends_model->accept_friend($fid);
+        redirect("friends");
+    }
+
+    public function decline_friend()
+    {
+        $fid = $this->uri->segment(3);
+        $this->load->model("friends_model");
+        $this->friends_model->decline_friend($fid);
+        redirect("friends");
     }
 }
 
