@@ -21,7 +21,8 @@ class registration_model extends CI_Model
 			// 'creation_date'	=>	"CURRENT_TIMESTAMP()",
 			'DOB'			=>	$this->input->post('DOB'),
 			'gender' 		=> 	"",
-			'nick_name' 	=> 	$this->input->post('username'));
+			'nick_name' 	=> 	$this->input->post('username'),
+			'interests'		=>	$this->input->post('interests'));
 
 		return  $this->db->insert('users', $data);
 	}
