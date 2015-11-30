@@ -33,6 +33,20 @@ class User_model extends CI_Model
 
 	function register_user()
 	{
+		$selectedInterests = $this->input->post('interests');
+		$interests = array("Popular","Everything","Gifts","Videos","Animals and pets","Architecture","Art","Cars and motorcycles","Celebrities","Design","DIY and crafts","Education","Film, music and books","Food and drink","Gardening","Geek","Hair and beauty","Health and fitness","History","Holidays and events","Home decor","Humor","Illustrations and posters","Kids and parenting","Men's fashion","Outdoors","Photography","Products","Quotes","Science and nature","Sports","Tattoos","Technology","Travel","Weddings","Women's fashion");
+		
+		for($i=0; $i<count($selectedInterests); $i++){
+			$interestData = array(
+				'uid' => '',
+				'label' => $interests[$i]
+			);
+		
+			$this->db->insert('interests', $interestData);
+		}
+	
+		
+	
 		$data = array(
 			'uid'			=>	'',
 			'email'			=>	$this->input->post('email'),
