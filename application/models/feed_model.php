@@ -29,12 +29,7 @@ class feed_model extends CI_Model
 		return $pid_list;
 	}
 	
-	/*
-	("Popular","Everything","Gifts","Videos","Animals and pets","Architecture","Art","Cars and motorcycles","Celebrities","Design","DIY and crafts","Education","Film, music and books","Food and drink","Gardening","Geek","Hair and beauty","Health and fitness","History","Holidays and events","Home decor","Humor","Illustrations and posters","Kids and parenting","Men's fashion","Outdoors","Photography","Products","Quotes","Science and nature","Sports","Tattoos","Technology","Travel","Weddings","Women's fashion");
-	*/
-	
-	public function load_feed($currentUID)
-	{
+	public function load_feed($currentUID) {
 		$pid = array();
 		$imgs = array();
 		$titles = array();
@@ -48,10 +43,15 @@ class feed_model extends CI_Model
 		$uidRes = $uidQ->row();
 		
 		$interestsQuery = $this->db->query("SELECT label FROM interests WHERE uid='".$uidRes->uid."'");
-		
+		$historyQuery = $this->db->query("SELECT label FROM browse_history WHERE uid='".$uidRes->uid."'");
+				
 		$currentUserInterests = array();
 		
 		foreach ( $interestsQuery->result() as $row){
+		   array_push($currentUserInterests ,$row->label);
+		}
+		
+		foreach ( $historyQuery->result() as $row){
 		   array_push($currentUserInterests ,$row->label);
 		}
 		

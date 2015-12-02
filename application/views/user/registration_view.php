@@ -93,7 +93,7 @@
 		        'style'         => 'margin:0px'
 			);         
 		   echo form_checkbox( $data);// 'interests[]', 'accept', FALSE);
-		   echo $interests[$i];echo "<br>";
+		   echo $interestLabels[$i];echo "<br>";
         }
 		?>
 	  </td>
