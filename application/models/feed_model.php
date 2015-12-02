@@ -37,6 +37,7 @@ class feed_model extends CI_Model
 		$first_name = array();
 		$last_name = array();
 		$uid = array();
+		$label = array();
 		$who = "";
 		
 		$uidQ = $this->db->query("SELECT uid FROM users WHERE email='".$currentUID."'");
@@ -57,7 +58,7 @@ class feed_model extends CI_Model
 		
 		$labels = "'".implode("', '", $currentUserInterests)."'";
 		
-		$res = $this->db->query("SELECT pid, uid, pic_dir, title, content FROM post WHERE label IN (".$labels.")");
+		$res = $this->db->query("SELECT pid, uid, pic_dir, title, content, label FROM post WHERE label IN (".$labels.")");
 		$tableCount = 0;
 		$numImagesLoaded = 0;
 		$shuffled = $res->result();
@@ -74,11 +75,12 @@ class feed_model extends CI_Model
 			array_push($first_name, $name->first_name);
 			array_push($last_name, $name->last_name);
 			array_push($uid, $row->uid);
+			array_push($label, $row->label);
 
 			$numImagesLoaded++;
 		}
 		
-		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name, $uid, $currentUserInterests);
+		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name, $uid, $label);
 		
 		return $data;
 	}

@@ -27,9 +27,17 @@ function Big(i) {
     var img_c = document.getElementById(new_cont).innerHTML;
 //    alert(title.innerHTML);
     cont.innerHTML = img_c;
-//    alert(img_t);
-
+//    alert(img_t)
     
+	    //====SETTING UP THE LABEL =====
+    var label = document.getElementById("img_label");
+    var new_label = 'imglabel';
+    new_label = new_label.concat(i);
+    var img_l = document.getElementById(new_label).innerHTML;
+//    alert(title.innerHTML);
+    label.innerHTML = img_l;
+//    alert(img_t)
+	
     var pin_b = document.getElementById("insideB");
     var text = "feed/makepin/";
     text = text.concat(i);
@@ -50,12 +58,17 @@ function Big(i) {
 <!--        <img src="" id="preview" style="width: 400px; height: 264px;" >-->
         <img src="" id="preview" >
       </div>
-        <div>
-            <p id="img_contents">
+      <div>
+      	<p id="img_contents">
                 
-            </p>
-        </div>
+      	</p>
+      </div>
       <div class="modal-footer">
+      	<div>
+	      	<p id="img_label">
+        
+	        </p>
+	    </div>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 <!--        <a href="" class="btn btn-danger btn-default" role="button" id="insideB">Pin!</a>-->
 
