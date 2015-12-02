@@ -48,7 +48,7 @@
                             {
                                 if ($uid[$i] == $fuid[$j])
                                 {
-                                    echo $fuid[$i];
+                                    echo $fstatus[$i];
                                 }
                                                           
                             }
