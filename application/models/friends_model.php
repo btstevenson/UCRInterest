@@ -69,15 +69,19 @@ class friends_model extends CI_Model
         $query = $query->result();
         
         //=== QUERY WILL GET PEOPLE THAT MIGHT BE FRIENDS
-        $res = $this->db->query("SELECT U2.uid, F.status FROM friends F, users U, users U2 WHERE F.user = U.uid AND F.following = U2.uid AND U.email='".$this->session->userdata("email")."'");
+        $res = $this->db->query("SELECT U2.uid, F.status FROM friends F, users U, users U2 WHERE ((F.user = U.uid AND F.following = U2.uid) OR (U.uid = F.following AND U2.uid = F.user)) AND U.email='".$this->session->userdata("email")."'");
 		$res = $res->result();
         foreach($res as $r)
         {
-//            echo $r->uid;
-//            echo $r->status;
+            // echo $r->uid;
+            // echo $r->status;
             array_push($fuid, $r->uid);
+            if ($r->status == "")
+            {
+                array_push($fstatus, "NONE");
+                echo "none";
+            }
             array_push($fstatus, $r->status);
-
         }
         
         
