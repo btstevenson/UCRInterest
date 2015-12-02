@@ -55,7 +55,6 @@ class User_model extends CI_Model
 		
 		$selectedInterests = $this->input->post('interests');
 		
-		var_dump($selectedInterests);
 		for($i=0; $i<count($selectedInterests); $i++){
 			$interestData = array(
 				'uid' => $row->uid,
