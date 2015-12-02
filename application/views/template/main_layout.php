@@ -1,7 +1,7 @@
 <body>
 <div class="navbar navbar-static-top navbar-inverse">
   <div class="navbar-inner">
-    <a class="brand" href="<?php echo base_url('index.php/Welcome'); ?>">UCRInterest</a>
+    <a class="brand" href="<?php echo base_url('index.php/feed'); ?>">UCRInterest</a>
     <ul class="nav">
       <li class="active"><a href="<?php echo base_url('index.php/feed'); ?>">Feed</a></li>
       <li><a href="<?php echo base_url('index.php/profile/board'); ?>">Profile</a></li>
