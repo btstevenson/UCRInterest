@@ -1,4 +1,4 @@
-<div id="board_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="board_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
     <h3 id="myModalLabel">Create Board</h3>
@@ -32,6 +32,10 @@
           ?>
         </td>
       </tr>
+        <td>Privacy</td>
+        <td> <input type="checkbox", id="privacy", name="privacy" value="1"/>
+        </td>
+      <tr>
     </table>
 </div>
 

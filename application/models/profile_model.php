@@ -25,12 +25,26 @@ class profile_model extends CI_Model
     public function insert_board()
     {
         $this->load->model('profile_model');
+        $checked = $this->input->post('privacy');
+        $private = 0;
+        if((int) $checked == 1)
+        {
+            $private = 1;
+        }
         $data_1 = array(
                         'uid' => $this->profile_model->get_user_id(),
                         'name' => $this->input->post('name'),
-                        'description' => $this->input->post('description')
+                        'description' => $this->input->post('description'),
+                        'private' => $private
                     );
-
+        $boards = $this->get_boards();
+        foreach ($boards as $row)
+        {
+            if($row['name'] == $data_1['name'])
+            {
+                return false;
+            }
+        }       
         return $this->db->insert('boards', $data_1);
     }
 
