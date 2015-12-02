@@ -31,22 +31,7 @@ class User_model extends CI_Model
 		}
 	}
 
-	function register_user()
-	{
-		$selectedInterests = $this->input->post('interests');
-		$interests = array("Popular","Everything","Gifts","Videos","Animals and pets","Architecture","Art","Cars and motorcycles","Celebrities","Design","DIY and crafts","Education","Film, music and books","Food and drink","Gardening","Geek","Hair and beauty","Health and fitness","History","Holidays and events","Home decor","Humor","Illustrations and posters","Kids and parenting","Men's fashion","Outdoors","Photography","Products","Quotes","Science and nature","Sports","Tattoos","Technology","Travel","Weddings","Women's fashion");
-		
-		for($i=0; $i<count($selectedInterests); $i++){
-			$interestData = array(
-				'uid' => '',
-				'label' => $interests[$i]
-			);
-		
-			$this->db->insert('interests', $interestData);
-		}
-	
-		
-	
+	function register_user(){
 		$data = array(
 			'uid'			=>	'',
 			'email'			=>	$this->input->post('email'),
@@ -63,7 +48,22 @@ class User_model extends CI_Model
 			'gender' 		=> 	"",
 			'nick_name' 	=> 	$this->input->post('username'));
 
-		return  $this->db->insert('users', $data);
+		$this->db->insert('users', $data);
+		
+		$query = $this->db->query("SELECT uid FROM users WHERE email='".($this->input->post('email'))."'" );
+		$row = $query->row();
+		
+		$selectedInterests = $this->input->post('interests');
+		
+		var_dump($selectedInterests);
+		for($i=0; $i<count($selectedInterests); $i++){
+			$interestData = array(
+				'uid' => $row->uid,
+				'label' => $selectedInterests[$i]
+			);
+		
+			$this->db->insert('interests', $interestData);
+		}
 	}
 
 	function load_profile()

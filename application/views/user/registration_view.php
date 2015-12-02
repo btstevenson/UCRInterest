@@ -88,7 +88,7 @@
 			$data = array(
 				'name'          => "interests[]",
 		        'id'            => $interests[$i],
-		        'value'         => 'accept',
+		        'value'         => $interests[$i],
 		        'checked'       => FALSE,
 		        'style'         => 'margin:0px'
 			);         
