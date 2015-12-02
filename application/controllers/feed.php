@@ -19,7 +19,9 @@ class Feed extends CI_Controller{
 
 		$this->load->model('feed_model');
 		 
-		$fulldata = $this->feed_model->load_feed();
+		$currentEmail = $this->session->userdata('email');
+
+		$fulldata = $this->feed_model->load_feed($currentEmail);
 
 		$pid = $fulldata[0];
 		$imgs = $fulldata[1];

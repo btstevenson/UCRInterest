@@ -29,7 +29,11 @@ class feed_model extends CI_Model
 		return $pid_list;
 	}
 	
-	public function load_feed()
+	/*
+	("Popular","Everything","Gifts","Videos","Animals and pets","Architecture","Art","Cars and motorcycles","Celebrities","Design","DIY and crafts","Education","Film, music and books","Food and drink","Gardening","Geek","Hair and beauty","Health and fitness","History","Holidays and events","Home decor","Humor","Illustrations and posters","Kids and parenting","Men's fashion","Outdoors","Photography","Products","Quotes","Science and nature","Sports","Tattoos","Technology","Travel","Weddings","Women's fashion");
+	*/
+	
+	public function load_feed($currentUID)
 	{
 		$pid = array();
 		$imgs = array();
@@ -40,7 +44,20 @@ class feed_model extends CI_Model
 		$uid = array();
 		$who = "";
 		
-		$res = $this->db->query("SELECT pid, uid, pic_dir, title, content FROM post ");
+		$uidQ = $this->db->query("SELECT uid FROM users WHERE email='".$currentUID."'");
+		$uidRes = $uidQ->row();
+		
+		$interestsQuery = $this->db->query("SELECT label FROM interests WHERE uid='".$uidRes->uid."'");
+		
+		$currentUserInterests = array();
+		
+		foreach ( $interestsQuery->result() as $row){
+		   array_push($currentUserInterests ,$row->label);
+		}
+		
+		$labels = "'".implode("', '", $currentUserInterests)."'";
+		
+		$res = $this->db->query("SELECT pid, uid, pic_dir, title, content FROM post WHERE label IN (".$labels.")");
 		$tableCount = 0;
 		$numImagesLoaded = 0;
 		$shuffled = $res->result();
@@ -61,7 +78,7 @@ class feed_model extends CI_Model
 			$numImagesLoaded++;
 		}
 		
-		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name, $uid);
+		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name, $uid, $currentUserInterests);
 		
 		return $data;
 	}
