@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Nov 16, 2015 at 03:53 PM
+-- Generation Time: Nov 20, 2015 at 04:43 PM
 -- Server version: 5.5.42
 -- PHP Version: 5.6.10
 
@@ -58,10 +58,18 @@ CREATE TABLE `comments` (
 --
 
 CREATE TABLE `friends` (
+  `fid` int(11) NOT NULL,
   `user` int(11) NOT NULL COMMENT 'This is the user id of the user',
   `following` int(11) NOT NULL COMMENT 'This is the user id of the user being followed',
   `status` varchar(20) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `friends`
+--
+
+INSERT INTO `friends` (`fid`, `user`, `following`, `status`) VALUES
+(5, 2, 1, 'accepted');
 
 -- --------------------------------------------------------
 
@@ -100,7 +108,9 @@ CREATE TABLE `pins` (
   `b_name` int(11) NOT NULL,
   `uid` int(11) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `post`
@@ -114,7 +124,7 @@ CREATE TABLE `post` (
   `content` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `label` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `post`
@@ -140,6 +150,7 @@ INSERT INTO `post` (`pid`, `uid`, `title`, `pic_dir`, `content`, `label`, `date_
 (18, 4, 'Sed venenatis ipsum vel massa tristique sollicitudin.', '/assets/img/198026405956399a9e1604a.jpg', 'Quisque placerat ultricies ex sit amet fringilla. Vivamus euismod risus non mi auctor gravida. Nulla facilisi. Aliquam quis ligula ac orci facilisis tempor. Proin eleifend mattis metus, ac ultricies tellus faucibus ut. Cras non massa pulvinar erat finibus pulvinar. Suspendisse posuere nibh id luctus hendrerit. Fusce maximus justo quis euismod sodales. Nunc rhoncus enim vehicula pharetra rhoncus. Maecenas interdum nibh non tellus finibus hendrerit. Nunc convallis porta augue, ut auctor neque blan', '', '2015-11-04 05:41:50'),
 (19, 4, 'Curabitur convallis ex vitae rutrum ornare.', '/assets/img/205137598256399abeb5575.jpg', 'Curabitur ornare quam in arcu ultricies auctor. Vestibulum dapibus sem arcu, vehicula iaculis elit varius eget. Aliquam imperdiet odio in metus dignissim, nec iaculis diam maximus. Vivamus tortor lectus, suscipit id dui vitae, porttitor condimentum purus. In cursus diam neque, vel sodales enim iaculis vitae. Duis in lorem neque. Aenean facilisis mi et cursus imperdiet. Duis porttitor posuere nunc et accumsan. Vivamus ac nisl lorem. Nam sed purus vitae lorem sollicitudin pretium. Aenean pretium i', '', '2015-11-04 05:42:22'),
 (20, 4, 'Ut in augue eget mi scelerisque dignissim.', '/assets/img/174445865756399ada2304d.jpg', 'Ut sed neque in mi suscipit blandit. Pellentesque nec ligula et sapien rhoncus laoreet sed sed libero. Integer blandit tellus ac semper aliquam. Phasellus sed neque arcu. Ut sodales ac tortor a rutrum. Ut hendrerit accumsan mauris, vitae porta mauris malesuada id. Sed feugiat luctus arcu, vitae tristique ex. Duis laoreet sapien ut lacinia viverra. Nam porttitor turpis id eros fringilla maximus. Curabitur ac convallis lorem. In consequat dolor vitae nisl maximus viverra. Quisque nec massa ac lect', '', '2015-11-04 05:42:50');
+
 -- --------------------------------------------------------
 
 --
@@ -161,7 +172,7 @@ CREATE TABLE `users` (
   `DOB` date DEFAULT NULL,
   `gender` varchar(1) COLLATE utf8_unicode_ci DEFAULT NULL,
   `nick_name` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -169,10 +180,12 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`uid`, `email`, `password`, `username`, `first_name`, `last_name`, `about_you`, `location`, `website`, `profile_pic`, `creation_date`, `DOB`, `gender`, `nick_name`) VALUES
 (1, 'jalma003@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'jalma003', 'John', 'Almaraz', 'My name is John and I am a CS major.', NULL, '', 'assets/img/1405957121563b0f87917b2.png', '2015-11-04 02:57:00', '1993-10-20', NULL, 'jalma003'),
-(2, 'mtobo001@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'mtobo001', 'Marco', 'Tobon', '', '', '', '', '2015-11-04 02:57:47', '1993-10-20', '', 'mtobo001'),
-(3, 'wkeid001@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'wkeid001', 'William', 'Keidel', '', '', '', '', '2015-11-04 02:59:26', '1993-10-20', '', 'wkeid001'),
-(4, 'afull004@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'afull004', 'Alex', 'Fuller', '', '', '', '', '2015-11-04 03:18:12', '1993-10-20', '', 'afull004'),
-(5, 'bstev002@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'bstev002', 'Brandon', 'Stevenson', '', '', '', '', '2015-11-04 05:35:05', '1993-10-20', '', 'bstev002');
+(2, 'mtobo001@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'mtobo001', 'Marco', 'Tobon', '', '', '', 'assets/img/default.jpg', '2015-11-04 02:57:47', '1993-10-20', '', 'mtobo001'),
+(3, 'wkeid001@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'wkeid001', 'William', 'Keidel', '', '', '', 'assets/img/default.jpg', '2015-11-04 02:59:26', '1993-10-20', '', 'wkeid001'),
+(4, 'afull004@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'afull004', 'Alex', 'Fuller', '', '', '', 'assets/img/default.jpg', '2015-11-04 03:18:12', '1993-10-20', '', 'afull004'),
+(5, 'bstev002@ucr.edu', '5f4dcc3b5aa765d61d8327deb882cf99', 'bstev002', 'Brandon', 'Stevenson', '', '', '', 'assets/img/default.jpg', '2015-11-04 05:35:05', '1993-10-20', '', 'bstev002'),
+(6, 'test@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'Test', 'Test', 'This', '', '', '', 'assets/img/default.jpg', '2015-11-20 23:22:40', '1993-10-20', '', 'Test');
+
 --
 -- Indexes for dumped tables
 --
@@ -183,6 +196,12 @@ INSERT INTO `users` (`uid`, `email`, `password`, `username`, `first_name`, `last
 ALTER TABLE `boards`
   ADD PRIMARY KEY (`name`,`uid`) USING BTREE,
   ADD KEY `uid` (`uid`);
+
+--
+-- Indexes for table `friends`
+--
+ALTER TABLE `friends`
+  ADD PRIMARY KEY (`fid`);
 
 --
 -- Indexes for table `pins`
@@ -207,20 +226,25 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `friends`
+--
+ALTER TABLE `friends`
+  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
 -- AUTO_INCREMENT for table `pins`
 --
 ALTER TABLE `pins`
-  MODIFY `pin_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `pin_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --

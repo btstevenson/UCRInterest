@@ -29,8 +29,7 @@ class feed_model extends CI_Model
 		return $pid_list;
 	}
 	
-	public function load_feed()
-	{
+	public function load_feed($currentUID) {
 		$pid = array();
 		$imgs = array();
 		$titles = array();
@@ -38,9 +37,28 @@ class feed_model extends CI_Model
 		$first_name = array();
 		$last_name = array();
 		$uid = array();
+		$label = array();
 		$who = "";
 		
-		$res = $this->db->query("SELECT pid, uid, pic_dir, title, content FROM post ");
+		$uidQ = $this->db->query("SELECT uid FROM users WHERE email='".$currentUID."'");
+		$uidRes = $uidQ->row();
+		
+		$interestsQuery = $this->db->query("SELECT label FROM interests WHERE uid='".$uidRes->uid."'");
+		$historyQuery = $this->db->query("SELECT label FROM browse_history WHERE uid='".$uidRes->uid."'");
+				
+		$currentUserInterests = array();
+		
+		foreach ( $interestsQuery->result() as $row){
+		   array_push($currentUserInterests ,$row->label);
+		}
+		
+		foreach ( $historyQuery->result() as $row){
+		   array_push($currentUserInterests ,$row->label);
+		}
+		
+		$labels = "'".implode("', '", $currentUserInterests)."'";
+		
+		$res = $this->db->query("SELECT pid, uid, pic_dir, title, content, label FROM post WHERE label IN (".$labels.")");
 		$tableCount = 0;
 		$numImagesLoaded = 0;
 		$shuffled = $res->result();
@@ -57,11 +75,12 @@ class feed_model extends CI_Model
 			array_push($first_name, $name->first_name);
 			array_push($last_name, $name->last_name);
 			array_push($uid, $row->uid);
+			array_push($label, $row->label);
 
 			$numImagesLoaded++;
 		}
 		
-		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name, $uid);
+		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name, $uid, $label);
 		
 		return $data;
 	}

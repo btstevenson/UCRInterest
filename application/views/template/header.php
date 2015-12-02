@@ -7,3 +7,7 @@
     <!-- Bootstrap -->
     <link href="<?php echo base_url('assets/css/bootstrap.css'); ?>" rel="stylesheet" media="screen">
   </head>
+  <body>
+
+  </body>
+ </html>

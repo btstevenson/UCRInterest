@@ -33,7 +33,8 @@ class post_model extends CI_Model
 						'uid' => $this->post_model->get_user_id(),
 						'pic_dir' => $url,
 						'title' => $this->input->post('title'),
-						'content' => $this->input->post('content')
+						'content' => $this->input->post('content'),
+						'label' => $this->input->post('label')
 					);
 
 		$this->db->insert('post', $data_1);

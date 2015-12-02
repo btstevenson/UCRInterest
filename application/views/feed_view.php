@@ -25,6 +25,7 @@
 			$first_name = array_reverse($first_name);
 			$last_name = array_reverse($last_name);
 			$uid = array_reverse($uid);
+			$label = array_reverse($label);
 
 			for( $i = 0; $i<count($imgs); $i++){//$i = count($imgs) - 1; $i >= 0; $i--){
 		?>
@@ -53,6 +54,11 @@
 			                     		echo substr($contents[$i], 0, 100)."..."; 
                                     ?>
                                 </p>
+                                
+                               	<p id="imglabel<?php echo $this_pid[$i] ?>">
+                                	<?php echo $label[$i] ?>
+                                </p>
+                                
                                 <p  hidden id="imgcont<?php echo $this_pid[$i] ?>">
                                     <?php
 			                     		echo $contents[$i]; 

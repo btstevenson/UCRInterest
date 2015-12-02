@@ -31,8 +31,7 @@ class User_model extends CI_Model
 		}
 	}
 
-	function register_user()
-	{
+	function register_user(){
 		$data = array(
 			'uid'			=>	'',
 			'email'			=>	$this->input->post('email'),
@@ -43,13 +42,27 @@ class User_model extends CI_Model
 			'about_you' 	=> 	"",
 			'location'		=>	"",
 			'website' 		=> 	"",
-			'profile_pic' 	=> 	"",
+			'profile_pic' 	=> 	"assets/img/default.jpg",
 			// 'creation_date'	=>	"CURRENT_TIMESTAMP()",
 			'DOB'			=>	$this->input->post('DOB'),
 			'gender' 		=> 	"",
 			'nick_name' 	=> 	$this->input->post('username'));
 
-		return  $this->db->insert('users', $data);
+		$this->db->insert('users', $data);
+		
+		$query = $this->db->query("SELECT uid FROM users WHERE email='".($this->input->post('email'))."'" );
+		$row = $query->row();
+		
+		$selectedInterests = $this->input->post('interests');
+		
+		for($i=0; $i<count($selectedInterests); $i++){
+			$interestData = array(
+				'uid' => $row->uid,
+				'label' => $selectedInterests[$i]
+			);
+		
+			$this->db->insert('interests', $interestData);
+		}
 	}
 
 	function load_profile()
