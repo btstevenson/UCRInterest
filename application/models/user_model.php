@@ -137,7 +137,8 @@ class User_model extends CI_Model
 		$uid = array();
 		$who = "";
 		///////////////////////////FIXME//////////////////////////
-		//need to check if pid is in $pid_arr in this query
+		//need to check if pid is in $pid_arr in this query for better time complexity
+		//currently grabs all posts
 		$res = $this->db->query("SELECT pid, uid, pic_dir, title, content FROM post");//WHERE in_array(pid, pid_array) 
 
 		$tableCount = 0;
