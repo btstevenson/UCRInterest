@@ -4,7 +4,7 @@
 
 <div class="modal show" role="dialog">
 	<?php 
-		$interests = array("Popular","Everything","Gifts","Videos","Animals and pets","Architecture","Art","Cars and motorcycles","Celebrities","Design","DIY and crafts","Education","Film, music and books","Food and drink","Gardening","Geek","Hair and beauty","Health and fitness","History","Holidays and events","Home decor","Humor","Illustrations and posters","Kids and parenting","Mens fashion","Outdoors","Photography","Products","Quotes","Science and nature","Sports","Tattoos","Technology","Travel","Weddings","Women's fashion");
+		$interests = array("Popular","Everything","Gifts","Videos","Animals and pets","Architecture","Art","Cars and motorcycles","Celebrities","Design","DIY and crafts","Education","Film, music and books","Food and drink","Gardening","Geek","Hair and beauty","Health and fitness","History","Holidays and events","Home decor","Humor","Illustrations and posters","Kids and parenting","Mens fashion","Outdoors","Photography","Products","Quotes","Science and nature","Sports","Tattoos","Technology","Travel","Weddings","Womens fashion");
 		$interestLabels = array("Popular","Everything","Gifts","Videos","Animals and pets","Architecture","Art","Cars and motorcycles","Celebrities","Design","DIY and crafts","Education","Film, music and books","Food and drink","Gardening","Geek","Hair and beauty","Health and fitness","History","Holidays and events","Home decor","Humor","Illustrations and posters","Kids and parenting","Men's fashion","Outdoors","Photography","Products","Quotes","Science and nature","Sports","Tattoos","Technology","Travel","Weddings","Women's fashion");
 		$data = array('interests' => $interests, 'interestLabels' => $interestLabels);
 		//if($subview == 'user/registration_view'){
