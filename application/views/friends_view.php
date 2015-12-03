@@ -3,12 +3,8 @@
     
     <!-- DIV FOR SEARCHING NEW FRIENDS -->
     <div class="row-fluid">
-<<<<<<< HEAD
-
-        <!-- DIV FOR DISPLAYING PENDING REQUESTS FROM USERS/ WILL ALSO INCLUDE NOTIFICATIONS OF NEW ONES    -->
-=======
         <!--//========= DIV FOR DISPLAYING PENDING REQUESTS FROM USERS/ WILL ALSO INCLUDE NOTIFICATIONS OF NEW ONES ========-->
->>>>>>> refs/remotes/origin/marco
+
         <div id="pending" class="span8" >
             <h3>Pending Requests</h3>
             <?php
