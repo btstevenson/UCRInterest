@@ -164,6 +164,13 @@ class User_model extends CI_Model
 		
 		return $data;
 	}
+
+	public function get_pic_dir()
+	{
+		$pic_dir = $this->db->query("SELECT profile_pic FROM users WHERE email='".$this->input->post('email')."'");
+		$pic_dir = $pic_dir->row();
+		return $pic_dir->profile_pic;
+	}
 }
 
 ?>
