@@ -4,6 +4,7 @@
     <!-- DIV FOR SEARCHING NEW FRIENDS -->
     <div class="row-fluid">
         <!--//========= DIV FOR DISPLAYING PENDING REQUESTS FROM USERS/ WILL ALSO INCLUDE NOTIFICATIONS OF NEW ONES ========-->
+
         <div id="pending" class="span8" >
             <h3>Pending Requests</h3>
             <?php
@@ -22,11 +23,11 @@
                                     <img class="media-object" src="<?php echo base_url($pending_list[$i]->profile_pic); ?>" width="64" height="64">
                                 </a>
                                 <div class="media-body">
-                                <a href="$">
+                                    <a href="$">
                                     <h4 class="media-heading">
                                         <?php echo $pending_list[$i]->first_name. " ". $pending_list[$i]->last_name;?>
                                     </h4>
-                                </a>
+                                    </a>
                                     <a href="friends/accept_friend/<?php echo $pending_list[$i]->fid ?>"> <button class="btn btn-primary">Accept</button> </a>
                                     <a href="friends/decline_friend/<?php echo $pending_list[$i]->fid ?>"> <button class="btn btn-danger">Decline</button> </a>  
                                 </div>
@@ -36,9 +37,7 @@
                 }
             ?>
         </div>
-        <?php
-        //=============================== SEARCHING FOR FRIENDS =========================================
-        ?>
+
         <div id="new_friends" class="span4" >
             <div class="navbar navbar-inverse">
                 <div class="navbar-inner">
@@ -67,32 +66,34 @@
 
     </div> <!-- END ROW -->
     <div class="row-fluid">
-
-        <!--//============================== DIV FOR VIEWING CURRENT FRIENDS ====================================-->
+        <!-- DIV FOR VIEWING CURRENT FRIENDS -->
         <div id="friends">
             <h3>Friends</h3>
+            <ul class="media-list">
             <?php
                 for ($i = 0; $i < count($friends_list); $i ++)
                 {
                     ?>
-                        <ul class="media-list">
+                        <!-- <a href="feed"> -->
                             <li class="media">
                                 <a class="pull-left" href="#">
                                     <img class="media-object" src="<?php echo base_url($friends_list[$i]->profile_pic); ?>" width="64" height="64">
                                 </a>
                                 <div class="media-body">
-                                <a href="$">
+                                    <a href="$">
                                     <h4 class="media-heading">
-                                        <?php echo $friends_list[$i] -> first_name. " ". $friends_list[$i]->last_name;?>
+                                        <?php echo $friends_list[$i]->first_name." ".$friends_list[$i]->last_name;?>
                                     </h4>
-                                </a>
+                                    </a>    
                                 </div>
                             </li>
-                        </ul>   
+                        <!-- </ul>    -->
+                        <!-- </a> -->
                         
                     <?php
                 }
             ?>
+            </ul>
         </div>
     </div>
 </div>
