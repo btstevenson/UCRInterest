@@ -36,8 +36,11 @@ class Friends extends CI_Controller
 		$pic_dir = $fulldata[4];
         $fuid = $fulldata[5]; 
         $fstatus = $fulldata[6]; 
+        $fid = $fulldata[7];
+        $frespond = $fulldata[8];
+        $fsent = $fulldata[9];
 
-        $user_res = array( "pic_dir" => $pic_dir, "username" => $username, "first_name" => $first_name, "last_name" => $last_name, "uid" => $uid, "fuid" => $fuid, "fstatus" => $fstatus);
+        $user_res = array( "pic_dir" => $pic_dir, "username" => $username, "first_name" => $first_name, "last_name" => $last_name, "uid" => $uid, "fuid" => $fuid, "fstatus" => $fstatus, "fid" => $fid, "frespond" => $frespond, "fsent" => $fsent);
         $this->data['meta_title'] = "Friend Results";
 
         
@@ -62,6 +65,15 @@ class Friends extends CI_Controller
         $this->load->model("friends_model");
         $this->friends_model->decline_friend($fid);
         redirect("friends");
+    }
+    
+    
+    public function send_friend()
+    {
+        $uid = $this->uri->segment(3);
+        $this->load->model("friends_model");
+        $this->friends_model->send_friend($uid);
+       // redirect("friends");
     }
 }
 
