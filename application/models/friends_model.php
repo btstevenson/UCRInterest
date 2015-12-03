@@ -16,14 +16,7 @@ class friends_model extends CI_Model
 		//shuffle($shuffled);
 		
 		foreach ($shuffled as $row){
-//            echo $row->first_name;
-//            echo $row->last_name;
-
-			//array_push($amigos, $row->first_name." ".$row->last_name);
 			array_push($amigos, $row);
-
-            
-        //======= PUSH THEIR PICUTRE TOO
 		}
 				
 		return $amigos;
@@ -37,19 +30,13 @@ class friends_model extends CI_Model
 		$res = $this->db->query("SELECT F.fid, U2.first_name, U2.last_name, U2.profile_pic FROM friends F, users U, users U2 WHERE F.status ='pending' AND F.following = U.uid AND F.user = U2.uid AND U.email='".$this->session->userdata("email")."'");
 		$shuffled = $res->result();
 		
-		foreach ($shuffled as $row){
-//            echo $row->first_name;
-//            echo $row->last_name;
-
-			//array_push($pending, $row->first_name." ".$row->last_name);
+		foreach ($shuffled as $row)
+        {
 			array_push($pending, $row);
-            
-            //=================== PUSH THEIR PICTURE TOO    
-		}
+        }
 				
 		return $pending;
 	}
-    
     //======== SEARCHING FUNCTION ==============
     public function get_search($match)
     {
@@ -58,42 +45,58 @@ class friends_model extends CI_Model
         $last_name = array();
         $pic_dir = array();
         $uid = array();
+        
         $fuid = array();
+        $fid = array();
         $fstatus = array();
+        $frespond = array();
+        $fsent = array();
 
         $this->db->like('first_name',$match);
         $this->db->or_like('last_name',$match);
         $this->db->or_like('username',$match);
-        $this->db->or_like('email',$match);
+        $this->db->or_where('email=', $match);
         $query = $this->db->get('users');
         $query = $query->result();
         
         //=== QUERY WILL GET PEOPLE THAT MIGHT BE FRIENDS
-        $res = $this->db->query("SELECT U2.uid, F.status FROM friends F, users U, users U2 WHERE ((F.user = U.uid AND F.following = U2.uid) OR (U.uid = F.following AND U2.uid = F.user)) AND U.email='".$this->session->userdata("email")."'");
+        $res = $this->db->query("SELECT F.fid, U2.uid, F.status FROM friends F, users U, users U2 WHERE ((F.user = U.uid AND F.following = U2.uid) OR (U.uid = F.following AND U2.uid = F.user)) AND ((F.status = 'accepted' OR F.status = 'declined')) AND U.email='".$this->session->userdata("email")."'");
 		$res = $res->result();
         foreach($res as $r)
         {
-            // echo $r->uid;
-            // echo $r->status;
             array_push($fuid, $r->uid);
-            if ($r->status == "")
-            {
-                array_push($fstatus, "NONE");
-                echo "none";
-            }
             array_push($fstatus, $r->status);
+            array_push($fid, $r->fid);
+        }
+        
+        //=== ONLY STATUSES YOU NEED TO RESPOND TOO
+        $res = $this->db->query("SELECT F.fid, U2.uid, F.status FROM friends F, users U, users U2 WHERE U.uid = F.following AND U2.uid = F.user AND F.status = 'pending' AND U.email='".$this->session->userdata("email")."'");
+		$res = $res->result();
+        foreach($res as $r)
+        {
+            array_push($frespond, $r->uid);
+        }
+        //=== ONLY STATUSES YOU NEED SENT TO TOO
+        $res = $this->db->query("SELECT F.fid, U2.uid, F.status FROM friends F, users U, users U2 WHERE U2.uid = F.following AND U.uid = F.user AND F.status = 'pending' AND U.email='".$this->session->userdata("email")."'");
+		$res = $res->result();
+        foreach($res as $r)
+        {
+            array_push($fsent, $r->uid);
         }
         
         
         foreach($query as $row)
         {
-            array_push($username, $row->username);
-            array_push($first_name, $row->first_name);
-            array_push($last_name, $row->last_name);
-            array_push($pic_dir, $row->profile_pic);
-            array_push($uid, $row->uid);
+            if ($row->email != $this->session->userdata("email"))
+            {
+                array_push($username, $row->username);
+                array_push($first_name, $row->first_name);
+                array_push($last_name, $row->last_name);
+                array_push($pic_dir, $row->profile_pic);
+                array_push($uid, $row->uid);
+            }
         }
-        $search_data = array($uid, $username, $first_name, $last_name, $pic_dir, $fuid, $fstatus);
+        $search_data = array($uid, $username, $first_name, $last_name, $pic_dir, $fuid, $fstatus, $fid, $frespond, $fsent);
         return $search_data;        
     }
 
@@ -109,6 +112,21 @@ class friends_model extends CI_Model
         $this->db->set("status", "declined");
         $this->db->where("fid", $fid);
         $this->db->update("friends");
+    }
+    
+    public function send_friend($uid)
+    {
+        $q = $this->db->query("SELECT uid FROM users WHERE email='".$this->session->userdata("email")."'");
+        $q = $q->row();
+        echo $q->uid;
+        
+        $data = array(
+            'user' => $q->uid,
+            'following' => $uid ,
+            'status' => 'pending'
+        );
+
+        $this->db->insert('friends', $data); 
     }
 }
 

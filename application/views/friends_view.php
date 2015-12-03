@@ -79,7 +79,7 @@
                                 </a>
                                 <div class="media-body">
                                     <h4 class="media-heading">
-                                        <?php echo $friends_list[$i]->first_name. " ". $friends_list[$i]->last_name;?>
+                                        <?php echo $friends_list[$i]->first_name." ".$friends_list[$i]->last_name;?>
                                     </h4>
                                 </div>
                             </li>
