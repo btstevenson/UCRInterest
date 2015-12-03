@@ -3,7 +3,6 @@
     
     <!-- DIV FOR SEARCHING NEW FRIENDS -->
     <div class="row-fluid">
-
         <!--//========= DIV FOR DISPLAYING PENDING REQUESTS FROM USERS/ WILL ALSO INCLUDE NOTIFICATIONS OF NEW ONES ========-->
         <div id="pending" class="span8" >
             <h3>Pending Requests</h3>
