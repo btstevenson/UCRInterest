@@ -37,7 +37,6 @@ class friends_model extends CI_Model
 				
 		return $pending;
 	}
-    
     //======== SEARCHING FUNCTION ==============
     public function get_search($match)
     {
