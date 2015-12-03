@@ -3,8 +3,8 @@
     
     <!-- DIV FOR SEARCHING NEW FRIENDS -->
     <div class="row-fluid">
+        <!--//========= DIV FOR DISPLAYING PENDING REQUESTS FROM USERS/ WILL ALSO INCLUDE NOTIFICATIONS OF NEW ONES ========-->
 
-        <!-- DIV FOR DISPLAYING PENDING REQUESTS FROM USERS/ WILL ALSO INCLUDE NOTIFICATIONS OF NEW ONES    -->
         <div id="pending" class="span8" >
             <h3>Pending Requests</h3>
             <?php
@@ -23,9 +23,11 @@
                                     <img class="media-object" src="<?php echo base_url($pending_list[$i]->profile_pic); ?>" width="64" height="64">
                                 </a>
                                 <div class="media-body">
+                                    <a href="$">
                                     <h4 class="media-heading">
                                         <?php echo $pending_list[$i]->first_name. " ". $pending_list[$i]->last_name;?>
                                     </h4>
+                                    </a>
                                     <a href="friends/accept_friend/<?php echo $pending_list[$i]->fid ?>"> <button class="btn btn-primary">Accept</button> </a>
                                     <a href="friends/decline_friend/<?php echo $pending_list[$i]->fid ?>"> <button class="btn btn-danger">Decline</button> </a>  
                                 </div>
@@ -78,9 +80,11 @@
                                     <img class="media-object" src="<?php echo base_url($friends_list[$i]->profile_pic); ?>" width="64" height="64">
                                 </a>
                                 <div class="media-body">
+                                    <a href="$">
                                     <h4 class="media-heading">
                                         <?php echo $friends_list[$i]->first_name." ".$friends_list[$i]->last_name;?>
                                     </h4>
+                                    </a>    
                                 </div>
                             </li>
                         <!-- </ul>    -->
