@@ -24,13 +24,19 @@
     visibility: hidden;
 }
 
+#profile_pic_main
+{
+  margin-left: 34%;
+}
+
 #post_btn
 {
     float: right;
     margin-left: 10px;
     margin-right: -5px;
 
-} 
+}
+
 #delete_btn
 {
   float: right;

@@ -22,8 +22,10 @@ class User extends CI_Controller
 
 		if($this->form_validation->run())
 		{
+			$profile_pic_dir = $this->get_pic_dir();
 			$data = array(
 						'email' => $this->input->post('email'),
+						'profile_pic' => $profile_pic_dir,
 						'is_logged_in' => true
 					);
 			$this->session->set_userdata($data);
@@ -56,8 +58,10 @@ class User extends CI_Controller
 		{
 			$this->load->model('user_model');
 			$this->user_model->register_user();
+			$profile_pic_dir = $this->get_pic_dir();
 			$data = array(
 						'email' => $this->input->post('email'),
+						'profile_pic' => $profile_pic_dir,
 						'is_logged_in' => true
 					);
 			$this->session->set_userdata($data);
@@ -141,5 +145,11 @@ class User extends CI_Controller
 		$this->load->view('template/main_layout', $this->data);
 		$this->load->view('user/search_view', $this->data);
 		$this->load->view('template/footer', $this->data);
+	}
+
+	public function get_pic_dir($email)
+	{
+		$this->load->model('user_model');
+		return $this->user_model->get_pic_dir($email);
 	}
 }
