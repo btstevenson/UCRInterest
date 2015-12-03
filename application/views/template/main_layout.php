@@ -3,25 +3,28 @@
   <div class="navbar-inner">
     <a class="brand" href="<?php echo base_url('index.php/feed'); ?>">UCRInterest</a>
     <ul class="nav">
-      <li class="active"><a href="<?php echo base_url('index.php/feed'); ?>">Feed</a></li>
+      <li><a href="<?php echo base_url('index.php/feed'); ?>">Feed</a></li>
       <li><a href="<?php echo base_url('index.php/profile/board'); ?>">Profile</a></li>
 <!--      <li><a href="#">Link</a></li>-->
-    </ul>
+    <!-- </ul> -->
     <!-- Search Bar -->
-    <ul>
-      <form class="navbar-form navbar-right" role="search" action="<?=site_url('user/search')?>" method="post">
-                <div class="input-group">
-                    <input type="text" class="form-control" name="search_terms" placeholder="Search this site">
-                    <span class="input-group-btn">
-                           <button type="submit" class="btn btn-default">Go!</button>
-                    </span>
-                </div>
-            </form>
+    <!-- <ul> -->
+      <li>
+        <form class="navbar-form navbar-right" role="search" action="<?=site_url('user/search')?>" method="post">
+                  <div class="input-group">
+                      <input type="text" class="form-control" name="search_terms" placeholder="Search this site">
+                      <span class="input-group-btn">
+                             <button type="submit" class="btn btn-default">Go!</button>
+                      </span>
+                  </div>
+              </form>
+      </li>
     </ul>
-
+    <!-- </ul> -->
+    <a href="<?php echo base_url('index.php/profile/board'); ?>"> <img src= "<?php echo base_url($this->session->userdata('profile_pic')); ?>" class="img-circle" height="50" width="50" id ="profile_pic_main"></a>
         <!-- Button to trigger modal -->
-        <a href="#post_modal" role="button" class="btn btn-danger" data-toggle="modal" id="post_btn">Make a post!</a>
-      <?php $this->load->view('template/post_modal'); ?>
+    <a href="#post_modal" role="button" class="btn btn-danger" data-toggle="modal" id="post_btn">Make a post!</a>
+    <?php $this->load->view('template/post_modal'); ?>
         
   </div>
   <div class="container">
@@ -44,6 +47,3 @@
     </div>
   </div>
 </div>
-
-
-

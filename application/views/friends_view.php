@@ -64,30 +64,32 @@
 
     </div> <!-- END ROW -->
     <div class="row-fluid">
-
         <!-- DIV FOR VIEWING CURRENT FRIENDS -->
         <div id="friends">
             <h3>Friends</h3>
+            <ul class="media-list">
             <?php
                 for ($i = 0; $i < count($friends_list); $i ++)
                 {
                     ?>
-                        <ul class="media-list">
+                        <!-- <a href="feed"> -->
                             <li class="media">
                                 <a class="pull-left" href="#">
                                     <img class="media-object" src="<?php echo base_url($friends_list[$i]->profile_pic); ?>" width="64" height="64">
                                 </a>
                                 <div class="media-body">
                                     <h4 class="media-heading">
-                                        <?php echo $friends_list[$i] -> first_name. " ". $friends_list[$i]->last_name;?>
+                                        <?php echo $friends_list[$i]->first_name. " ". $friends_list[$i]->last_name;?>
                                     </h4>
                                 </div>
                             </li>
-                        </ul>   
+                        <!-- </ul>    -->
+                        <!-- </a> -->
                         
                     <?php
                 }
             ?>
+            </ul>
         </div>
     </div>
 </div>

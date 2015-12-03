@@ -55,7 +55,6 @@ class User_model extends CI_Model
 		
 		$selectedInterests = $this->input->post('interests');
 		
-		var_dump($selectedInterests);
 		for($i=0; $i<count($selectedInterests); $i++){
 			$interestData = array(
 				'uid' => $row->uid,
@@ -164,6 +163,13 @@ class User_model extends CI_Model
 		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name, $uid);
 		
 		return $data;
+	}
+
+	public function get_pic_dir()
+	{
+		$pic_dir = $this->db->query("SELECT profile_pic FROM users WHERE email='".$this->input->post('email')."'");
+		$pic_dir = $pic_dir->row();
+		return $pic_dir->profile_pic;
 	}
 }
 
