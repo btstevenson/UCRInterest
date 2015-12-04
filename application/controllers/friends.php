@@ -16,7 +16,12 @@ class Friends extends CI_Controller
         
         $friends_list = $this->friends_model->load_friends();
 		$pending_list = $this->friends_model->load_in_requests();
-        $this->data = array("friends_list" => $friends_list, "pending_list" => $pending_list);
+        
+        //=========GETS NOTIFICATIONS FROM FRIENDS
+        $this->load->model('notif_model');
+        $f_notifs = $this->notif_model->load_friends_notifs();
+        
+        $this->data = array("friends_list" => $friends_list, "pending_list" => $pending_list, "f_notif" => $f_notifs[0], "u_notif" => $f_notifs[1]);
         
 		$this->load->view('friends_view', $this->data);
 		

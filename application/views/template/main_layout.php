@@ -46,7 +46,6 @@
             //   echo anchor('friends', '<i class="icon-user notification"></i>');
             // else
             //   echo anchor('friends', '<i class="icon-user"></i>');
->>>>>>> refs/remotes/origin/John's-Branch
 
             echo anchor('edit_profile', '<i class="icon-cog"></i>');
             echo anchor('user/logout', '<i class="icon-off"></i>');

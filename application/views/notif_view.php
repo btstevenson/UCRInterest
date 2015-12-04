@@ -11,24 +11,29 @@
                     <p class="muted">You dont have any recent notifications.</p>
             <?php
                 }
-                for ($i = 0; $i < count($global_list); $i ++)
+                else
                 {
-                    ?>
-                    <ul class="media-list">
-                            <li class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="<?php echo base_url($post_list[$i]->pic_dir); ?>" width="64" height="64">
-                                </a>
-                                <div class="media-body">
-                                    <a href="$">
-                                    <h4 class="media-heading">
-                                        <?php echo $user_list[$i]->first_name. " ". $user_list[$i]->last_name;?>
-                                    </h4>
+                    for ($i = 0; $i < count($global_list); $i ++)
+                    {
+                        ?>
+                        <ul class="media-list">
+                                <li class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object" src="<?php echo base_url($post_list[$i]->pic_dir); ?>" width="64" height="64">
                                     </a>
-                                </div>
-                            </li>
-                        </ul>   
-                    <?php
+                                    <div class="media-body">
+                                        <a href="$">
+                                        <h4 class="media-heading">
+                                            <?php echo $user_list[$i]->first_name. " ". $user_list[$i]->last_name;?>
+                                        </h4>
+                                        <?php if($global_list[$i]->type == "comment" )?>
+                                        <p><?php echo $global_list[$i]->content?> </p>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>   
+                        <?php
+                    }
                 }
             ?>
         </div>
