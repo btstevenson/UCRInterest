@@ -13,11 +13,7 @@
                 }
                 else
                 {
-<<<<<<< HEAD
                     for ($i = 0; $i < count($global_list); $i++)
-=======
-                    for ($i = 0; $i < count($global_list); $i ++)
->>>>>>> marco
                     {
                         ?>
                         <ul class="media-list">
@@ -30,11 +26,8 @@
                                         <h4 class="media-heading">
                                             <?php echo $user_list[$i]->first_name. " ". $user_list[$i]->last_name;?>
                                         </h4>
-<<<<<<< HEAD
-=======
                                         <?php if($global_list[$i]->type == "comment" )?>
-                                        <p><?php echo $global_list[$i]->content?> </p>
->>>>>>> marco
+                                            <p><?php echo $global_list[$i]->content?> </p>
                                         </a>
                                     </div>
                                 </li>

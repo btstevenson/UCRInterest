@@ -67,6 +67,11 @@ class notif_model extends CI_Model
         $global_notifs = array($notifs, $people);
 		return $global_notifs;
 	}
+
+	public function clear_global_notif()
+	{
+		
+	}
     
     
 }
