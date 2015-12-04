@@ -48,16 +48,6 @@ function Big(i, u) {
 //    alert(title.innerHTML);
     label.innerHTML = img_l;
 //    alert(img_t)
-    
-        //====SETTING UP THE COMMENTS =====
-    var comm = document.getElementById("img_comments");
-    var new_comm = 'imgcomm';
-    new_comm = new_comm.concat(i);
-    var img_com = document.getElementById(new_comm).innerHTML;
-//    alert(title.innerHTML);
-    comm.innerHTML = img_com;
-//    alert(img_t)
-    
 	
     var pin_b = document.getElementById("insideB");
     var text = "feed/makepin/";
@@ -81,11 +71,6 @@ function Big(i, u) {
       </div>
       <div>
       	<p id="img_contents">
-                
-      	</p>
-      </div>
-      <div>
-      	<p id="img_comments">
                 
       	</p>
       </div>

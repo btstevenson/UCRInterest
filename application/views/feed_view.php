@@ -74,20 +74,6 @@
 			                     		echo $contents[$i]; 
                                     ?>
                                 </p>
-                                <p  hidden id="imgcomm<?php echo $this_pid[$i] ?>">
-                                    <?php
-                                        for ($k=0; $k < count($who_comm); $k++)
-                                        {
-                                            if ($who_comm[$k]->pin_id == $this_pid[$i])
-                                            {
-			                     		      echo $who_comm[$k]->content.": By ".$who_comm[$k]->first_name." ".$who_comm[$k]->last_name; 
-                                            ?>
-                                            <br>
-                                            <?php
-                                            }
-                                        }
-                                    ?>
-                                </p>
 			                    <h6>By: <?php echo $first_name[$i]." ".$last_name[$i] ?></h6>
 
 		                    

@@ -102,9 +102,6 @@ class feed_model extends CI_Model
 
 		$comments_res = $this->db->query("SELECT * FROM comments");
 		$comments_res = $comments_res->result();
-        
-        $who_comm = $this->db->query("SELECT C.pin_id, C.uid, C.content, U.last_name, U.first_name FROM comments C, users U WHERE U.uid = C.uid");
-		$who_comm = $who_comm->result();
 
 		
 		foreach ($shuffled as $row){
@@ -130,7 +127,7 @@ class feed_model extends CI_Model
 			$numImagesLoaded++;
 		}
 		
-		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name, $uid, $label, $boards, $comments_res, $who_comm);
+		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name, $uid, $label, $boards, $comments_res);
 		
 		return $data;
 	}
