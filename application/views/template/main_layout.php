@@ -35,13 +35,21 @@
           <h2><?php echo $meta_title; ?></h2>
         </section>
       </div>
-
       <div class="span3">
         <section>
-          <?php echo anchor('feed', '<i class="icon-globe"></i>'); ?>
-          <?php echo anchor('friends', '<i class="icon-user"></i>'); ?>
-          <?php echo anchor('edit_profile', '<i class="icon-cog"></i>'); ?>
-          <?php echo anchor('user/logout', '<i class="icon-off"></i>'); ?>
+          <?php
+            if($this->session->userdata("global_notif"))
+              echo anchor('notif', '<i class="icon-globe notification"></i>');
+            else
+              echo anchor('notif', '<i class="icon-globe"></i>');
+            if($this->session->userdata("friend_notif"))
+              echo anchor('friends', '<i class="icon-user notification"></i>');
+            else
+              echo anchor('friends', '<i class="icon-user"></i>');
+
+            echo anchor('edit_profile', '<i class="icon-cog"></i>');
+            echo anchor('user/logout', '<i class="icon-off"></i>');
+          ?>
         </section>
       </div>
     </div>
