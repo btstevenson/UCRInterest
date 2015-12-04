@@ -59,7 +59,7 @@ class profile_model extends CI_Model
         }
         {
             $sql = "SELECT post_id FROM pins WHERE uid = ? AND b_name = ?";
-            $query = $this->db->query($sql, array($uid, $board));
+            $query = $this->db->query($sql, array($uid, urldecode($board)));
             return $query;
         }
     }
