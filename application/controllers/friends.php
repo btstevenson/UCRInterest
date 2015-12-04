@@ -73,7 +73,7 @@ class Friends extends CI_Controller
         $uid = $this->uri->segment(3);
         $this->load->model("friends_model");
         $this->friends_model->send_friend($uid);
-       // redirect("friends");
+        redirect("friends");
     }
 }
 
