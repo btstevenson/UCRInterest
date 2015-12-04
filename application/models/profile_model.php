@@ -159,5 +159,33 @@ class profile_model extends CI_Model
         }   
         return $likes;
     }   
+
+    public function send_like($pid)
+    {
+        $q = $this->db->query("SELECT uid FROM users WHERE email='".$this->session->userdata("email")."'");
+        $q = $q->row();
+        
+        $p = $this->db->query("SELECT uid FROM post WHERE pid=".$pid);
+        $p = $p->row();
+/*
+        $data = array(
+            'user' => $q->uid,
+            'following' => $uid ,
+            'status' => 'pending'
+        );
+
+        $this->db->insert('friends', $data);
+*/
+        $data = array
+        (
+            'nid'       => "",
+            'from'      => $q->uid,
+            'to'        => $p->uid,
+            'type'      => "like",
+            'pin_id'    => $pid,
+            'content'   => ""
+        );
+        $this->db->insert('notifications', $data); 
+    }
 }
 ?>
