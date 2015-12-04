@@ -1,5 +1,16 @@
 <script >
-function Big(i) {
+function Big(i, u) {
+	
+	$.post( 
+		'record_history/run',
+		 { pid: i,
+		   uid: u},
+		 function(response) {  
+			//alert(response);
+			//no response needed. the function called just adds rows to the browse_history table.
+		 }  
+	);
+	
     var count = i-2;
 //    alert(i);
     //====SETTING UP THE PICTURE===

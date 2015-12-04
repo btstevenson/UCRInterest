@@ -14,11 +14,16 @@
     }
 </style>
 -->
+
+	
+	<script type="text/javascript">
+            
+    </script>
+
     <ul class="thumbnails">
 
-
-         <?php
-		 	$imgs = array_reverse($imgs);
+		<?php
+			$imgs = array_reverse($imgs);
 		 	$this_pid = array_reverse($this_pid);
 			$titles = array_reverse($titles);
 			$contents = array_reverse($contents);
@@ -43,7 +48,8 @@
 				        <div class="thumbnail">
 							<div class="caption">
                                 <?php $this->load->view('template/pin_modal'); ?>
-			            		<a href="#pin_modal" onclick="Big(<?php echo $this_pid[$i] ?>);" class="thumbnail" id="pop"> 
+                                <!--<a onclick="Big(<?php echo $this_pid[$i] ?>);" class="thumbnail" id="pop"> -->
+			            		<a href="#pin_modal" onclick="Big(<?php echo $this_pid[$i] ?>, <?php echo $my_uid; ?> );" class="thumbnail" id="pop"> 
                                     <div class="crop">
                                     <img src= "<?php echo base_url($imgs[$i]); ?>"  alt="" id="imgsource<?php echo $this_pid[$i]?>" > 
                                     </div>
