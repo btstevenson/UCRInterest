@@ -29,6 +29,23 @@ class feed_model extends CI_Model
 		return $pid_list;
 	}
 	
+	public function get_likes()
+	{
+		$res = $this->db->query("SELECT uid FROM users WHERE email='".$this->session->userdata('email')."'");
+		$res = $res->row();
+		$uid = $res->uid;
+		$res = $this->db->query("SELECT post_id FROM likes WHERE uid=".$uid);
+		$res = $res->result();
+
+		$pid_list = array();
+		foreach ($res as $row) {
+			
+			array_push($pid_list, $row->post_id);
+		}
+
+		return $pid_list;
+	}
+	
 	public function load_feed($currentUID) {
 		$pid = array();
 		$imgs = array();
@@ -119,6 +136,14 @@ class feed_model extends CI_Model
 		$res = $res->row();
 		$uid =  $res->uid;
 		$this->db->delete('pins', array('post_id' => $pid, 'uid' => $uid)); 
+	}
+
+	public function un_like($pid)
+	{
+		$res = $this->db->query("SELECT uid FROM users WHERE email='".$this->session->userdata('email')."'");
+		$res = $res->row();
+		$uid = $res->uid;
+		$this->db->delete('likes', array('post_id' => $pid, 'uid' => $uid));
 	}
 
 	function get_my_uid()

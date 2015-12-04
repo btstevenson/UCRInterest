@@ -140,5 +140,24 @@ class profile_model extends CI_Model
         return $query;
     }
 
+    public function get_likes_post_id()
+    {
+        $uid = $this->get_user_id();
+        //sql call
+        $sql = "SELECT post_id FROM likes WHERE uid =".$uid;
+        return $this->db->query($sql);
+    }
+
+    public function get_likes()
+    {
+        $likes = array();
+        $postid = $this->get_likes_post_id();
+        foreach($postid->result() as $row)
+        {
+                $res = $this->db->query("SELECT title, pic_dir, content FROM post WHERE pid =" .$row->post_id);
+                array_push($likes, $res->result_array());
+        }   
+        return $likes;
+    }   
 }
 ?>
