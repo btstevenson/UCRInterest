@@ -55,6 +55,7 @@ class feed_model extends CI_Model
 		$last_name = array();
 		$uid = array();
 		$label = array();
+		// $comments = array();
 		$who = "";
 		
 		$uidQ = $this->db->query("SELECT uid FROM users WHERE email='".$currentUID."'");
@@ -98,6 +99,13 @@ class feed_model extends CI_Model
 		$numImagesLoaded = 0;
 		$shuffled = array_merge($res->result(), $friendQuery->result());
 		$shuffled = array_unique($shuffled, SORT_REGULAR);
+
+		$comments_res = $this->db->query("SELECT * FROM comments");
+		$comments_res = $comments_res->result();
+        
+        $who_comm = $this->db->query("SELECT C.pin_id, C.uid, C.content, U.last_name, U.first_name FROM comments C, users U WHERE U.uid = C.uid");
+		$who_comm = $who_comm->result();
+
 		
 		foreach ($shuffled as $row){
 			array_push($pid, $row->pid);
@@ -112,10 +120,17 @@ class feed_model extends CI_Model
 			array_push($uid, $row->uid);
 			array_push($label, $row->label);
 
+			// foreach($comments_res as $comments_row)
+			// {
+			// 	if($comments_row->pin_id == $pid)
+			// 	{
+			// 		array_push($comments, $comments_row);
+			// 	}
+			// }
 			$numImagesLoaded++;
 		}
 		
-		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name, $uid, $label, $boards);
+		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name, $uid, $label, $boards, $comments_res, $who_comm);
 		
 		return $data;
 	}
@@ -160,6 +175,11 @@ class feed_model extends CI_Model
 		$pid = $this->input->post('pid');
 		$data = array('post_id' => $pid, 'uid' => $uid, 'b_name' => $board);
 		$this->db->insert('pins', $data);
+	}
+
+	function get_comments()
+	{
+
 	}
 }
 
