@@ -17,7 +17,7 @@
         </div>
 
         <?php if(isset($board_record)) : foreach($board_record as $row) : ?>
-            <div class="span3 element">
+            <div class="span3 element" id= "<?php echo $row['name'] ?>">
                 <a href = "pins/<?php echo $row['name'] ?>" role = "button"<>
                 <h2 id= "name <?php echo $row['name']?>">
                     <?php echo $row['name']; ?>
@@ -36,20 +36,14 @@
 
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
 <script type = "text/javascript">
-        $(".row-fluid").sortable({
-    placeholder: 'span3 placeholder',
-    helper: 'clone',
-    appendTo: 'body',
-    forcePlaceholderSize: true,
-    start: function(event, ui) {
-        $('.row-fluid > div.span3:visible:first').addClass('real-first-child');
-    }, 
-    stop: function(event, ui) {
-        $('.row-fluid > div.real-first-child').removeClass('real-first-child');
-    },
-    change: function(event, ui) {
-        $('.row-fluid > div.real-first-child').removeClass('real-first-child');
-        $('.row-fluid > div.span3:visible:first').addClass('real-first-child');
-    },
+$(".row-fluid").sortable({
+    stop: function(e, ui) {
+                var stuff = $.map($(this).find("div"), function(el) {
+                    return $(el).attr('id') + ' = ' + $(el).index();
+                });
+                $.post('/index.php/profile',{name: stuff}, function(response){
+                });
+            }
+            
 });
 </script>
