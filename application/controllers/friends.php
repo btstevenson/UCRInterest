@@ -6,6 +6,12 @@ class Friends extends CI_Controller
 	{
 		parent::__construct();
 		$this->data['meta_title'] = "Friends";
+        $this->load->model("notif_model");
+        $global_notifs = $this->notif_model->load_global();
+        if(count($global_notifs[0]) > 0)
+            $this->session->set_userdata("global_notif", true);
+        else
+            $this->session->set_userdata("global_notif", false);
 	}
 
 	public function index()
@@ -16,7 +22,12 @@ class Friends extends CI_Controller
         
         $friends_list = $this->friends_model->load_friends();
 		$pending_list = $this->friends_model->load_in_requests();
-        $this->data = array("friends_list" => $friends_list, "pending_list" => $pending_list);
+        
+        //=========GETS NOTIFICATIONS FROM FRIENDS
+        $this->load->model('notif_model');
+        $f_notifs = $this->notif_model->load_friends_notifs();
+        
+        $this->data = array("friends_list" => $friends_list, "pending_list" => $pending_list, "f_notif" => $f_notifs[0], "u_notif" => $f_notifs[1]);
         
 		$this->load->view('friends_view', $this->data);
 		
@@ -73,7 +84,7 @@ class Friends extends CI_Controller
         $uid = $this->uri->segment(3);
         $this->load->model("friends_model");
         $this->friends_model->send_friend($uid);
-       // redirect("friends");
+        redirect("friends");
     }
 }
 
