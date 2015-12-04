@@ -48,16 +48,26 @@ class profile_model extends CI_Model
         return $this->db->insert('boards', $data_1);
     }
 
-    public function get_pin_ids()
+    public function get_pin_ids($board)
     {
         $uid = $this->get_user_id();
-        return $this->db->query("SELECT post_id FROM pins WHERE uid =" .$uid);
+        if($board == '')
+        {
+            $sql = "SELECT post_id FROM pins WHERE uid = ?";
+            $query = $this->db->query($sql, array($uid));
+            return $query;
+        }
+        {
+            $sql = "SELECT post_id FROM pins WHERE uid = ? AND b_name = ?";
+            $query = $this->db->query($sql, array($uid, $board));
+            return $query;
+        }
     }
 
-    public function get_posts()
+    public function get_posts($board)
     {
         $pins = array();
-        $pinid = $this->get_pin_ids();
+        $pinid = $this->get_pin_ids($board);
         foreach($pinid->result() as $row)
         {
                 $res = $this->db->query("SELECT title, pic_dir, content FROM post WHERE pid =" .$row->post_id);
@@ -97,5 +107,85 @@ class profile_model extends CI_Model
         $query = $this->db->query($sql, array($this->get_user_id(), $this->input->post('boards')));
     }
 
+    public function get_friend_info($uid)
+    {
+        $sql = "SELECT first_name, last_name, profile_pic, gender FROM user WHERE uid= ?";
+        $query = $this->db->query($sql, array($uid));
+        return $query->result_array(); 
+    }
+
+    public function get_friend_boards($uid)
+    {
+        $sql = "SELECT name, description FROM boards WHERE uid = ? AND private = ?";
+        $query = $this->db->query($sql, array($uid, 0));
+        return $query->result_array();
+    }
+
+    public function get_friend_post($board, $uid)
+    {
+        $pins = array();
+        $pinid = $this->get_friend_pins($board, $uid);
+        foreach($pinid->result() as $row)
+        {
+                $res = $this->db->query("SELECT title, pic_dir, content FROM post WHERE pid =" .$row->post_id);
+                array_push($pins, $res->result_array());
+        }   
+        return $pins;
+    }
+
+    public function get_friend_pins($board, $uid)
+    {
+        $sql = "SELECT post_id FROM pins WHERE uid = ? AND b_name = ?";
+        $query = $this->db->query($sql, array($uid, $board));
+        return $query;
+    }
+
+    public function get_likes_post_id()
+    {
+        $uid = $this->get_user_id();
+        //sql call
+        $sql = "SELECT post_id FROM likes WHERE uid =".$uid;
+        return $this->db->query($sql);
+    }
+
+    public function get_likes()
+    {
+        $likes = array();
+        $postid = $this->get_likes_post_id();
+        foreach($postid->result() as $row)
+        {
+                $res = $this->db->query("SELECT title, pic_dir, content FROM post WHERE pid =" .$row->post_id);
+                array_push($likes, $res->result_array());
+        }   
+        return $likes;
+    }   
+
+    public function send_like($pid)
+    {
+        $q = $this->db->query("SELECT uid FROM users WHERE email='".$this->session->userdata("email")."'");
+        $q = $q->row();
+        
+        $p = $this->db->query("SELECT uid FROM post WHERE pid=".$pid);
+        $p = $p->row();
+/*
+        $data = array(
+            'user' => $q->uid,
+            'following' => $uid ,
+            'status' => 'pending'
+        );
+
+        $this->db->insert('friends', $data);
+*/
+        $data = array
+        (
+            'nid'       => "",
+            'from'      => $q->uid,
+            'to'        => $p->uid,
+            'type'      => "like",
+            'pin_id'    => $pid,
+            'content'   => ""
+        );
+        $this->db->insert('notifications', $data); 
+    }
 }
 ?>

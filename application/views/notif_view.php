@@ -26,9 +26,14 @@
                                         <h4 class="media-heading">
                                             <?php echo $user_list[$i]->first_name. " ". $user_list[$i]->last_name;?>
                                         </h4>
-                                        <?php if($global_list[$i]->type == "comment" )?>
-                                            <p><?php echo $global_list[$i]->content?> </p>
                                         </a>
+                                        <?php if($global_list[$i]->type == "comment" ){?>
+                                            <p>Commented on one of your posts</p>
+                                        <p style="text-indent:50px"> <b><?php echo $global_list[$i]->content?> </b> </p>
+                                        <?php } else {?>
+                                            <p class="icon-thumbs-up"></p>
+                                            <span> Liked your post</span>
+                                        <?php } ?>
                                     </div>
                                 </li>
                             </ul>   

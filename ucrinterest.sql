@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Nov 20, 2015 at 04:43 PM
+-- Generation Time: Dec 04, 2015 at 11:00 AM
 -- Server version: 5.5.42
 -- PHP Version: 5.6.10
 
@@ -85,10 +85,22 @@ CREATE TABLE `interests` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `likes`
+--
+
+CREATE TABLE `likes` (
+  `uid` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `notifications`
 --
 
 CREATE TABLE `notifications` (
+  `nid` int(11) NOT NULL,
   `from` int(11) NOT NULL,
   `to` int(11) NOT NULL,
   `type` varchar(20) NOT NULL,
@@ -105,7 +117,7 @@ CREATE TABLE `notifications` (
 CREATE TABLE `pins` (
   `pin_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
-  `b_name` int(11) NOT NULL,
+  `b_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `uid` int(11) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -204,10 +216,24 @@ ALTER TABLE `friends`
   ADD PRIMARY KEY (`fid`);
 
 --
+-- Indexes for table `likes`
+--
+ALTER TABLE `likes`
+  ADD PRIMARY KEY (`uid`,`post_id`),
+  ADD KEY `post_id` (`post_id`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`nid`);
+
+--
 -- Indexes for table `pins`
 --
 ALTER TABLE `pins`
-  ADD PRIMARY KEY (`pin_id`);
+  ADD PRIMARY KEY (`b_name`),
+  ADD UNIQUE KEY `pin_id` (`pin_id`) USING BTREE;
 
 --
 -- Indexes for table `post`
@@ -230,6 +256,11 @@ ALTER TABLE `users`
 --
 ALTER TABLE `friends`
   MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `nid` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pins`
 --
@@ -254,3 +285,16 @@ ALTER TABLE `users`
 --
 ALTER TABLE `boards`
   ADD CONSTRAINT `Foreign Key` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `likes`
+--
+ALTER TABLE `likes`
+  ADD CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `post` (`pid`),
+  ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`);
+
+--
+-- Constraints for table `pins`
+--
+ALTER TABLE `pins`
+  ADD CONSTRAINT `Board_Key` FOREIGN KEY (`b_name`) REFERENCES `boards` (`name`) ON DELETE CASCADE;
