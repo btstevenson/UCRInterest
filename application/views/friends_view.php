@@ -35,19 +35,19 @@
                     <div class="container">
 
                     <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+<!--                         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         </a>
-                    <!-- Be sure to leave the brand out there if you want it shown -->
-                        <a class="brand" href="#" >Search for people</a>
+ -->                    <!-- Be sure to leave the brand out there if you want it shown -->
+                        <p class="brand">Search for people</p>
 
                     <!-- Everything you want hidden at 940px or less, place within here -->
                         <div class="nav-collapse collapse">
-                            <?php echo form_open('friends/search', 'class="navbar-search pull-left"');
+                            <?php echo form_open('friends/search', 'class="navbar-search pull-right"');
                                 echo form_input('Search', '', 'placeholder="Find Friends"'); ?> 
-                            <?php form_close();?>
+                            <?php echo form_close();?>
                     <!-- .nav, .navbar-search, .navbar-form, etc -->
                         </div>
                     </div>
@@ -67,12 +67,12 @@
                     <p class="muted">You dont have any friend requests.</p>
             <?php
                 }
-                for ($i = 0; $i < count($pending_list); $i ++)
+                for ($i = 0; $i < count($pending_list); $i++)
                 {
                     ?>
                         <ul class="media-list">
                             <li class="media">
-                                <a class="pull-left" href="#">
+                                <a class="pull-left" href="profile/friends_board/<?php echo $pending_list[$i]->uid ?>">
                                     <img class="media-object" src="<?php echo base_url($pending_list[$i]->profile_pic); ?>" width="64" height="64">
                                 </a>
                                 <div class="media-body">
@@ -81,7 +81,8 @@
                                         <?php echo $pending_list[$i]->first_name. " ". $pending_list[$i]->last_name;?>
                                     </h4>
                                     </a>
-                                    <a href="friends/accept_friend/<?php echo $pending_list[$i]->fid ?>"> <button class="btn btn-primary">Accept</button> </a>
+                                    <!-- <form action="friends.php" method="accept_friend" id="accept_f"></form> -->
+                                   <a href="friends/accept_friend/<?php echo $pending_list[$i]->fid ?>"> <button class="btn btn-primary">Accept</button> </a> 
                                     <a href="friends/decline_friend/<?php echo $pending_list[$i]->fid ?>"> <button class="btn btn-danger">Decline</button> </a>  
                                 </div>
                             </li>
@@ -102,7 +103,7 @@
                     ?>
                         <!-- <a href="feed"> -->
                             <li class="media">
-                                <a class="pull-left" href="#">
+                                <a class="pull-left" href="profile/friends_boards/1">
                                     <img class="media-object" src="<?php echo base_url($friends_list[$i]->profile_pic); ?>" width="64" height="64">
                                 </a>
                                 <div class="media-body">
