@@ -25,9 +25,29 @@ class Profile extends CI_Controller
 
 	public function index()
 	{
+		$this->load->model('profile_model');
+		foreach( $_POST as $stuff ) {
+    			if( is_array( $stuff ) ) {
+        			foreach( $stuff as $thing ) {
+            			echo $thing;
+        			}
+    			} else {
+        			echo $stuff;
+    			}
+			}
+		$test = array();
+		$test = $this->input->post('name');
+		if( $test == FALSE)
+		{
+			log_message('debug', 'POST not set');
+		}
+		else
+		{
+			log_message('debug', 'POST is set');
+			$this->profile_model->update_board_position($test);
+		}
 		$this->load->view('template/header', $this->data);
 		$this->load->view('template/main_layout', $this->data);
-		$this->load->model('profile_model');
 		$hold = array();
 		$boards = array();
 		$hold['user_record'] = $this->profile_model->get_user_info();
@@ -61,7 +81,7 @@ class Profile extends CI_Controller
 		$this->load->view('template/header', $this->data);
 		$this->load->view('template/main_layout', $this->data);
 		$this->load->model('profile_model');
-		$board =$this->uri->segment(3);
+		$board = $this->uri->segment(3);
 		$hold = array();
 		$pins = array();
 		$pins['pin_record'] = $this->profile_model->get_posts($board);
@@ -69,21 +89,6 @@ class Profile extends CI_Controller
 		$this->load->view('user/profile_view', $hold, $this->data);
 		$this->load->view('user/pins_view', $pins);
 		$this->load->view('template/footer');
-	}
-
-	public function likes()
-	{ 
-		$this->load->view('template/header', $this->data);
-		$this->load->view('template/main_layout', $this->data);
-		$this->load->model('profile_model');
-		$hold = array();
-		$likes = array();
-		$hold['user_record'] = $this->profile_model->get_user_info();
-		$likes['likes_record'] = $this->profile_model->get_likes();
-		$this->load->view('user/profile_view', $hold, $this->data);
-		$this->load->view('user/likes_view', $likes);
-		$this->load->view('template/footer');
-
 	}
 
 	public function friends_boards($uid)
