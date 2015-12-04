@@ -34,6 +34,7 @@
 			$label = array_reverse($label);
             $board_record = array_reverse($boards);
             $data = array();
+            $this_likes = array_reverse($this_likes);
 
 			for( $i = 0; $i<count($imgs); $i++){//$i = count($imgs) - 1; $i >= 0; $i--){
 		?>
@@ -90,6 +91,34 @@
 			                    	</p>
 			                <?php
 	                			}
+	                			else{
+		                    	$liked = false;
+			                    for($j = 0; $j < count($likes); $j++)
+			                    {
+			                    	if($likes[$j] == $this_pid[$i])
+			                    	{
+			                    		$liked = true;
+		                    		}
+		                    	}
+		                    	if($liked)
+		                    	{
+		                    		?>
+		                    		<p>
+			                    		<a href="feed/un_like/<?php echo $this_pid[$i] ?>" class="btn btn-danger btn-block" role="button">Unlike</a>
+        							</p>
+
+		                    	<?php 
+		                    	}	
+		                    		else
+		                    		{
+		                    			?>
+			                    	<p>
+			                    		<a href="feed/add_like/<?php echo $this_pid[$i] ?>" class="btn btn-danger btn-block" role="button">Like</a>
+        							</p>
+        							<?php
+        						}
+	                			
+	                		}
 	            			?>
             				</div>
 	            		</div>
