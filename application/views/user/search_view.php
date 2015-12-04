@@ -1,19 +1,9 @@
 <!DOCTYPE html>
-<!--
-<style>
-    .crop
-    {
-        width: 200px;
-        height: 200px;
-        overflow: hidden;
-    }
-    .crop img
-    {
-        width: 200px;
-        height: 200px;
-    }
-</style>
--->
+
+    <script type="text/javascript">
+            
+    </script>
+    
     <ul class="thumbnails">
 
 
@@ -25,6 +15,10 @@
 			$first_name = array_reverse($first_name);
 			$last_name = array_reverse($last_name);
 			$uid = array_reverse($uid);
+			$label = array_reverse($label);
+            $board_record = array_reverse($boards);
+            $data = array();
+            $this_likes = array_reverse($this_likes);
 
 			for( $i = 0; $i<count($imgs); $i++){//$i = count($imgs) - 1; $i >= 0; $i--){
 		?>
@@ -42,7 +36,8 @@
 				        <div class="thumbnail">
 							<div class="caption">
                                 <?php $this->load->view('template/pin_modal'); ?>
-			            		<a href="#pin_modal" onclick="Big(<?php echo $this_pid[$i] ?>);" class="thumbnail" id="pop"> 
+                                <!--<a onclick="Big(<?php echo $this_pid[$i] ?>);" class="thumbnail" id="pop"> -->
+			            		<a href="#pin_modal" onclick="Big(<?php echo $this_pid[$i] ?>, <?php echo $my_uid; ?> );" class="thumbnail" id="pop"> 
                                     <div class="crop">
                                     <img src= "<?php echo base_url($imgs[$i]); ?>"  alt="" id="imgsource<?php echo $this_pid[$i]?>" > 
                                     </div>
@@ -53,6 +48,11 @@
 			                     		echo substr($contents[$i], 0, 100)."..."; 
                                     ?>
                                 </p>
+                                
+                               	<p id="imglabel<?php echo $this_pid[$i] ?>">
+                                	<?php echo $label[$i] ?>
+                                </p>
+                                
                                 <p  hidden id="imgcont<?php echo $this_pid[$i] ?>">
                                     <?php
 			                     		echo $contents[$i]; 
@@ -60,32 +60,13 @@
                                 </p>
 			                    <h6>By: <?php echo $first_name[$i]." ".$last_name[$i] ?></h6>
 
-		                    <?php
-		                    	$pinned = false;
-			                    for($j = 0; $j < count($pins); $j++)
-			                    {
-			                    	if($pins[$j] == $this_pid[$i])
-			                    	{
-			                    		$pinned = true;
-		                    		}
-		                    	}
-		                    	if($pinned)
-		                    	{
-	                		?>
-	                				<p>
-			                    		<a href="feed/un_pin/<?php echo $this_pid[$i] ?>" class="btn btn-block" role="button">unPin!</a>
-		                    		</p>
-	                		<?php
-	                			}
-	                			else
-	                			{
-	        				?>
-		        					<p>
-			                    		<a href="feed/make_pin/<?php echo $this_pid[$i] ?>" class="btn btn-danger btn-block" role="button">Pin!</a>
-			                    	</p>
+		                    
+		        			   <p>
+                                    <a href="#pin_board_modal" data-id="<?=$this_pid[$i]?>" class="open-pin_board_modal btn btn-danger btn-block" role="button">Pin!</a>
+                                    <?php $this->load->view('template/pin_board_modal'); ?>
+			                    </p>
 
 	                		<?php
-	                			}
 	                			if($uid[$i] == $my_uid)
 	                			{
 	                		?>
@@ -94,6 +75,34 @@
 			                    	</p>
 			                <?php
 	                			}
+	                			else{
+		                    	$liked = false;
+			                    for($j = 0; $j < count($likes); $j++)
+			                    {
+			                    	if($likes[$j] == $this_pid[$i])
+			                    	{
+			                    		$liked = true;
+		                    		}
+		                    	}
+		                    	if($liked)
+		                    	{
+		                    		?>
+		                    		<p>
+			                    		<a href="search_un_like/<?php echo $this_pid[$i] ?>" class="btn btn-danger btn-block" role="button">Unlike</a>
+        							</p>
+
+		                    	<?php 
+		                    	}	
+		                    		else
+		                    		{
+		                    			?>
+			                    	<p>
+			                    		<a href="search_add_like/<?php echo $this_pid[$i] ?>" class="btn btn-danger btn-block" role="button">Like</a>
+        							</p>
+        							<?php
+        						}
+	                			
+	                		}
 	            			?>
             				</div>
 	            		</div>
@@ -111,4 +120,16 @@
         }
 		?>
   	</ul>
+<script type="text/javascript">
+$(document).on("click", ".open-pin_board_modal", function (e) {
 
+    e.preventDefault();
+
+    var _self = $(this);
+
+    var pid = _self.data('id');
+    $("#pid").val(pid);
+    
+    $('#pin_board_modal').modal('show');
+});
+</script>

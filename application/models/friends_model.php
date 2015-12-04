@@ -27,7 +27,7 @@ class friends_model extends CI_Model
 	{
 		$pending = array();
         
-		$res = $this->db->query("SELECT F.fid, U2.first_name, U2.last_name, U2.profile_pic FROM friends F, users U, users U2 WHERE F.status ='pending' AND F.following = U.uid AND F.user = U2.uid AND U.email='".$this->session->userdata("email")."'");
+		$res = $this->db->query("SELECT F.fid, U2.first_name, U2.last_name, U2.profile_pic, U2.uid FROM friends F, users U, users U2 WHERE F.status ='pending' AND F.following = U.uid AND F.user = U2.uid AND U.email='".$this->session->userdata("email")."'");
 		$shuffled = $res->result();
 		
 		foreach ($shuffled as $row)
@@ -117,7 +117,7 @@ class friends_model extends CI_Model
             'pin_id'    => "",
             'content'   => ""
         );
-        $this->db->insert('notifications', $data); 
+        $this->db->insert('notifications', $data);
     }
 
     public function decline_friend($fid)
