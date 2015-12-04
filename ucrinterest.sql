@@ -2,9 +2,9 @@
 -- version 4.4.10
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:8889
--- Generation Time: Nov 20, 2015 at 04:43 PM
--- Server version: 5.5.42
+-- Host: localhost:3306
+-- Generation Time: Dec 04, 2015 at 05:28 PM
+-- Server version: 5.5.42-log
 -- PHP Version: 5.6.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -105,7 +105,7 @@ CREATE TABLE `notifications` (
 CREATE TABLE `pins` (
   `pin_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
-  `b_name` int(11) NOT NULL,
+  `b_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `uid` int(11) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -207,7 +207,8 @@ ALTER TABLE `friends`
 -- Indexes for table `pins`
 --
 ALTER TABLE `pins`
-  ADD PRIMARY KEY (`pin_id`);
+  ADD PRIMARY KEY (`b_name`),
+  ADD UNIQUE KEY `pin_id` (`pin_id`) USING BTREE;
 
 --
 -- Indexes for table `post`
@@ -254,3 +255,9 @@ ALTER TABLE `users`
 --
 ALTER TABLE `boards`
   ADD CONSTRAINT `Foreign Key` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `pins`
+--
+ALTER TABLE `pins`
+  ADD CONSTRAINT `Board_Key` FOREIGN KEY (`b_name`) REFERENCES `boards` (`name`) ON DELETE CASCADE;

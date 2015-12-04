@@ -2,6 +2,7 @@
 
 class Profile extends CI_Controller
 {
+	public $friend_uid = 0;
 	function __construct()
 	{
 		parent::__construct();
@@ -60,13 +61,46 @@ class Profile extends CI_Controller
 		$this->load->view('template/header', $this->data);
 		$this->load->view('template/main_layout', $this->data);
 		$this->load->model('profile_model');
+		$board =$this->uri->segment(3);
 		$hold = array();
 		$pins = array();
+		$pins['pin_record'] = $this->profile_model->get_posts($board);
 		$hold['user_record'] = $this->profile_model->get_user_info();
-		$pins['pin_record'] = $this->profile_model->get_posts();
 		$this->load->view('user/profile_view', $hold, $this->data);
 		$this->load->view('user/pins_view', $pins);
 		$this->load->view('template/footer');
+	}
+
+	public function friends_boards($uid)
+	{
+		$this->load->view('template/header', $this->data);
+		$this->load->view('template/main_layout', $this->data);
+		$this->load->model('profile_model');
+		$this->friend_uid = $uid;
+		$hold = array();
+		$boards = array();
+		$hold['user_record'] = $this->profile_model->get_friend_info($uid);
+		$boards['board_record'] = $this->profile_model->get_friend_boards($uid);
+		$boards['uid'] = $uid;
+		$this->load->view('user/profile_view', $hold, $this->data);
+		$this->load->view('user/board_view', $boards);
+		$this->load->view('template/footer');
+	}
+
+	public function friends_pins()
+	{
+		$this->load->view('template/header', $this->data);
+		$this->load->view('template/main_layout', $this->data);
+		$this->load->model('profile_model');
+		$board =$this->uri->segment(3);
+		$uid = $this->friend_uid;
+		$hold = array();
+		$pins = array();
+		$pins['pin_record'] = $this->profile_model->get_friend_post($board, $uid);
+		$hold['user_record'] = $this->profile_model->get_friend_info($uid);
+		$this->load->view('user/profile_view', $hold, $this->data);
+		$this->load->view('user/pins_view', $pins);
+		$this->load->view('template/footer');	
 	}
 
 	function create_board()
