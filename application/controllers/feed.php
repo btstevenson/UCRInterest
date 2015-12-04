@@ -45,12 +45,14 @@ class Feed extends CI_Controller{
 		$uid = $fulldata[6];
 		$label = $fulldata[7];
 		$boards = $fulldata[8];
-
+		$comments = $fulldata[9];
+        $who_comm = $fulldata[10];
+        
 		$pins = $this->feed_model->get_pins();
 		$my_uid = $this->feed_model->get_my_uid();
 		$likes = $this->feed_model->get_likes();
 
-		$this->data = array("this_pid" => $pid, "imgs" => $imgs, "titles" => $titles, "contents" => $contents, "first_name" => $first_name, "last_name" => $last_name, "pins" => $pins, "uid" => $uid, "my_uid" => $my_uid, "label" => $label, "boards" => $boards, "likes" => $likes, "this_likes" => $likes);
+		$this->data = array("this_pid" => $pid, "imgs" => $imgs, "titles" => $titles, "contents" => $contents, "first_name" => $first_name, "last_name" => $last_name, "pins" => $pins, "uid" => $uid, "my_uid" => $my_uid, "label" => $label, "boards" => $boards, "likes" => $likes, "this_likes" => $likes, "comments" => $comments, "who_comm" => $who_comm);
 
 		$this->load->view('feed_view', $this->data);
 		

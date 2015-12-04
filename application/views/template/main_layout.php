@@ -23,20 +23,7 @@
     <!-- </ul> -->
     <a href="<?php echo base_url('index.php/profile/board'); ?>"> <img src= "<?php echo base_url($this->session->userdata('profile_pic')); ?>" class="img-circle" height="50" width="50" id ="profile_pic_main"></a>
         <!-- Button to trigger modal -->
-    <a href="#post_modal" role="button" class="btn btn-danger" data-toggle="modal" id="post_btn">Make a post!</a>
-    <?php $this->load->view('template/post_modal'); ?>
-        
-  </div>
-  <div class="container">
-
-    <div class="row">
-      <div class="span9">
-        <section>
-          <h2><?php echo $meta_title; ?></h2>
-        </section>
-      </div>
-      <div class="span3">
-        <section>
+        <span style="background-color:white;">
           <?php
             if($this->session->userdata("global_notif"))
               echo anchor('notif', '<i class="icon-globe notification"></i>');
@@ -50,7 +37,23 @@
             echo anchor('edit_profile', '<i class="icon-cog"></i>');
             echo anchor('user/logout', '<i class="icon-off"></i>');
           ?>
+        </span>
+      
+      
+    <a href="#post_modal" role="button" class="btn btn-danger" data-toggle="modal" id="post_btn">Make a post!</a>
+    <?php $this->load->view('template/post_modal'); ?>
+        
+  </div>
+  <div class="container">
+
+    <div class="row">
+      <div class="span9">
+        <section>
+          <h2><?php echo $meta_title; ?></h2>
         </section>
+      </div>
+      <div class="span3">
+
       </div>
     </div>
   </div>
