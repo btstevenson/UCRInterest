@@ -90,6 +90,7 @@ class Feed extends CI_Controller{
 		$uid = $this->profile_model->get_user_id();
         $sql = "INSERT INTO likes (uid, post_id) VALUES ($uid, $pid)";
         $query = $this->db->query($sql);
+        $this->profile_model->send_like($pid);
 
         redirect('feed');
 	}
