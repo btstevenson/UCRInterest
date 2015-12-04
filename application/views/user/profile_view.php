@@ -15,6 +15,7 @@
             <tr>
             <td><?php echo anchor('profile/board', 'Board'); ?></td>
             <td><?php echo anchor('profile/pins', 'Pins'); ?></td>
+            <td><?php echo anchor('profile/likes', 'Likes'); ?></td>
             </tr>
         </table>
     </div>
