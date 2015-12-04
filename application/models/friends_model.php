@@ -102,9 +102,22 @@ class friends_model extends CI_Model
 
     public function accept_friend($fid)
     {
+        $res = $this->db->query("SELECT * FROM friends WHERE fid=".$fid);
+        $res = $res->row();
         $this->db->set("status", "accepted");
         $this->db->where("fid", $fid);
         $this->db->update("friends");
+
+        $data = array
+        (
+            'nid'       => "",
+            'from'      => $res->following,
+            'to'        => $res->user,
+            'type'      => "accepted_friend_req",
+            'pin_id'    => "",
+            'content'   => ""
+        );
+        $this->db->insert('notifications', $data); 
     }
 
     public function decline_friend($fid)
@@ -118,7 +131,6 @@ class friends_model extends CI_Model
     {
         $q = $this->db->query("SELECT uid FROM users WHERE email='".$this->session->userdata("email")."'");
         $q = $q->row();
-        echo $q->uid;
         
         $data = array(
             'user' => $q->uid,
@@ -126,7 +138,18 @@ class friends_model extends CI_Model
             'status' => 'pending'
         );
 
-        $this->db->insert('friends', $data); 
+        $this->db->insert('friends', $data);
+
+        $data = array
+        (
+            'nid'       => "",
+            'from'      => $q->uid,
+            'to'        => $uid,
+            'type'      => "friend_req",
+            'pin_id'    => "",
+            'content'   => ""
+        );
+        $this->db->insert('notifications', $data); 
     }
 }
 
