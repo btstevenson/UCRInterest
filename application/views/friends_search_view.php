@@ -42,8 +42,8 @@
                                 <ul class="media-list">
                                     <li class="media">
                                         <div class="media-body">
-                                            <a href="friends/accept_friend/<?php echo $fid[$j] ?>"> <button class="btn btn-primary btn-block">Accept</button> </a>
-                                            <a href="friends/decline_friend/<?php echo $fid[$j] ?>"> <button class="btn btn-danger btn-block">Decline</button> </a>  
+                                            <a href="friends/accept_friend/<?php echo $frespond[$j] ?>"> <button class="btn btn-primary btn-block">Accept</button> </a>
+                                            <a href="friends/decline_friend/<?php echo $frespond[$j] ?>"> <button class="btn btn-danger btn-block">Decline</button> </a>  
                                         </div>
                                     </li>
                                 </ul>  
