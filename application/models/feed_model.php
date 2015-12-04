@@ -17,6 +17,7 @@ class feed_model extends CI_Model
 		$res = $this->db->query("SELECT uid FROM users WHERE email='".$this->session->userdata('email')."'");
 		$res = $res->row();
 		$uid = $res->uid;
+		
 		$res = $this->db->query("SELECT post_id FROM pins WHERE uid=".$uid);
 		$res = $res->result();
 
@@ -62,7 +63,6 @@ class feed_model extends CI_Model
 		$tableCount = 0;
 		$numImagesLoaded = 0;
 		$shuffled = $res->result();
-		//shuffle($shuffled);
 		
 		foreach ($shuffled as $row){
 			array_push($pid, $row->pid);
