@@ -38,17 +38,18 @@
       <div class="span3">
         <section>
           <?php
-            $this->load->model("notif_model");
+          //  $this->load->model("notif_model");
+            
             $global_notif = $this->notif_model->load_global();
-            $friends_notif = $this->notif_model->load_friends_notif();
+            //$friends_notif = $this->notif_model->load_friends_notif();
 
-            if(count($global_notif[0]) > 0)
-              echo anchor('notif', '<i class="icon-globe notification"></i>');
-            else
+          //  if(count($global_notif[0]) > 0)
+        //      echo anchor('notif', '<i class="icon-globe notification"></i>');
+        //    else
               echo anchor('notif', '<i class="icon-globe"></i>');
-            if(count($friends_notif[0]) > 0)
-              echo anchor('friends', '<i class="icon-user notification"></i>');
-            else
+            //if(count($friends_notif[0]) > 0)
+        //      echo anchor('friends', '<i class="icon-user notification"></i>');
+        //    else
               echo anchor('friends', '<i class="icon-user"></i>');
 
             echo anchor('edit_profile', '<i class="icon-cog"></i>');

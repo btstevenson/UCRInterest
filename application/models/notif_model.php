@@ -24,13 +24,20 @@ class notif_model extends CI_Model
 		}			
         
         //===== GETTING POSTS ============================
-        $res = $this->db->query("SELECT P.pic_dir, P.title FROM notifications N, users U, post P WHERE N.to = U.uid AND (N.pid = P.pid) AND U.email='".$this->session->userdata("email")."'");
+        $res = $this->db->query("SELECT P.pic_dir, P.title FROM notifications N, users U, post P WHERE N.to = U.uid AND (N.pin_id = P.pid) AND U.email='".$this->session->userdata("email")."'");
 		$shuffled = $res->result();
         foreach ($shuffled as $row){
 			array_push($posts, $row);
-		}	
+		}
         
-        $global_notifs = array($notifs, $posts);
+        //===== GETTING USERS ============================
+        $res = $this->db->query("SELECT U.first_name, U.last_name FROM notifications N, users U, users U2, post P WHERE N.from = U.uid AND (N.pin_id = P.pid) AND U2.email='".$this->session->userdata("email")."'");
+		$shuffled = $res->result();
+        foreach ($shuffled as $row){
+			array_push($people, $row);
+		}
+        
+        $global_notifs = array($notifs, $posts, $people);
 		return $global_notifs;
 	}
 }
