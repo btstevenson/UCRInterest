@@ -14,11 +14,9 @@ class feed_model extends CI_Model
 
 	public function get_pins()
 	{
-	
 		$res = $this->db->query("SELECT uid FROM users WHERE email='".$this->session->userdata('email')."'");
 		$res = $res->row();
 		$uid = $res->uid;
-		
 		$res = $this->db->query("SELECT post_id FROM pins WHERE uid=".$uid);
 		$res = $res->result();
 
@@ -44,7 +42,7 @@ class feed_model extends CI_Model
 		
 		$uidQ = $this->db->query("SELECT uid FROM users WHERE email='".$currentUID."'");
 		$uidRes = $uidQ->row();
-		
+
 		$friendIDs = array();
 		
 		$friendQuery = $this->db->query("SELECT user, following FROM friends WHERE user = '".$uidRes->uid."' or following = '".$uidRes->uid."'");
@@ -56,10 +54,12 @@ class feed_model extends CI_Model
 				array_push($friendIDs, $row->user);
 			}
 		}
-
 		
 		$interestsQuery = $this->db->query("SELECT label FROM interests WHERE uid='".$uidRes->uid."'");
 		$historyQuery = $this->db->query("SELECT label FROM browse_history WHERE uid='".$uidRes->uid."'");
+
+		$b_result = $this->db->query("SELECT name FROM boards WHERE uid='".$uidRes->uid."'");
+		$boards = $b_result->result_array();
 				
 		$currentUserInterests = array();
 		
@@ -77,7 +77,6 @@ class feed_model extends CI_Model
 		$friendQuery = $this->db->query("SELECT pid, uid, pic_dir, title, content, label FROM post WHERE uid IN (".$friends.")");
 		
 		$res = $this->db->query("SELECT pid, uid, pic_dir, title, content, label FROM post WHERE label IN (".$labels.")");
-		
 		$tableCount = 0;
 		$numImagesLoaded = 0;
 		$shuffled = array_merge($res->result(), $friendQuery->result());
@@ -99,7 +98,7 @@ class feed_model extends CI_Model
 			$numImagesLoaded++;
 		}
 		
-		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name, $uid, $label);
+		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name, $uid, $label, $boards);
 		
 		return $data;
 	}
@@ -127,6 +126,15 @@ class feed_model extends CI_Model
 		$res = $this->db->query("SELECT uid FROM users WHERE email='".$this->session->userdata('email')."'");
 		$res = $res->row();
 		return $res->uid;
+	}
+
+	function pin_to_board()
+	{
+		$uid = $this->get_my_uid();
+		$board = $this->input->post('board_record');
+		$pid = $this->input->post('pid');
+		$data = array('post_id' => $pid, 'uid' => $uid, 'b_name' => $board);
+		$this->db->insert('pins', $data);
 	}
 }
 
