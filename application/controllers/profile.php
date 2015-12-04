@@ -60,10 +60,11 @@ class Profile extends CI_Controller
 		$this->load->view('template/header', $this->data);
 		$this->load->view('template/main_layout', $this->data);
 		$this->load->model('profile_model');
+		$board =$this->uri->segment(3);
 		$hold = array();
 		$pins = array();
+		$pins['pin_record'] = $this->profile_model->get_posts($board);
 		$hold['user_record'] = $this->profile_model->get_user_info();
-		$pins['pin_record'] = $this->profile_model->get_posts();
 		$this->load->view('user/profile_view', $hold, $this->data);
 		$this->load->view('user/pins_view', $pins);
 		$this->load->view('template/footer');
