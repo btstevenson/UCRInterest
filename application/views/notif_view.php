@@ -27,11 +27,7 @@
                                             <?php echo $user_list[$i]->first_name. " ". $user_list[$i]->last_name;?>
                                         </h4>
                                         <?php if($global_list[$i]->type == "comment" )?>
-<<<<<<< HEAD
-                                        <p><?php echo $global_list[$i]->content?> </p>
-=======
                                             <p><?php echo $global_list[$i]->content?> </p>
->>>>>>> refs/remotes/origin/master
                                         </a>
                                     </div>
                                 </li>
