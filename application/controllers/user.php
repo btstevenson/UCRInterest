@@ -171,7 +171,7 @@ class User extends CI_Controller
         $query = $this->db->query($sql);
         $this->profile_model->send_like($pid);
 
-        redirect('user/search');
+        redirect('feed');
 	}
 
 	function search_un_like()
@@ -182,7 +182,7 @@ class User extends CI_Controller
 		$uid = $this->profile_model->get_user_id();
         $this->feed_model->un_like($pid);
 
-        redirect('user/search');
+        redirect('feed');
 	}
 
 	public function get_pic_dir()
