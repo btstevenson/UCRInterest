@@ -15,15 +15,16 @@
 </style>
 -->
 
-	
-	<script type="text/javascript">
+
+    <script type="text/javascript">
             
     </script>
-
+    
     <ul class="thumbnails">
 
-		<?php
-			$imgs = array_reverse($imgs);
+
+         <?php
+		 	$imgs = array_reverse($imgs);
 		 	$this_pid = array_reverse($this_pid);
 			$titles = array_reverse($titles);
 			$contents = array_reverse($contents);
@@ -31,6 +32,8 @@
 			$last_name = array_reverse($last_name);
 			$uid = array_reverse($uid);
 			$label = array_reverse($label);
+            $board_record = array_reverse($boards);
+            $data = array();
 
 			for( $i = 0; $i<count($imgs); $i++){//$i = count($imgs) - 1; $i >= 0; $i--){
 		?>
@@ -72,32 +75,13 @@
                                 </p>
 			                    <h6>By: <?php echo $first_name[$i]." ".$last_name[$i] ?></h6>
 
-		                    <?php
-		                    	$pinned = false;
-			                    for($j = 0; $j < count($pins); $j++)
-			                    {
-			                    	if($pins[$j] == $this_pid[$i])
-			                    	{
-			                    		$pinned = true;
-		                    		}
-		                    	}
-		                    	if($pinned)
-		                    	{
-	                		?>
-	                				<p>
-			                    		<a href="feed/un_pin/<?php echo $this_pid[$i] ?>" class="btn btn-block" role="button">unPin!</a>
-		                    		</p>
-	                		<?php
-	                			}
-	                			else
-	                			{
-	        				?>
-		        					<p>
-			                    		<a href="feed/make_pin/<?php echo $this_pid[$i] ?>" class="btn btn-danger btn-block" role="button">Pin!</a>
-			                    	</p>
+		                    
+		        			   <p>
+                                    <a href="#pin_board_modal" data-id="<?=$this_pid[$i]?>" class="open-pin_board_modal btn btn-danger btn-block" role="button">Pin!</a>
+                                    <?php $this->load->view('template/pin_board_modal'); ?>
+			                    </p>
 
 	                		<?php
-	                			}
 	                			if($uid[$i] == $my_uid)
 	                			{
 	                		?>
@@ -123,3 +107,16 @@
         }
 		?>
   	</ul>
+<script type="text/javascript">
+$(document).on("click", ".open-pin_board_modal", function (e) {
+
+    e.preventDefault();
+
+    var _self = $(this);
+
+    var pid = _self.data('id');
+    $("#pid").val(pid);
+    
+    $('#pin_board_modal').modal('show');
+});
+</script>
