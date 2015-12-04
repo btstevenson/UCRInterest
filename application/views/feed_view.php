@@ -1,20 +1,4 @@
 <!DOCTYPE html>
-<!--
-<style>
-    .crop
-    {
-        width: 200px;
-        height: 200px;
-        overflow: hidden;
-    }
-    .crop img
-    {
-        width: 200px;
-        height: 200px;
-    }
-</style>
--->
-
 
     <script type="text/javascript">
             
