@@ -134,11 +134,12 @@ class User_model extends CI_Model
 		$first_name = array();
 		$last_name = array();
 		$uid = array();
+		$label = array();
 		$who = "";
 		///////////////////////////FIXME//////////////////////////
 		//need to check if pid is in $pid_arr in this query for better time complexity
 		//currently grabs all posts
-		$res = $this->db->query("SELECT pid, uid, pic_dir, title, content FROM post");//WHERE in_array(pid, pid_array) 
+		$res = $this->db->query("SELECT pid, uid, pic_dir, title, content, label FROM post");//WHERE in_array(pid, pid_array) 
 
 		$tableCount = 0;
 		$numImagesLoaded = 0;
@@ -156,14 +157,44 @@ class User_model extends CI_Model
 				array_push($first_name, $name->first_name);
 				array_push($last_name, $name->last_name);
 				array_push($uid, $row->uid);
+				array_push($label, $row->label);
 
 				$numImagesLoaded++;
 			}
 		}
 		
-		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name, $uid);
+		//board query
+		$this->load->model('feed_model');
+		$my_uid = $this->feed_model->get_my_uid();
+		$b_result = $this->db->query("SELECT name FROM boards WHERE uid='".$my_uid."'");
+		$boards = $b_result->result_array();
+
+		$data = array($pid, $imgs, $titles, $contents, $first_name, $last_name, $uid, $label, $boards);
 		
 		return $data;
+	}
+
+	function search_add_like()
+	{
+		$pid = $this->uri->segment(3);
+		$this->load->model('profile_model');
+		$uid = $this->profile_model->get_user_id();
+        $sql = "INSERT INTO likes (uid, post_id) VALUES ($uid, $pid)";
+        $query = $this->db->query($sql);
+        $this->profile_model->send_like($pid);
+
+        redirect('user/search');
+	}
+
+	function search_un_like()
+	{
+		$pid = $this->uri->segment(3);
+		$this->load->model('feed_model');
+		$this->load->model('profile_model');
+		$uid = $this->profile_model->get_user_id();
+        $this->feed_model->un_like($pid);
+
+        redirect('user/search');
 	}
 
 	public function get_pic_dir()
