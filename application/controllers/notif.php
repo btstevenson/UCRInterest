@@ -16,6 +16,7 @@ class Notif extends CI_Controller
         //====== GETTING ALL THE NOTIFICATIONS FROM THE TABLE THAT PERTAION TO YOU ==============================
         $this->load->model('notif_model');
         $global_list = $this->notif_model->load_global();
+        $this->notif_model->clear_global_notif();
         $this->data = array("global_list" => $global_list[0], "post_list" => $global_list[1], "user_list" => $global_list[2]);
 		$this->load->view('notif_view', $this->data);
         $this->load->view('template/footer');

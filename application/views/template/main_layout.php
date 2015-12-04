@@ -42,10 +42,11 @@
               echo anchor('notif', '<i class="icon-globe notification"></i>');
             else
               echo anchor('notif', '<i class="icon-globe"></i>');
-            // if(count($friends_notif[0]) > 0)
-            //   echo anchor('friends', '<i class="icon-user notification"></i>');
-            // else
-            //   echo anchor('friends', '<i class="icon-user"></i>');
+            if($this->session->userdata("friend_notif"))
+              echo anchor('friends', '<i class="icon-user notification"></i>');
+            else
+              echo anchor('friends', '<i class="icon-user"></i>');
+
             echo anchor('edit_profile', '<i class="icon-cog"></i>');
             echo anchor('user/logout', '<i class="icon-off"></i>');
           ?>
