@@ -91,6 +91,21 @@ class Profile extends CI_Controller
 		$this->load->view('template/footer');
 	}
 
+	public function likes()
+	{ 
+		$this->load->view('template/header', $this->data);
+		$this->load->view('template/main_layout', $this->data);
+		$this->load->model('profile_model');
+		$hold = array();
+		$likes = array();
+		$hold['user_record'] = $this->profile_model->get_user_info();
+		$likes['likes_record'] = $this->profile_model->get_likes();
+		$this->load->view('user/profile_view', $hold, $this->data);
+		$this->load->view('user/likes_view', $likes);
+		$this->load->view('template/footer');
+
+	}
+
 	public function friends_boards($uid)
 	{
 		$this->load->view('template/header', $this->data);
