@@ -51,9 +51,17 @@ class profile_model extends CI_Model
     public function get_pin_ids($board)
     {
         $uid = $this->get_user_id();
-        $sql = "SELECT post_id FROM pins WHERE uid = ? AND b_name = ?";
-        $query = $this->db->query($sql, array($uid, $board));
-        return $query;
+        if($board == '')
+        {
+            $sql = "SELECT post_id FROM pins WHERE uid = ?";
+            $query = $this->db->query($sql, array($uid));
+            return $query;
+        }
+        {
+            $sql = "SELECT post_id FROM pins WHERE uid = ? AND b_name = ?";
+            $query = $this->db->query($sql, array($uid, $board));
+            return $query;
+        }
     }
 
     public function get_posts($board)
@@ -97,6 +105,39 @@ class profile_model extends CI_Model
     {
         $sql = "DELETE FROM boards WHERE uid = ? AND name = ?";
         $query = $this->db->query($sql, array($this->get_user_id(), $this->input->post('boards')));
+    }
+
+    public function get_friend_info($uid)
+    {
+        $sql = "SELECT first_name, last_name, profile_pic, gender FROM user WHERE uid= ?";
+        $query = $this->db->query($sql, array($uid));
+        return $query->result_array(); 
+    }
+
+    public function get_friend_boards($uid)
+    {
+        $sql = "SELECT name, description FROM boards WHERE uid = ? AND private = ?";
+        $query = $this->db->query($sql, array($uid, 0));
+        return $query->result_array();
+    }
+
+    public function get_friend_post($board, $uid)
+    {
+        $pins = array();
+        $pinid = $this->get_friend_pins($board, $uid);
+        foreach($pinid->result() as $row)
+        {
+                $res = $this->db->query("SELECT title, pic_dir, content FROM post WHERE pid =" .$row->post_id);
+                array_push($pins, $res->result_array());
+        }   
+        return $pins;
+    }
+
+    public function get_friend_pins($board, $uid)
+    {
+        $sql = "SELECT post_id FROM pins WHERE uid = ? AND b_name = ?";
+        $query = $this->db->query($sql, array($uid, $board));
+        return $query;
     }
 
 }
