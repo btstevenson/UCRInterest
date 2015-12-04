@@ -105,9 +105,14 @@ function Validate()
       	<td>Label</td>
         <td>
         <?php
-			$interestLabels = array("Popular" => "Popular","Everything" => "Everything","Gifts" => "Gifts","Videos" => "Videos","Animals and pets" => "Animals and pets","Architecture" => "Architecture","Art" => "Art","Cars and motorcycles" => "Cars and motorcycles","Celebrities" => "Celebrities","Design" => "Design","DIY and crafts" => "DIY and crafts","Education" => "Education","Film, music and books" => "Film, music and books","Food and drink" => "Food and drink","Gardening" => "Gardening","Geek" => "Geek","Hair and beauty" => "Hair and beauty","Health and fitness" => "Health and fitness","History" => "History","Holidays and events" => "Holidays and events","Home decor" => "Home decor","Humor" => "Humor","Illustrations and posters" => "Illustrations and posters","Kids and parenting" => "Kids and parenting","Mens fashion" => "Men's fashion", "Outdoors" => "Outdoors","Photography" => "Photography","Products" => "Products","Quotes" => "Quotes","Science and nature" => "Science and nature","Sports" => "Sports","Tattoos" => "Tattoos","Technology" => "Technology","Travel" => "Travel","Weddings" => "Weddings","Womens fashion" => "Women's fashion");
+			$interestLabels = array("Popular" => "Popular","Everything" => "Everything","Gifts" => "Gifts","Videos" => "Videos","Animals and pets" => "Animals and pets","Architecture" => "Architecture","Art" => "Art","Cars and motorcycles" => "Cars and motorcycles","Celebrities" => "Celebrities","Design" => "Design","DIY and crafts" => "DIY and crafts","Education" => "Education","Film, music and books" => "Film, music and books","Food and drink" => "Food and drink","Gardening" => "Gardening","Geek" => "Geek","Hair and beauty" => "Hair and beauty","Health and fitness" => "Health and fitness","History" => "History","Holidays and events" => "Holidays and events","Home decor" => "Home decor","Humor" => "Humor","Illustrations and posters" => "Illustrations and posters","Kids and parenting" => "Kids and parenting", "Outdoors" => "Outdoors","Photography" => "Photography","Products" => "Products","Quotes" => "Quotes","Science and nature" => "Science and nature","Sports" => "Sports","Tattoos" => "Tattoos","Technology" => "Technology","Travel" => "Travel","Weddings" => "Weddings");
 		
-			echo form_dropdown("labels", $interestLabels, "Popular");
+			$data = array(
+                  'id'            => 'label'
+                );
+            
+            //echo form_textarea($data);
+			echo form_dropdown("label", $interestLabels);//, $data);
 		?>
         </td>
     </table>
