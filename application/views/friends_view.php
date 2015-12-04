@@ -47,7 +47,7 @@
                         <div class="nav-collapse collapse">
                             <?php echo form_open('friends/search', 'class="navbar-search pull-left"');
                                 echo form_input('Search', '', 'placeholder="Find Friends"'); ?> 
-                            <?php form_close();?>
+                            <?php echo form_close();?>
                     <!-- .nav, .navbar-search, .navbar-form, etc -->
                         </div>
                     </div>
