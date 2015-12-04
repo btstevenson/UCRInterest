@@ -24,7 +24,7 @@ class notif_model extends CI_Model
 		}			
         
         //===== GETTING POSTS ============================
-        $res = $this->db->query("SELECT P.pic_dir, P.title FROM notifications N, users U, post P WHERE N.to = U.uid AND (N.pid = P.pid) AND U.email='".$this->session->userdata("email")."'");
+        $res = $this->db->query("SELECT P.pic_dir, P.title FROM notifications N, users U, post P WHERE N.to = U.uid AND (N.pin_id = P.pid) AND U.email='".$this->session->userdata("email")."'");
 		$shuffled = $res->result();
         foreach ($shuffled as $row){
 			array_push($posts, $row);

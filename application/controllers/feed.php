@@ -4,6 +4,13 @@ class Feed extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		$this->data['meta_title'] = "Feed";
+		$this->load->model("notif_model");
+		$global_notifs = $this->notif_model->load_global();
+		if(count($global_notifs[0]) > 0)
+			$this->session->set_userdata("global_notif", true);
+		else
+			$this->session->set_userdata("global_notif", false);
+
 	}
 
 	public function index()
