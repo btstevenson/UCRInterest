@@ -14,7 +14,6 @@ class feed_model extends CI_Model
 
 	public function get_pins()
 	{
-	
 		$res = $this->db->query("SELECT uid FROM users WHERE email='".$this->session->userdata('email')."'");
 		$res = $res->row();
 		$uid = $res->uid;
@@ -45,23 +44,6 @@ class feed_model extends CI_Model
 		$uidQ = $this->db->query("SELECT uid FROM users WHERE email='".$currentUID."'");
 		$uidRes = $uidQ->row();
 		
-		$friendIDs = array();
-		
-		$friendQuery = $this->db->query("SELECT user, following FROM friends WHERE user = '".$uidRes->uid."' or following = '".$uidRes->uid."'");
-		
-		foreach ( $friendQuery->result() as $row){
-			if($row->user == $uidRes->uid){
-				array_push($friendIDs, $row->following);
-			}else{
-				array_push($friendIDs, $row->user);
-			}
-		}
-		
-		foreach ( $friendIDs as $row){
-			echo $row.", ";
-		}
-		
-		
 		$interestsQuery = $this->db->query("SELECT label FROM interests WHERE uid='".$uidRes->uid."'");
 		$historyQuery = $this->db->query("SELECT label FROM browse_history WHERE uid='".$uidRes->uid."'");
 				
@@ -76,16 +58,11 @@ class feed_model extends CI_Model
 		}
 		
 		$labels = "'".implode("', '", $currentUserInterests)."'";
-		$friends = "'".implode("', '", $friendIDs)."'";
-		
-		$friendQuery = $this->db->query("SELECT pid, uid, pic_dir, title, content, label FROM post WHERE uid IN (".$friends.")");
 		
 		$res = $this->db->query("SELECT pid, uid, pic_dir, title, content, label FROM post WHERE label IN (".$labels.")");
-		
 		$tableCount = 0;
 		$numImagesLoaded = 0;
-		$shuffled = array_merge($res->result(), $friendQuery->result());
-		$shuffled = array_unique($shuffled, SORT_REGULAR);
+		$shuffled = $res->result();
 		
 		foreach ($shuffled as $row){
 			array_push($pid, $row->pid);
