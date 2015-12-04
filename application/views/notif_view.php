@@ -29,7 +29,7 @@
                                         </a>
                                         <?php if($global_list[$i]->type == "comment" ){?>
                                             <p>Commented on one of your posts</p>
-                                            <b><?php echo $global_list[$i]->content?> </b>
+                                        <p style="text-indent:50px"> <b><?php echo $global_list[$i]->content?> </b> </p>
                                         <?php } else {?>
                                             <p class="icon-thumbs-up"></p>
                                             <span> Liked your post</span>

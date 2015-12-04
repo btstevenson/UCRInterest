@@ -87,7 +87,7 @@ class notif_model extends CI_Model
 		$uid = $uid->uid;
 
 		$this->db->where('type', 'accepted_friend_req');
-		$this->db->or_where('type', 'comment');
+		$this->db->or_where('type', 'friend_req');
 		$this->db->where('to', $uid);
 		$this->db->delete('notifications');
 	}
