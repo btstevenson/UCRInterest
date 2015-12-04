@@ -75,7 +75,7 @@ class Friends extends CI_Controller
         $fid = $this->uri->segment(3);
         $this->load->model("friends_model");
         $this->friends_model->accept_friend($fid);
-        $redirect("friends");
+        redirect("friends");
     }
 
     public function decline_friend()

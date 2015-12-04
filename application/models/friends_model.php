@@ -11,7 +11,7 @@ class friends_model extends CI_Model
 	{
 		$amigos = array();
         
-		$res = $this->db->query("SELECT F.fid, U2.first_name, U2.last_name, U2.profile_pic FROM friends F, users U, users U2 WHERE F.status ='accepted' AND ((F.user = U.uid AND F.following = U2.uid) OR (U.uid = F.following AND U2.uid = F.user)) AND U.email='".$this->session->userdata("email")."'");
+		$res = $this->db->query("SELECT F.fid, U2.first_name, U2.last_name, U2.profile_pic, U2.uid FROM friends F, users U, users U2 WHERE F.status ='accepted' AND ((F.user = U.uid AND F.following = U2.uid) OR (U.uid = F.following AND U2.uid = F.user)) AND U.email='".$this->session->userdata("email")."'");
 		$shuffled = $res->result();
 		//shuffle($shuffled);
 		

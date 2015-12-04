@@ -103,7 +103,7 @@
                     ?>
                         <!-- <a href="feed"> -->
                             <li class="media">
-                                <a class="pull-left" href="profile/friends_boards/1">
+                                <a class="pull-left" href="profile/friends_boards/<?php echo $friends_list[$i]->uid; ?>">
                                     <img class="media-object" src="<?php echo base_url($friends_list[$i]->profile_pic); ?>" width="64" height="64">
                                 </a>
                                 <div class="media-body">
