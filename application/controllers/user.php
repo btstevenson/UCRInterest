@@ -150,6 +150,6 @@ class User extends CI_Controller
 	public function get_pic_dir()
 	{
 		$this->load->model('user_model');
-		return $this->user_model->get_pic_dir($email);
+		return $this->user_model->get_pic_dir();
 	}
 }
