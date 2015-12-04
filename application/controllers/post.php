@@ -6,12 +6,19 @@ class Post extends CI_Controller
 	{
 		parent::__construct();
 		$this->data['meta_title'] = "Make a post";
+		
 		$this->load->model("notif_model");
 		$global_notifs = $this->notif_model->load_global();
 		if(count($global_notifs[0]) > 0)
 			$this->session->set_userdata("global_notif", true);
 		else
 			$this->session->set_userdata("global_notif", false);
+
+		$friend_notifs = $this->notif_model->load_friends_notifs();
+		if(count($friend_notifs[0]) > 0)
+			$this->session->set_userdata("friend_notif", true);
+		else
+			$this->session->set_userdata("friend_notif", false);
 	}
 
 	public function index()
