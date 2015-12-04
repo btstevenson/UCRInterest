@@ -50,7 +50,7 @@ class notif_model extends CI_Model
         
         
         //GETTING NOTIFICATIONS THAT DO NOT INVOLVE FRIENDS ====================
-		$res = $this->db->query("SELECT * FROM notifications N, users U WHERE N.to = U.uid AND (N.type!='like' OR N.type!='comment') AND U.email='".$this->session->userdata("email")."'");
+		$res = $this->db->query("SELECT * FROM notifications N, users U WHERE N.to = U.uid AND (N.type='friend_req' OR N.type='accepted_friend_req') AND U.email='".$this->session->userdata("email")."'");
 		$shuffled = $res->result();
 		
 		foreach ($shuffled as $row){
@@ -58,7 +58,7 @@ class notif_model extends CI_Model
 		}			
     
         //===== GETTING USERS ============================
-        $res = $this->db->query("SELECT U.first_name, U.last_name FROM notifications N, users U, users U2, post P WHERE N.from = U.uid AND (N.pin_id = P.pid) AND U2.email='".$this->session->userdata("email")."'");
+        $res = $this->db->query("SELECT U.first_name, U.last_name FROM notifications N, users U, users U2 WHERE N.from = U.uid AND N.to = U2.uid AND (N.type='friend_req' OR N.type='accepted_friend_req') AND U2.email='".$this->session->userdata("email")."'");
 		$shuffled = $res->result();
         foreach ($shuffled as $row){
 			array_push($people, $row);
