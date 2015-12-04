@@ -44,11 +44,13 @@ class Feed extends CI_Controller{
 		$last_name = $fulldata[5];
 		$uid = $fulldata[6];
 		$label = $fulldata[7];
+		$boards = $fulldata[8];
 
 		$pins = $this->feed_model->get_pins();
 		$my_uid = $this->feed_model->get_my_uid();
+		$likes = $this->feed_model->get_likes();
 
-		$this->data = array("this_pid" => $pid, "imgs" => $imgs, "titles" => $titles, "contents" => $contents, "first_name" => $first_name, "last_name" => $last_name, "pins" => $pins, "uid" => $uid, "my_uid" => $my_uid, "label" => $label);
+		$this->data = array("this_pid" => $pid, "imgs" => $imgs, "titles" => $titles, "contents" => $contents, "first_name" => $first_name, "last_name" => $last_name, "pins" => $pins, "uid" => $uid, "my_uid" => $my_uid, "label" => $label, "boards" => $boards, "likes" => $likes, "this_likes" => $likes);
 
 		$this->load->view('feed_view', $this->data);
 		
@@ -72,5 +74,34 @@ class Feed extends CI_Controller{
 
 		redirect('feed');
 
+	}
+
+	public function pin_to_board()
+	{
+		$this->load->model('feed_model');
+		$this->feed_model->pin_to_board();
+		redirect('feed');
+	}
+
+	public function add_like()
+	{
+		$pid = $this->uri->segment(3);
+		$this->load->model('profile_model');
+		$uid = $this->profile_model->get_user_id();
+        $sql = "INSERT INTO likes (uid, post_id) VALUES ($uid, $pid)";
+        $query = $this->db->query($sql);
+
+        redirect('feed');
+	}
+
+	public function un_like()
+	{
+		$pid = $this->uri->segment(3);
+		$this->load->model('feed_model');
+		$this->load->model('profile_model');
+		$uid = $this->profile_model->get_user_id();
+        $this->feed_model->un_like($pid);
+
+        redirect('feed');
 	}
 }

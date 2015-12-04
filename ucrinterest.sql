@@ -1,14 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.10
+-- version 4.2.7
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:8889
--- Generation Time: Nov 20, 2015 at 04:43 PM
--- Server version: 5.5.42
--- PHP Version: 5.6.10
+-- Host: localhost:3306
+-- Generation Time: Dec 04, 2015 at 06:03 PM
+-- Server version: 5.5.41-log
+-- PHP Version: 5.6.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `ucrinterest`
@@ -20,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `boards`
 --
 
-CREATE TABLE `boards` (
+CREATE TABLE IF NOT EXISTS `boards` (
   `uid` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -34,7 +40,7 @@ CREATE TABLE `boards` (
 -- Table structure for table `browse_history`
 --
 
-CREATE TABLE `browse_history` (
+CREATE TABLE IF NOT EXISTS `browse_history` (
   `uid` int(11) NOT NULL,
   `label` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -45,7 +51,7 @@ CREATE TABLE `browse_history` (
 -- Table structure for table `comments`
 --
 
-CREATE TABLE `comments` (
+CREATE TABLE IF NOT EXISTS `comments` (
   `pin_id` int(11) NOT NULL,
   `uid` int(11) NOT NULL,
   `content` varchar(500) NOT NULL
@@ -57,12 +63,12 @@ CREATE TABLE `comments` (
 -- Table structure for table `friends`
 --
 
-CREATE TABLE `friends` (
-  `fid` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `friends` (
+`fid` int(11) NOT NULL,
   `user` int(11) NOT NULL COMMENT 'This is the user id of the user',
   `following` int(11) NOT NULL COMMENT 'This is the user id of the user being followed',
   `status` varchar(20) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `friends`
@@ -77,9 +83,20 @@ INSERT INTO `friends` (`fid`, `user`, `following`, `status`) VALUES
 -- Table structure for table `interests`
 --
 
-CREATE TABLE `interests` (
+CREATE TABLE IF NOT EXISTS `interests` (
   `uid` int(11) NOT NULL,
   `label` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `likes`
+--
+
+CREATE TABLE IF NOT EXISTS `likes` (
+  `uid` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -88,7 +105,7 @@ CREATE TABLE `interests` (
 -- Table structure for table `notifications`
 --
 
-CREATE TABLE `notifications` (
+CREATE TABLE IF NOT EXISTS `notifications` (
   `from` int(11) NOT NULL,
   `to` int(11) NOT NULL,
   `type` varchar(20) NOT NULL,
@@ -102,13 +119,13 @@ CREATE TABLE `notifications` (
 -- Table structure for table `pins`
 --
 
-CREATE TABLE `pins` (
-  `pin_id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `pins` (
+`pin_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
-  `b_name` int(11) NOT NULL,
+  `b_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `uid` int(11) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -116,15 +133,15 @@ CREATE TABLE `pins` (
 -- Table structure for table `post`
 --
 
-CREATE TABLE `post` (
-  `pid` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `post` (
+`pid` int(11) NOT NULL,
   `uid` int(11) NOT NULL,
   `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `pic_dir` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `content` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
   `label` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `post`
@@ -157,8 +174,8 @@ INSERT INTO `post` (`pid`, `uid`, `title`, `pic_dir`, `content`, `label`, `date_
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `uid` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+`uid` int(11) NOT NULL,
   `email` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `username` varchar(128) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -172,7 +189,7 @@ CREATE TABLE `users` (
   `DOB` date DEFAULT NULL,
   `gender` varchar(1) COLLATE utf8_unicode_ci DEFAULT NULL,
   `nick_name` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `users`
@@ -194,32 +211,37 @@ INSERT INTO `users` (`uid`, `email`, `password`, `username`, `first_name`, `last
 -- Indexes for table `boards`
 --
 ALTER TABLE `boards`
-  ADD PRIMARY KEY (`name`,`uid`) USING BTREE,
-  ADD KEY `uid` (`uid`);
+ ADD PRIMARY KEY (`name`,`uid`) USING BTREE, ADD KEY `uid` (`uid`);
 
 --
 -- Indexes for table `friends`
 --
 ALTER TABLE `friends`
-  ADD PRIMARY KEY (`fid`);
+ ADD PRIMARY KEY (`fid`);
+
+--
+-- Indexes for table `likes`
+--
+ALTER TABLE `likes`
+ ADD PRIMARY KEY (`uid`,`post_id`), ADD KEY `post_id` (`post_id`);
 
 --
 -- Indexes for table `pins`
 --
 ALTER TABLE `pins`
-  ADD PRIMARY KEY (`pin_id`);
+ ADD PRIMARY KEY (`b_name`), ADD UNIQUE KEY `pin_id` (`pin_id`) USING BTREE;
 
 --
 -- Indexes for table `post`
 --
 ALTER TABLE `post`
-  ADD PRIMARY KEY (`pid`);
+ ADD PRIMARY KEY (`pid`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`uid`);
+ ADD PRIMARY KEY (`uid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -229,22 +251,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `friends`
 --
 ALTER TABLE `friends`
-  MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `fid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `pins`
 --
 ALTER TABLE `pins`
-  MODIFY `pin_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `pin_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
@@ -253,4 +275,21 @@ ALTER TABLE `users`
 -- Constraints for table `boards`
 --
 ALTER TABLE `boards`
-  ADD CONSTRAINT `Foreign Key` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE CASCADE;
+ADD CONSTRAINT `Foreign Key` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `likes`
+--
+ALTER TABLE `likes`
+ADD CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`post_id`) REFERENCES `post` (`pid`),
+ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`);
+
+--
+-- Constraints for table `pins`
+--
+ALTER TABLE `pins`
+ADD CONSTRAINT `Board_Key` FOREIGN KEY (`b_name`) REFERENCES `boards` (`name`) ON DELETE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
