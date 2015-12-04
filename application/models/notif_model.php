@@ -70,10 +70,27 @@ class notif_model extends CI_Model
 
 	public function clear_global_notif()
 	{
-		
+		$uid = $this->db->query("SELECT uid FROM users WHERE email='".$this->session->userdata("email")."'");
+		$uid = $uid->row();
+		$uid = $uid->uid;
+
+		$this->db->where('type', 'like');
+		$this->db->or_where('type', 'comment');
+		$this->db->where('to', $uid);
+		$this->db->delete('notifications');
 	}
     
-    
+    public function clear_friend_notif()
+	{
+		$uid = $this->db->query("SELECT uid FROM users WHERE email='".$this->session->userdata("email")."'");
+		$uid = $uid->row();
+		$uid = $uid->uid;
+
+		$this->db->where('type', 'accepted_friend_req');
+		$this->db->or_where('type', 'comment');
+		$this->db->where('to', $uid);
+		$this->db->delete('notifications');
+	}
 }
 
 ?>
