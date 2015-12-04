@@ -109,7 +109,7 @@ class profile_model extends CI_Model
 
     public function get_friend_info($uid)
     {
-        $sql = "SELECT first_name, last_name, profile_pic, gender FROM user WHERE uid= ?";
+        $sql = "SELECT first_name, last_name, profile_pic, gender FROM users WHERE uid= ?";
         $query = $this->db->query($sql, array($uid));
         return $query->result_array(); 
     }

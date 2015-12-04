@@ -106,8 +106,9 @@ class Profile extends CI_Controller
 
 	}
 
-	public function friends_boards($uid)
+	public function friends_boards()
 	{
+        $uid = $this->uri->segment(3);
 		$this->load->view('template/header', $this->data);
 		$this->load->view('template/main_layout', $this->data);
 		$this->load->model('profile_model');
