@@ -10,6 +10,7 @@ class Notif extends CI_Controller
 
 	public function index()
 	{
+        $this->load->model('notif_model');
         $this->load->view('template/header', $this->data);
 		$this->load->view('template/main_layout', $this->data);
         //====== GETTING ALL THE NOTIFICATIONS FROM THE TABLE THAT PERTAION TO YOU ==============================
